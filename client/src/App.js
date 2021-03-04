@@ -1,7 +1,7 @@
 
 
 import Header from './components/Header'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 // const fetchTitle = () => {
 //   fetch('http://localhost:5000')
@@ -12,21 +12,40 @@ import { useEffect } from 'react'
 
 function App() {
 
-  useEffect(() => {
-    const fetchTitle = async () => {
-      const res = await fetch('http://localhost:5000/')
-      const data = await res.json()
+  const [data, setData] = useState([])
 
-      console.log(data)
+  useEffect(() => {
+    const fetchTasks = () => {
+        fetch('http://localhost:5000')
+        .then(res => res.json())
+        .then(data => {
+          setData(data)
+        })
     }
-    fetchTitle()
+    fetchTasks()
   }, [])
+
+  // useEffect(() => {
+  //   const getTasks = async () => {
+  //     const taskFromServer = await fetchTasks()
+  //     console.log('From use Effect', taskFromServer)
+  //     setData(taskFromServer)
+  //   }
+  //   getTasks()
+  // }, [])
+
+  // const fetchTasks = async () => {
+  //   const res = await fetch('http://localhost:5000')
+  //   const dataFetched = await res.json()
+  //  // console.log(data)
+  //   return dataFetched
+  // }
 
 
   return (
     <div className="App">
 
-      <Header title='test' />
+      <Header title={data} />
 
     </div>
   );
