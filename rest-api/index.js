@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 
 app.get('/', (req, res) => {
-    res.send('Working')
+    res.json({ message: 'Working' })
 })
 
 app.listen(5000, () => {
