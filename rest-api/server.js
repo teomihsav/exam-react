@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Working' })
+    res.json({ message: 'Registration' })
 })
 
 app.listen(5000, () => {

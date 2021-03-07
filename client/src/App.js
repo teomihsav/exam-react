@@ -1,6 +1,7 @@
 
 
 import Header from './components/Header'
+import Footer from './components/Footer'
 import { useState, useEffect } from 'react'
 
 // const fetchTitle = () => {
@@ -16,7 +17,7 @@ function App() {
 
   useEffect(() => {
     const fetchTasks = () => {
-        fetch('http://localhost:5000')
+      fetch('http://localhost:5000')
         .then(res => res.json())
         .then(data => {
           setData(data)
@@ -43,10 +44,16 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div>
+      <div className="container">
 
-      <Header title={data} />
+        <Header title={data} />
 
+      </div>
+
+      <div className="footer">
+        <Footer data={'Всички права запазени'} />
+      </div>
     </div>
   );
 }

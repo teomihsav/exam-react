@@ -1,15 +1,17 @@
 
 
 
-
+import Register from './Auth/Register'
 
 const Header = ({ title }) => {
     console.log(title)
     return (
         <div>
             <header className='header'>
-                <h1> {title.message}</h1>
+            
+                <p style={{ 'text-align': 'center', 'font-size': '20px'}} >{title.message }</p>
             </header>
+            <Register />
         </div>
     )
 }
