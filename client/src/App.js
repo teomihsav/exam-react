@@ -1,7 +1,11 @@
 
 
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Register from './components/Auth/Register'
+import Login from './components/Auth/Login'
+import About from './components/About'
 import { useState, useEffect } from 'react'
 
 // const fetchTitle = () => {
@@ -17,7 +21,7 @@ function App() {
 
   useEffect(() => {
     const fetchTasks = () => {
-      fetch('http://localhost:5000')
+      fetch('http://localhost:5000/')
         .then(res => res.json())
         .then(data => {
           setData(data)
@@ -44,17 +48,33 @@ function App() {
 
 
   return (
-    <div>
-      <div className="container">
+    <Router>
+      <div>
 
-        <Header title={data} />
+        <div className="container">
+
+          <Route
+            path='/'
+            exact
+            render={(props) => (
+              <div>
+                {< Header headerText={data} />}
+              </div>
+            )}
+          />
+
+          <Route path='/register' component={Register} />
+          <Route path='/login' component={Login} />
+          <Route path='/about' component={About} />
+
+          <div className="footer">
+            <Footer data={'Всички права запазени'} />
+          </div>
+
+        </div>
 
       </div>
-
-      <div className="footer">
-        <Footer data={'Всички права запазени'} />
-      </div>
-    </div>
+    </Router>
   );
 }
 

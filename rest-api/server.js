@@ -6,8 +6,16 @@ const app = express()
 
 app.use(cors())
 
+
 app.get('/', (req, res) => {
+    res.json({ message: 'Header Text' })
+})
+
+app.get('/auth/registration', (req, res) => {
     res.json({ message: 'Registration' })
+})
+app.get('/auth/login', (req, res) => {
+    res.json({ message: 'Login' })
 })
 
 app.listen(5000, () => {

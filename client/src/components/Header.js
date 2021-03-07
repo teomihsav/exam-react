@@ -1,17 +1,17 @@
 
 
 
-import Register from './Auth/Register'
 
-const Header = ({ title }) => {
-    console.log(title)
+const Header = ({ headerText }) => {
     return (
         <div>
+
             <header className='header'>
-            
-                <p style={{ 'text-align': 'center', 'font-size': '20px'}} >{title.message }</p>
+                <a href="/register">Register</a>
+                <a href="/login">Login</a>
+                <a href="/about">About</a>
+                <p style={{ 'text-align': 'center', 'font-size': '20px' }} >{headerText.message}</p>
             </header>
-            <Register />
         </div>
     )
 }
