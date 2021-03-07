@@ -4,9 +4,10 @@
 
 const Footer = ({ data }) => {
     return (
-        <div>
+        <footer>
             <h3>{data}</h3>
-        </div>
+            
+        </footer>
     )
 }
 
