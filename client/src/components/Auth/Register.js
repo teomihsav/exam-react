@@ -40,7 +40,7 @@ const Register = () => {
                         placeholder='Type your password'
                     >
                     </input>
-                    <span className='error'>{  }</span>
+                    <span className='error'>{ }</span>
                 </div>
 
                 <div className='form-control'>

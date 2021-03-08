@@ -50,27 +50,17 @@ function App() {
   return (
     <Router>
       <div>
-
+        < Header headerText={data} />
         <div className="container">
-
-          <Route
-            path='/'
-            exact
-            render={(props) => (
-              <div>
-                {< Header headerText={data} />}
-              </div>
-            )}
-          />
 
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/about' component={About} />
 
-          <div className="footer">
-            <Footer data={'Всички права запазени'} />
-          </div>
+        </div>
 
+        <div className="footer">
+          <Footer data={'Всички права запазени'} />
         </div>
 
       </div>
