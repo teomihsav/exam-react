@@ -1,7 +1,12 @@
 
-
+import { useLayoutEffect } from 'react'
 
 const Register = ({ text }) => {
+
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+    });
+
     return (
         <>
             <p>{text.message}</p>

@@ -47,40 +47,39 @@ function App() {
   //   return dataFetched
   // }
 
-
   return (
     <Router>
-      <div>
-        < Header />
-        <div className="container">
+        <div>
+          < Header />
+          <div className="container">
 
-          <Route
-            path='/' exact
-            component={Home}
-          />
+            <Route
+              path='/' exact
+              component={Home}
+            />
 
-          <Route
-            path='/register' exact
-            component={() => <Register text={data} />}
-          />
+            <Route
+              path='/register' exact
+              component={() => <Register text={data} />}
+            />
 
-          <Route
-            path='/login' exact
-            component={() => <Login />}
-          />
+            <Route
+              path='/login' exact
+              component={() => <Login />}
+            />
 
-          <Route
-            path='/about' 
-            component={About}
-          />
+            <Route exact
+              path='/about'
+              component={About}
+            />
+
+          </div>
+
+          <div className="footer">
+            <Footer data={'Всички права запазени'} />
+          </div>
 
         </div>
-
-        <div className="footer">
-          <Footer data={'Всички права запазени'} />
-        </div>
-
-      </div>
     </Router>
   );
 }

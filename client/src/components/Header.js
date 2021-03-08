@@ -19,7 +19,7 @@ const Header = ({ headerText }) => {
     useEffect(() => {
         window.addEventListener('scroll', handleScroll)
     })
-    
+
     let navbarClasses = ['NavbarItems'];
     if (scrolled) {
         navbarClasses.push('scrolled');
@@ -51,6 +51,7 @@ const Header = ({ headerText }) => {
         }
     }
 
+  
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >

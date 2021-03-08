@@ -1,9 +1,13 @@
 
 
 
+import { useLayoutEffect } from 'react'
 
 
 const Login = (text) => {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
+    });
     return (
         <>
             <form className='add-form'  >
