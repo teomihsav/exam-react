@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import About from './components/About'
+import Home from './components/Home'
 import { useState, useEffect } from 'react'
 
 // const fetchTitle = () => {
@@ -21,7 +22,7 @@ function App() {
 
   useEffect(() => {
     const fetchTasks = () => {
-      fetch('http://localhost:5000/')
+      fetch('http://localhost:5000/auth/registration')
         .then(res => res.json())
         .then(data => {
           setData(data)
@@ -50,12 +51,28 @@ function App() {
   return (
     <Router>
       <div>
-        < Header headerText={data} />
+        < Header />
         <div className="container">
 
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
-          <Route path='/about' component={About} />
+          <Route
+            path='/' exact
+            component={Home}
+          />
+
+          <Route
+            path='/register' exact
+            component={() => <Register text={data} />}
+          />
+
+          <Route
+            path='/login' exact
+            component={() => <Login />}
+          />
+
+          <Route
+            path='/about' 
+            component={About}
+          />
 
         </div>
 

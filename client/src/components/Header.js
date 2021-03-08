@@ -1,9 +1,30 @@
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './CSS/NavBar.css'
 
 const Header = ({ headerText }) => {
+
+    const [scrolled, setScrolled] = useState(false);
+    const handleScroll = () => {
+        const offset = window.scrollY;
+
+        if (offset > 100) {
+            setScrolled(true);
+        }
+        else {
+            setScrolled(false);
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+    })
+    
+    let navbarClasses = ['NavbarItems'];
+    if (scrolled) {
+        navbarClasses.push('scrolled');
+    }
+
     const [menuReg, setMenuReg] = useState(false)
     const [menuLog, setMenuLog] = useState(false)
     const [menuAbt, setMenuAbt] = useState(false)
@@ -32,7 +53,7 @@ const Header = ({ headerText }) => {
 
     return (
         <div>
-            <nav className='NavbarItems' >
+            <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className="navbar-logo"> iMatch <i className="fab fa-react"> </i></h1>
                 <div className="menu-icon" >
                 </div>

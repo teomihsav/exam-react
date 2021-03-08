@@ -1,5 +1,6 @@
 
 
+
 .NavbarItems {
     background: rgba(129, 129, 255, 0.925);
     height: 60px;
@@ -7,8 +8,32 @@
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+    transition: all 0.5s ease-out;
 }
-
+.scrolled {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 1px 1px 1px rgba(129, 129, 255, 0.925);
+    animation: moveDown 0.5s ease-out;
+}
+  @keyframes moveDown {
+    from {
+      transform: translateY(-5rem);
+    }
+    to {
+      transform: translateY(0rem);
+    }
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotateY(360deg);
+    }
+    100% {
+      transform: rotateY(0rem);
+    }
+  }
 .navbar-logo {
     color: #fff;
     justify-self: start;
@@ -17,7 +42,7 @@
 }
 
 .fa-react {
-    margin-left:  0.5rem;
+    margin-left: 0.5rem;
     font-size: 1.6rem;
 }
 
@@ -36,25 +61,26 @@
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
+
 .nav-links-selected {
     color: white;
     background-color: rgb(97, 43, 247);
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.2s ease-out;
-
     padding: 0.5rem 1rem;
 }
+
 .nav-links:hover {
     background-color: rgb(53, 49, 66);
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }
+
 @media screen and (max-width: 960px) {
     .NavbarItems {
         position: relative;
     }
-
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -66,15 +92,14 @@
         opacity: 1;
         transition: all 0.5s ease;
     }
- 
     .nav-links {
         text-align: center;
-        padding:  2em;
+        padding: 2em;
         width: 100%;
         display: table;
     }
     .nav-links:hover {
-        background-color:rgb(49, 27, 110);
+        background-color: rgb(49, 27, 110);
         border-radius: 0;
     }
     .nav-logo {
