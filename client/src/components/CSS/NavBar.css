@@ -1,8 +1,8 @@
 
 
-
 .NavbarItems {
-    background: rgba(129, 129, 255, 0.925);
+    background: rgba(56, 151, 1, 0.925);   /* rgb(113, 110, 255); */
+    width: 100%;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -63,7 +63,7 @@
 
 .nav-links-selected {
     color: white;
-    background-color: rgb(97, 43, 247);
+    background-color: rgb(34, 119, 0);
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.2s ease-out;
@@ -71,7 +71,7 @@
 }
 
 .nav-links:hover {
-    background-color: rgb(53, 49, 66);
+    background-color: rgb(40, 100, 0);
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }

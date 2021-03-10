@@ -10,6 +10,7 @@ const User = require('../models/User')
 
 router.post('/register', (req, res) => {  console.log('Data form API', req.body)
  
+ // Validation on bacl-end
  
     const user = new User({
         username: req.body.username,

@@ -32,7 +32,7 @@ const Register = ({ props }) => {
                 error['email'] = ''; // console.log('minus: ', username, username.length)
             }
         } // console.log('After IFs', error)
-        setErrors(error)
+        
 
         if (!values.password) {
             error.password = ''
@@ -53,6 +53,8 @@ const Register = ({ props }) => {
                 if (values.password !== values.passwordSecond) { (error.passwordSecond = 'Password did not match') }
             }
         }
+        
+        setErrors(error) // Setting object with errors to state errors 
 
     }, [values.username, values.email, values.password, values.passwordSecond])
 
@@ -86,15 +88,7 @@ const Register = ({ props }) => {
     return (
         <>
             <form className='add-form' onSubmit={onSubmit} >
-                <div style={{
-                    'maxWidth': '450px',
-                    'margin': '30px auto',
-                    'overflow': 'auto',
-                    'minHeight': '30px',
-                    'border': '1px solid rgb(113, 110, 255)',
-                    'padding': '20px',
-                    'borderRadius': '5px'
-                }}>
+                <div className='form-control-out-border'>
                     <div className='form-control'>
                         <label>Username</label>
                         <input className={errors.username ? 'form-control-border-error' : 'form-control-border'}
@@ -122,15 +116,7 @@ const Register = ({ props }) => {
                     </div>
                 </div>
 
-                <div style={{
-                    'maxWidth': '450px',
-                    'margin': '30px auto',
-                    'overflow': 'auto',
-                    'minHeight': '30px',
-                    'border': '1px solid rgb(113, 110, 255)',
-                    'padding': '20px',
-                    'borderRadius': '5px'
-                }}>
+                <div className='form-control-out-border'>
                     <div className='form-control'>
                         <label>Password</label>
                         <input className={errors.password ? 'form-control-border-error' : 'form-control-border'}

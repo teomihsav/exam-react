@@ -1,6 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,7 +14,7 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 50px;
-  border: 0px solid rgb(113, 110, 255);
+  border: 0px solid rgba(56, 151, 1, 0.925);
   padding: 30px;
   border-radius: 5px;
 }
@@ -31,7 +29,8 @@ body {
 
 .btn {
   display: inline-block;
-  background: rgb(113, 110, 255);
+  background: rgba(56, 151, 1, 0.925);
+  /* rgb(113, 110, 255); */
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -79,18 +78,31 @@ body {
 
 .form-control {
   margin: 10px 0;
-  border-color: rgb(113, 110, 255);
+  border-color: rgba(56, 151, 1, 0.925)
 }
-.form-control-border{
-  border: 1px solid rgb(113, 110, 255);
+
+.form-control-out-border {
+  max-width: 450px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 30px;
+  border: 1px solid rgba(56, 151, 1, 0.925);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.form-control-border {
+  border: 1px solid rgba(56, 151, 1, 0.925);
   border-Radius: 5px;
-  outline-Color: rgb(113, 110, 255);
+  outline-Color: rgba(56, 151, 1, 0.925);
 }
-.form-control-border-error{
+
+.form-control-border-error {
   border: 1px solid rgb(219, 6, 95);
   border-Radius: 5px;
   outline-Color: rgb(219, 6, 95);
 }
+
 .form-control label {
   display: block;
 }
@@ -123,15 +135,16 @@ body {
   min-height: 50px;
   margin: 30px auto;
   overflow: auto;
-  
   padding: 30px;
   border-radius: 5px;
   text-align: center;
   font-size: 10px;
 }
+
 /* .registration {
   text-align: center;
 } */
+
 .error {
   color: red;
   font-size: 13px;
