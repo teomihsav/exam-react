@@ -63,13 +63,21 @@ const Register = ({ props }) => {
     const onSubmit = (e) => {
         e.preventDefault() // console.log(Object.keys(errors))
 
-        if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
-            console.log('We can reg user')
-            //register({ ...values })
+        isBodyFieldEmpty(values, errors)
+        let res = Object.values(errors).map(el => {
+            return el ? true : false
+        })
+        console.log(res)
+        setErrors({ ...errors });
+
+        if (!res.includes(true)) {
+            if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
+                console.log('We can reg user')
+                //register({ ...values })
+            }
         }
-        console.log( isBodyFieldEmpty(values, errors) )
-        setErrors({...errors});
     }
+
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
