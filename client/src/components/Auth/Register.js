@@ -1,26 +1,21 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
 import register from '../../actions/authAction'
+import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidation'
+
 const Register = ({ props }) => {
 
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
-    // const [errorUsername, setErrorUsername] = useState('')
-    // const [errorEmail, setErrorEmail] = useState('')
-    // const [errorPassword, setErrorPassword] = useState('')
-    // const [errorPasswordSecond, setErrorPasswordSecond] = useState('')
 
-
-
+    // CHECK ONCHANGE FORM ENTRIES <--
     useEffect(() => { // console.log('useEffect:', username)
         let error = {}
 
         if (!values.username) {
             error.username = ''
-            // setErrorUsername('');
         } else {
             if (values.username.length < 3) {
-                //error.username = 'Username must be more than 3 charecters'); // console.log('plus: ', username.length)
                 error.username = 'Username must be more than 3 charecters'
             } else {
                 error.username = '' // console.log('minus: ', username, username.length)
@@ -62,34 +57,23 @@ const Register = ({ props }) => {
     }, [values.username, values.email, values.password, values.passwordSecond])
 
     const validForm = (e) => { // console.log('Event: ', e)
-        // e.persist();
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));
-        // setUsername(e) // console.log('Username after set state', username)
     }
-
+    // SUBMIT FORM <--- 
     const onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault() // console.log(Object.keys(errors))
 
-        console.log(Object.keys(errors))
-
-        const isEmpty = (object) => {
-            Object.values(object).forEach(element => {
-                console.log(element)
-              if (!element) {return false} else {return true}
-            })
-        }
-console.log(isEmpty(errors))
-        if (!isEmpty(errors)) {
+        if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
             console.log('We can reg user')
-            register({ ...values })
-            // setText(''); setDay(''); setReminder(false);
+            //register({ ...values })
         }
+        console.log( isBodyFieldEmpty(values, errors) )
+        setErrors({...errors});
     }
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-    });
-    console.log('Before:', errors)
+    }); // console.log('Before:', errors)
 
     return (
         <>
