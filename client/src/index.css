@@ -81,7 +81,16 @@ body {
   margin: 10px 0;
   border-color: rgb(113, 110, 255);
 }
-
+.form-control-border{
+  border: 1px solid rgb(113, 110, 255);
+  border-Radius: 5px;
+  outline-Color: rgb(113, 110, 255);
+}
+.form-control-border-error{
+  border: 1px solid rgb(219, 6, 95);
+  border-Radius: 5px;
+  outline-Color: rgb(219, 6, 95);
+}
 .form-control label {
   display: block;
 }

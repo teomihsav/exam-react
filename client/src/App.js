@@ -20,16 +20,16 @@ function App() {
 
   const [data, setData] = useState([])
 
-  useEffect(() => {
-    const fetchTasks = () => {
-      fetch('http://localhost:5000/auth/registration')
-        .then(res => res.json())
-        .then(data => {
-          setData(data)
-        })
-    }
-    fetchTasks()
-  }, [])
+  // useEffect(() => {
+  //   const fetchTasks = () => {
+  //     fetch('http://localhost:5000/auth/registration')
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         setData(data)
+  //       })
+  //   }
+  //   fetchTasks()
+  // }, [])
 
   // useEffect(() => {
   //   const getTasks = async () => {
@@ -60,7 +60,7 @@ function App() {
 
             <Route
               path='/register' exact
-              component={() => <Register text={data} />}
+              component={() => <Register text={'Register'} />}
             />
 
             <Route

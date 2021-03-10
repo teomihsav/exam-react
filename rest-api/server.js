@@ -3,20 +3,21 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const mongoose = require('mongoose')
+const authApiRoutes = require('./routes/authApiRoutes')
 
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.json({ message: 'Header Text' })
-})
+mongoose.connect('mongodb://localhost/imatch', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    console.log('Connected to DB')
+});
 
-app.get('/auth/registration', (req, res) => {
-    res.json({ message: 'Registration' })
-})
-app.get('/auth/login', (req, res) => {
-    res.json({ message: 'Login' })
-})
+app.use('/auth', authApiRoutes);
+
 
 app.listen(5000, () => {
     console.log('Server is listening on port 5000')
