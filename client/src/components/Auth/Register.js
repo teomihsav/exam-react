@@ -1,12 +1,15 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
-import register from '../../actions/authAction'
-import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidation'
+import registerUser from '../../actions/authAction'
+import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegister'
+import { useHistory } from "react-router-dom";
 
 const Register = ({ props }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
+    const [toTrue, setToTrue] = useState(false)
+    let history = useHistory();
 
     // CHECK ONCHANGE FORM ENTRIES <--
     useEffect(() => { // console.log('useEffect:', username)
@@ -32,12 +35,12 @@ const Register = ({ props }) => {
                 error['email'] = ''; // console.log('minus: ', username, username.length)
             }
         } // console.log('After IFs', error)
-        
+
 
         if (!values.password) {
             error.password = ''
         } else {
-            if (values.password.length < 6) {
+            if (values.password.length < 1) {
                 error.password = 'Password must be more than 6 charecters'; // console.log('plus: ', username.length)
             } else {
                 error.password = ''; // console.log('minus: ', username, username.length)
@@ -46,17 +49,24 @@ const Register = ({ props }) => {
         if (!values.passwordSecond) {
             error.passwordSecond = ''
         } else {
-            if (values.passwordSecond.length < 6) {
+            if (values.passwordSecond.length < 1) {
                 error.passwordSecond = 'Password must be more than 6 charecters'; // console.log('plus: ', username.length)
             } else {
                 error.passwordSecond = ''; // console.log('minus: ', username, username.length)
                 if (values.password !== values.passwordSecond) { (error.passwordSecond = 'Password did not match') }
             }
         }
-        
+
         setErrors(error) // Setting object with errors to state errors 
 
     }, [values.username, values.email, values.password, values.passwordSecond])
+
+    useEffect(() => {
+        console.log('toTrue', toTrue)
+         // setToTrue(!Boolean)
+            console.log('HITTTTED:', toTrue)
+            toTrue && history.push("/login")
+    }, [toTrue])
 
     const validForm = (e) => { // console.log('Event: ', e)
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));
@@ -66,16 +76,18 @@ const Register = ({ props }) => {
         e.preventDefault() // console.log(Object.keys(errors))
 
         isBodyFieldEmpty(values, errors)
-        let res = Object.values(errors).map(el => {
+        let result = Object.values(errors).map(el => {
             return el ? true : false
         })
-        console.log(res)
         setErrors({ ...errors });
 
-        if (!res.includes(true)) {
+        if (!result.includes(true)) {
             if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
-                console.log('We can reg user')
-                //register({ ...values })
+                registerUser({ values, setErrors, setToTrue })
+                    .then(() => {
+
+
+                    })
             }
         }
     }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
 import register from '../../actions/authAction'
-import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidation'
+import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationLogin'
 
 const Login = ({ props }) => {
 
@@ -12,7 +12,7 @@ const Login = ({ props }) => {
     // CHECK ONCHANGE FORM ENTRIES <--
     useEffect(() => { // console.log('useEffect:', username)
         let error = {}
-console.log('username from body: ',values.username)
+
         if (!values.username) {
             error.username = ''
         } else {
@@ -39,12 +39,13 @@ console.log('username from body: ',values.username)
     const validForm = (e) => { // console.log('Event: ', e)
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));
     }
-    // SUBMIT FORM <--- 
+    // SUBMIT FORM <---
     const onSubmit = (e) => {
-        e.preventDefault() // console.log(Object.keys(errors))
+        e.preventDefault();  // console.log(Object.keys(errors))
 
         isBodyFieldEmpty(values, errors)
         let res = Object.values(errors).map(el => {
+            console.log(el)
             return el ? true : false
         })
         console.log(res)
@@ -52,8 +53,8 @@ console.log('username from body: ',values.username)
 
         if (!res.includes(true)) {
             if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
-                console.log('We can reg user')
-                //register({ ...values })
+                console.log('We can logged in')
+                //Login({ ...values })
             }
         }
     }
