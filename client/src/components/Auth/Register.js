@@ -92,7 +92,6 @@ const Register = ({ props }) => {
         }
     }
 
-
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     }); // console.log('Before:', errors)
