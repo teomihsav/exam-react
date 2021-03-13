@@ -62,34 +62,30 @@ const Register = ({ props }) => {
     }, [values.username, values.email, values.password, values.passwordSecond])
 
     useEffect(() => {
-        console.log('toTrue', toTrue)
-         // setToTrue(!Boolean)
-            console.log('HITTTTED:', toTrue)
-            toTrue && history.push("/login")
+        // console.log('toTrue', toTrue)
+        toTrue && history.push("/login")
     }, [toTrue])
 
-    const validForm = (e) => { // console.log('Event: ', e)
+    const spreadFormData = (e) => { // console.log('Event: ', e)
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));
     }
     // SUBMIT FORM <--- 
     const onSubmit = (e) => {
         e.preventDefault() // console.log(Object.keys(errors))
 
-        isBodyFieldEmpty(values, errors)
-        let result = Object.values(errors).map(el => {
-            return el ? true : false
-        })
-        setErrors({ ...errors });
+        // isBodyFieldEmpty(values, errors)
 
-        if (!result.includes(true)) {
-            if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
+        // let result = Object.values(errors).map(el => {
+        //     return el ? true : false
+        // })
+        // setErrors({ ...errors })
+
+        // if (!result.includes(true)) {
+        //     if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
+                console.log(values)
                 registerUser({ values, setErrors, setToTrue })
-                    .then(() => {
-
-
-                    })
-            }
-        }
+        //     }
+        // }
     }
 
     useLayoutEffect(() => {
@@ -108,7 +104,7 @@ const Register = ({ props }) => {
                             placeholder='Type your username'
                             value={values.username || ''}
                             // onChange={(e) => (setUsername(e.target.value), setErrorUsername(''))}
-                            onChange={validForm}
+                            onChange={spreadFormData}
                         >
                         </input>
                         <span className='error'>{errors.username}</span>
@@ -120,7 +116,7 @@ const Register = ({ props }) => {
                             name='email'
                             placeholder='Type your e-mail'
                             value={values.email || ''}
-                            onChange={validForm}
+                            onChange={spreadFormData}
                         >
                         </input>
                         <span className='error'>{errors.email}</span>
@@ -135,7 +131,7 @@ const Register = ({ props }) => {
                             name='password'
                             placeholder='Type your password'
                             value={values.password || ''}
-                            onChange={validForm}
+                            onChange={spreadFormData}
                         >
                         </input>
                         <span className='error'>{errors.password}</span>
@@ -147,7 +143,7 @@ const Register = ({ props }) => {
                             name='passwordSecond'
                             placeholder='Type password again'
                             value={values.passwordSecond || ''}
-                            onChange={validForm}
+                            onChange={spreadFormData}
                         >
                         </input>
                         <span className='error'>{errors.passwordSecond}</span>

@@ -1,7 +1,5 @@
 
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import './CSS/NavBar.css'
 import Menulinks from './MenuLinks'
 
 const Header = ({ headerText }) => {
@@ -28,11 +26,10 @@ const Header = ({ headerText }) => {
         navbarClasses.push('scrolled');
     }
 
-
     let menu = [
         { id: 1, text: 'Register' },
         { id: 2, text: 'Login' },
-        { id: 3, text: 'About' }
+        { id: 3, text: 'About' },
     ]
     console.log(clicked)
     return (

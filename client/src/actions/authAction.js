@@ -3,7 +3,7 @@
 
 import axios from 'axios'
 
-const registerUser = async  ({ values, setErrors, setToTrue }) => {
+const registerUser =  ({ values, setErrors, setToTrue }) => {
     console.log('TEST: ', values)
     axios.post('http://localhost:5000/auth/register', { ...values })
         .then(res => {
