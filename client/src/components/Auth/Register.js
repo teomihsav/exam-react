@@ -3,7 +3,7 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 import registerUser from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegister'
 import { useHistory } from "react-router-dom";
-
+import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
 const Register = ({ props }) => {
 
     const [values, setValues] = useState({})
@@ -11,86 +11,33 @@ const Register = ({ props }) => {
     const [toTrue, setToTrue] = useState(false)
     let history = useHistory();
 
-    // CHECK ONCHANGE FORM ENTRIES <--
-    useEffect(() => { // console.log('useEffect:', username)
-        let error = {}
-
-        if (!values.username) {
-            error.username = ''
-        } else {
-            if (values.username.length < 3) {
-                error.username = 'Username must be more than 3 charecters'
-            } else {
-                error.username = '' // console.log('minus: ', username, username.length)
-            }
-        }
-
-        if (!values.email) {
-            error['email'] = ''
-        } else {
-            if (!/\S+@\S+\.\S+/.test(values.email)) {
-                // setErrorEmail('Must be valid e-mail'); // console.log('plus: ', username.length)
-                error.email = 'Must be valid e-mail'
-            } else {
-                error['email'] = ''; // console.log('minus: ', username, username.length)
-            }
-        } // console.log('After IFs', error)
-
-
-        if (!values.password) {
-            error.password = ''
-        } else {
-            if (values.password.length < 1) {
-                error.password = 'Password must be more than 6 charecters'; // console.log('plus: ', username.length)
-            } else {
-                error.password = ''; // console.log('minus: ', username, username.length)
-            }
-        }
-        if (!values.passwordSecond) {
-            error.passwordSecond = ''
-        } else {
-            if (values.passwordSecond.length < 1) {
-                error.passwordSecond = 'Password must be more than 6 charecters'; // console.log('plus: ', username.length)
-            } else {
-                error.passwordSecond = ''; // console.log('minus: ', username, username.length)
-                if (values.password !== values.passwordSecond) { (error.passwordSecond = 'Password did not match') }
-            }
-        }
-
-        setErrors(error) // Setting object with errors to state errors 
-
-    }, [values.username, values.email, values.password, values.passwordSecond])
+    useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
         // console.log('toTrue', toTrue)
-        toTrue && history.push("/login")
+        toTrue && history.push("/login") // Redirect based on state -> true on registered user
     }, [toTrue])
 
-    const spreadFormData = (e) => { // console.log('Event: ', e)
-        setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+    const spreadFormData = (e) => {
+        setValues(values => ({ ...values, [e.target.name]: e.target.value })); // form entries to state
     }
     // SUBMIT FORM <--- 
     const onSubmit = (e) => {
-        e.preventDefault() // console.log(Object.keys(errors))
+        e.preventDefault()
 
-        // isBodyFieldEmpty(values, errors)
+        isBodyFieldEmpty(values, errors) // Check on Front for empty field on Submit and return errors object
 
-        // let result = Object.values(errors).map(el => {
-        //     return el ? true : false
-        // })
-        // setErrors({ ...errors })
+        setErrors({ ...errors }) // Spread errors to state for displaying into form page -> console.log('Spread Errors object to State', errors)
 
-        // if (!result.includes(true)) {
-        //     if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
-                console.log(values)
-                registerUser({ values, setErrors, setToTrue })
-        //     }
-        // }
+        if (!isEmpty(errors).includes(true)) { // console.log('--> ', errors)
+
+                registerUser({ values, setErrors, setToTrue }) // User register call ~registerUser
+        }
     }
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-    }); // console.log('Before:', errors)
+    })
 
     return (
         <>

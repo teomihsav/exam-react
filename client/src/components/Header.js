@@ -31,7 +31,7 @@ const Header = ({ headerText }) => {
         { id: 2, text: 'Login' },
         { id: 3, text: 'About' },
     ]
-    console.log(clicked)
+    
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >

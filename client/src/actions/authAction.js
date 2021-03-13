@@ -3,8 +3,7 @@
 
 import axios from 'axios'
 
-const registerUser =  ({ values, setErrors, setToTrue }) => {
-    console.log('TEST: ', values)
+const registerUser =  ({ values, setErrors, setToTrue }) => { // console.log('Data ?: ', values)
     axios.post('http://localhost:5000/auth/register', { ...values })
         .then(res => {
             console.log('Response Status: ', res.status)
