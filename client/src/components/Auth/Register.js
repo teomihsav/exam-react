@@ -1,22 +1,23 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
-import registerUser from '../../actions/authAction'
+import { registerUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegister'
 import { useHistory } from "react-router-dom";
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
+
 const Register = ({ props }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
-    const [toTrue, setToTrue] = useState(false)
+    const [registered, setRegistered] = useState(false)
     let history = useHistory();
 
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
         // console.log('toTrue', toTrue)
-        toTrue && history.push("/login") // Redirect based on state -> true on registered user
-    }, [toTrue])
+        registered && history.push("/login") // Redirect based on state -> true on registered user
+    }, [registered])
 
     const spreadFormData = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value })); // form entries to state
@@ -31,7 +32,7 @@ const Register = ({ props }) => {
 
         if (!isEmpty(errors).includes(true)) { // console.log('--> ', errors)
 
-                registerUser({ values, setErrors, setToTrue }) // User register call ~registerUser
+            registerUser({ values, setErrors, setRegistered }) // User register call ~registerUser
         }
     }
 

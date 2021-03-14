@@ -24,7 +24,7 @@ const apiValidateRegistration = (data) => {
     if (!data.passwordSecond) {
         errors.passwordSecond = 'Password again must be typed!'
     } else if (data.passwordSecond.length < 1) {
-        error.passwordSecond = 'Password must be more than 6 charecters!'; // console.log('plus: ', username.length)
+        error.passwordSecond = 'Password must be more than 6 charecters!'
     }
 
     return { errors }

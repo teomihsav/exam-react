@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from 'react'
 import Menulinks from './MenuLinks'
+import jwt_decode from 'jwt-decode';
 
-const Header = ({ headerText }) => {
+const Header = ({ isLogged, state }) => {
 
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState()
@@ -31,16 +32,25 @@ const Header = ({ headerText }) => {
         { id: 2, text: 'Login' },
         { id: 3, text: 'About' },
     ]
-    
+
+    if (localStorage.getItem('jwtToken')) {
+        menu.splice(0, 2, { id: 1, text: 'Logout' })
+    } else {
+        isLogged(false)
+        menu = menu.splice(0, 3, { id: 1, text: 'Logout' })
+    }
+
+    console.log('Header loggin state', state)
+
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className="navbar-logo"> iMatch <i className="fab fa-react"> </i></h1>
                 <div className="menu-icon" >
                 </div>
-               
+
                 <ul className="nav-menu">
-                    {menu.map(el => 
+                    {menu.map(el =>
                         <Menulinks
                             key={el.id}
                             id={el.id}
@@ -48,7 +58,7 @@ const Header = ({ headerText }) => {
                             onClick={setClicked}
                             text={el.text}
                         />
-                    
+
                     )}
                 </ul>
             </nav>

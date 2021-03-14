@@ -31,7 +31,7 @@ export const useEffectValidationOnEvent = ({ ...values }, setErrors) => {
         if (!values.password) {
             errors.password = ''
         } else {
-            if (values.password.length < 1) {
+            if (values.password.length < 6) {
                 errors.password = 'Password must be more than 6 charecters.'; 
             } else {
                 errors.password = ''; 
@@ -41,7 +41,7 @@ export const useEffectValidationOnEvent = ({ ...values }, setErrors) => {
         if (!values.passwordSecond) {
             errors.passwordSecond = ''
         } else {
-            if (values.passwordSecond.length < 1) {
+            if (values.passwordSecond.length < 6) {
                 errors.passwordSecond = 'Password must be more than 6 charecters.'; 
             } else {
                 errors.passwordSecond = ''; 

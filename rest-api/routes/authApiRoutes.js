@@ -4,6 +4,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const apiValidateRegistration = require('../validationApi/apiValidateRegister')
+const apiValidateLogin = require('../validationApi/apiValidateLogin')
+const jwt = require('jsonwebtoken')
+
 
 const errors = {}
 
@@ -43,21 +46,49 @@ router.post('/register', (req, res) => {
     }
 })
 
+router.post('/login', (req, res) => {
 
-// router.post('/register', (req, res) => {
+    const { errors, isValid } = apiValidateLogin(req.body);    // Form request fields req.body
 
-//     let user = new User(req.body)
+    // Check Validation
+    if (Object.keys(errors).length > 0) {                           // console.log(Object.keys(errors).length)
+        return res.status(400).json(errors);
+    }
 
-//     user.save()
-//     .then(createdUser => {
-//         console.log(createdUser)
-//         res.status(201).json({ message: createdUser._id })
-//     })
-//     // res.json({ message: 'Registration' })
-// })
+    const email = req.body.email;
+    const password = req.body.password;
 
-// app.get('/auth/login', (req, res) => {
-//     res.json({ message: 'Login' })
-// })
+    // find user by email
+    User.findOne({ email })
+        .then(user => {
+            // Check for user
+            if (!user) {
+                errors.password = 'E-mail or password are wrong';
+                return res.status(400).json(errors);
+            }
+            // Check password
+            bcrypt.compare(password, user.password)
+                .then(isMatch => {
+                    if (isMatch) {
+                        // User match
+                        const payload = { id: user.id, name: user.name } // Create JWT payload
+                        // Sign Token
+                        jwt.sign(
+                            payload,
+                            keys = 'somekeyhere',
+                            { expiresIn: 3600 },
+                            (err, token) => {
+                                res.json({
+                                    success: true,
+                                    token: 'Bearer ' + token
+                                });
+                            });
+                    } else {
+                        errors.password = 'E-mail or password are wrong';
+                        return res.status(400).json(errors);
+                    }
+                })
+        });
+});
 
 module.exports = router

@@ -7,79 +7,51 @@ import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import About from './components/About'
 import Home from './components/Home'
+import Logout from './components/Logout'
 import { useState, useEffect } from 'react'
 
-// const fetchTitle = () => {
-//   fetch('http://localhost:5000')
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-// }
-
-
 function App() {
-
-  const [data, setData] = useState([])
-
-  // useEffect(() => {
-  //   const fetchTasks = () => {
-  //     fetch('http://localhost:5000/auth/registration')
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setData(data)
-  //       })
-  //   }
-  //   fetchTasks()
-  // }, [])
-
-  // useEffect(() => {
-  //   const getTasks = async () => {
-  //     const taskFromServer = await fetchTasks()
-  //     console.log('From use Effect', taskFromServer)
-  //     setData(taskFromServer)
-  //   }
-  //   getTasks()
-  // }, [])
-
-  // const fetchTasks = async () => {
-  //   const res = await fetch('http://localhost:5000')
-  //   const dataFetched = await res.json()
-  //  // console.log(data)
-  //   return dataFetched
-  // }
+  
+  const [logged, setLogged] = useState(false)
 
   return (
     <Router>
-        <div>
-          < Header />
-          <div className="container">
+      <div>
+        < Header isLogged={setLogged} state={logged} />
+        <div className="container">
 
-            <Route
-              path='/' exact
-              component={Home}
-            />
+          <Route
+            path='/home' exact
+            component={Home}
+          />
 
-            <Route
-              path='/register' exact
-              component={() => <Register text={'Register'} />}
-            />
+          <Route
+            path='/register' exact
+            component={() => <Register text={'Register'} />}
+          />
 
-            <Route
-              path='/login' exact
-              component={() => <Login />}
-            />
+          <Route
+            path='/login' exact
+            component={() => <Login isLogged={setLogged} state={logged}/>}
+          />
 
-            <Route exact
-              path='/about'
-              component={About}
-            />
-
-          </div>
-
-          <div className="footer">
-            <Footer data={'Всички права запазени'} />
-          </div>
+          <Route
+            path='/logout' exact
+            component={() => <Logout isLogged={setLogged} state={logged}/>}
+          />
+          
+          <Route exact
+            path='/about'
+            component={About}
+          />
 
         </div>
+
+        <div className="footer">
+          <Footer data={'Всички права запазени'} />
+        </div>
+
+      </div>
     </Router>
   );
 }

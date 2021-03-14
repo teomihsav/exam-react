@@ -1,84 +1,84 @@
 
 
 import { useState, useEffect, useLayoutEffect } from 'react'
-import register from '../../actions/authAction'
+import { loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationLogin'
+import { useHistory } from "react-router-dom"
 
-const Login = ({ props }) => {
+const Login = ({ isLogged, state }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
+    let history = useHistory();
 
-    // CHECK ONCHANGE FORM ENTRIES <--
-    useEffect(() => { // console.log('useEffect:', username)
-        let error = {}
+    useEffect(() => {
+        let errors = {}
 
-        if (!values.username) {
-            error.username = ''
+        if (!values.email) {
+            errors.email = ''
         } else {
-            if (values.username.length < 3) {
-                error.username = 'Username must be more than 3 charecters'
+            if (!/\S+@\S+\.\S+/.test(values.email)) {
+                errors.email = 'Must be valid e-mail.'
             } else {
-                error.username = '' // console.log('minus: ', username, username.length)
+                errors.email = ''
             }
         }
+
         if (!values.password) {
-            error.password = ''
+            errors.password = ''
         } else {
             if (values.password.length < 6) {
-                error.password = 'Password must be more than 6 charecters'; // console.log('plus: ', username.length)
+                errors.password = 'Password must be more than 6 charecters';
             } else {
-                error.password = ''; // console.log('minus: ', username, username.length)
+                errors.password = '';
             }
         }
+        setErrors(errors)
+    }, [values.email, values.password])
 
-        setErrors(error)
 
-    }, [values.username, values.password])
+    // On "logged" state changed to token id --> redirect  
+    useEffect(() => { 
+        state && history.push("/home") 
+    }, [state])
+    
 
-    const validForm = (e) => { // console.log('Event: ', e)
+    const validForm = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));
     }
     // SUBMIT FORM <---
     const onSubmit = (e) => {
-        e.preventDefault();  // console.log(Object.keys(errors))
+        e.preventDefault();  
 
         isBodyFieldEmpty(values, errors)
-        let res = Object.values(errors).map(el => {
-            console.log(el)
-            return el ? true : false
-        })
-        console.log(res)
+
         setErrors({ ...errors });
 
-        if (!res.includes(true)) {
-            if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
-                console.log('We can logged in')
-                //Login({ ...values })
-            }
+        if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
+            loginUser({ values, setErrors, isLogged })
+            //setIsLogged(logged)
         }
     }
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-    }); // console.log('Before:', errors)
+    }); 
 
     return (
         <>
             <form className='add-form' onSubmit={onSubmit} >
                 <div className='form-control-out-border'>
                     <div className='form-control'>
-                        <label>Username</label>
-                        <input className={errors.username ? 'form-control-border-error' : 'form-control-border'}
+                        <label>E-mail</label>
+                        <input className={errors.email ? 'form-control-border-error' : 'form-control-border'}
                             type='text'
-                            name='username'
-                            placeholder='Type your username'
-                            value={values.username || ''}
-                            // onChange={(e) => (setUsername(e.target.value), setErrorUsername(''))}
+                            name='email'
+                            placeholder='Type your email'
+                            value={values.email || ''}
                             onChange={validForm}
                         >
                         </input>
-                        <span className='error'>{errors.username}</span>
+                        <span className='error'>{errors.email}</span>
                     </div>
                 </div>
 
