@@ -38,17 +38,18 @@ const Login = ({ isLogged, state }) => {
 
 
     // On "logged" state changed to token id --> redirect  
-    useEffect(() => { 
-        state && history.push("/home") 
+    useEffect(() => {
+        console.log('State from Login: ', state)
+        state && history.push("/dashboard")
     }, [state])
-    
+
 
     const validForm = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));
     }
     // SUBMIT FORM <---
     const onSubmit = (e) => {
-        e.preventDefault();  
+        e.preventDefault();
 
         isBodyFieldEmpty(values, errors)
 
@@ -56,13 +57,14 @@ const Login = ({ isLogged, state }) => {
 
         if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
             loginUser({ values, setErrors, isLogged })
-            //setIsLogged(logged)
+            console.log('State in Login : ', state)
+
         }
     }
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-    }); 
+    });
 
     return (
         <>

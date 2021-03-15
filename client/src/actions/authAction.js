@@ -1,6 +1,5 @@
 
 
-
 import axios from 'axios'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken'
@@ -35,8 +34,8 @@ const loginUser = ({ values, setErrors, isLogged }) => { // console.log('TEST: '
                 // Set token to Auth header
                 setAuthToken(token);
                 // Decode token to get user data
-                const decoded = jwt_decode(token);
-                isLogged(decoded)
+                 const decoded = jwt_decode(token);
+                 isLogged(decoded.name)
             }
         })
         .catch(err => {

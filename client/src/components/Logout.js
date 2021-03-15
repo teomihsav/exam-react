@@ -3,16 +3,33 @@
 import React from 'react'
 
 import { logoutUser } from '../actions/authAction'
-import Home from './Home'
+import { useHistory } from "react-router-dom";
+import { useState, useEffect, useLayoutEffect } from 'react'
+import setAuthToken from '../actions/setAuthToken'
 
 
-const Logout = ({ isLogged, logged }) => {
+const Logout = ({ isLogged, state }) => {
 
-    logoutUser({ isLogged })
+    let history = useHistory();
+
+    useEffect(() => {
+            
+                localStorage.removeItem('jwtToken')
+                isLogged(false)
+                console.log('Logout: ', state)
+                setAuthToken(false)
+
+                if (!state) { history.push('/home') } // Redirect based on state -> true on registered user
+        
+    }, [state])
+
+    
+
+
 
     return (
         <div>
-   
+
         </div>
     )
 }

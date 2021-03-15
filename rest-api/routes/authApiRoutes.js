@@ -61,6 +61,7 @@ router.post('/login', (req, res) => {
     // find user by email
     User.findOne({ email })
         .then(user => {
+            console.log(user)
             // Check for user
             if (!user) {
                 errors.password = 'E-mail or password are wrong';
@@ -71,7 +72,7 @@ router.post('/login', (req, res) => {
                 .then(isMatch => {
                     if (isMatch) {
                         // User match
-                        const payload = { id: user.id, name: user.name } // Create JWT payload
+                        const payload = { id: user.id, name: user.username } // Create JWT payload
                         // Sign Token
                         jwt.sign(
                             payload,

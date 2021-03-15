@@ -32,15 +32,13 @@ const Header = ({ isLogged, state }) => {
         { id: 2, text: 'Login' },
         { id: 3, text: 'About' },
     ]
+    console.log('Header loggin state: ', state)
+    if (state) {
+            menu.splice(0, 2, { id: 1, text: 'Logout' })
+        } else {
+            menu = menu.splice(0, 3, { id: 1, text: 'Logout' })
+        }
 
-    if (localStorage.getItem('jwtToken')) {
-        menu.splice(0, 2, { id: 1, text: 'Logout' })
-    } else {
-        isLogged(false)
-        menu = menu.splice(0, 3, { id: 1, text: 'Logout' })
-    }
-
-    console.log('Header loggin state', state)
 
     return (
         <div>
