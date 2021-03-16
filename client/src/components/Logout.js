@@ -11,21 +11,16 @@ import setAuthToken from '../actions/setAuthToken'
 const Logout = ({ isLogged, state }) => {
 
     let history = useHistory();
-
     useEffect(() => {
             
                 localStorage.removeItem('jwtToken')
                 isLogged(false)
-                console.log('Logout: ', state)
+                console.log('Logout state: ', state)
                 setAuthToken(false)
 
-                if (!state) { history.push('/home') } // Redirect based on state -> true on registered user
+                if (!state) { history.push('/Home') } // Redirect based on state -> true on registered user
         
     }, [state])
-
-    
-
-
 
     return (
         <div>

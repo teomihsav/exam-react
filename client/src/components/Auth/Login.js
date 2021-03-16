@@ -38,9 +38,8 @@ const Login = ({ isLogged, state }) => {
 
 
     // On "logged" state changed to token id --> redirect  
-    useEffect(() => {
-        console.log('State from Login: ', state)
-        state && history.push("/dashboard")
+    useEffect(() => { // console.log('State from Login: ', state)
+        state && history.push("/profile")
     }, [state])
 
 

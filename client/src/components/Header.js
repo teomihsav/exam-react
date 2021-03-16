@@ -1,9 +1,10 @@
 
 import { useState, useEffect } from 'react'
 import Menulinks from './MenuLinks'
-import jwt_decode from 'jwt-decode';
+import { Link } from 'react-router-dom'
+import TextStartQuiz from './Quizes/QuizOne'
 
-const Header = ({ isLogged, state }) => {
+const Header = ({ user }) => {
 
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState()
@@ -28,25 +29,31 @@ const Header = ({ isLogged, state }) => {
     }
 
     let menu = [
-        { id: 1, text: 'Register' },
-        { id: 2, text: 'Login' },
-        { id: 3, text: 'About' },
+        { id: 1, text: 'Home', path: '/' },
+        { id: 2, text: 'Jobs', path: 'jobs' },
+        { id: 3, text: 'Register', path: 'register' },
+        { id: 4, text: 'Login', path: 'login' },
+        { id: 5, text: 'About', path: 'about' },
     ]
-    console.log('Header loggin state: ', state)
-    if (state) {
-            menu.splice(0, 2, { id: 1, text: 'Logout' })
-        } else {
-            menu = menu.splice(0, 3, { id: 1, text: 'Logout' })
-        }
+    console.log('Header loggin state: ', user)
 
+    console.log(clicked)
 
+    if (user) {
+        menu.splice(0, 4, { id: 1, text: 'Logout', user }, { id: 2, text: 'Profile' })
+    } else {
+
+    }
+    
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
-                <h1 className="navbar-logo"> iMatch <i className="fab fa-react"> </i></h1>
+                <h1 className="navbar-logo">
+                    <Link className='text-logo-link ' to='/Home'> iMatch </Link>
+                    <i className="fab fa-react"> </i>
+                </h1>
                 <div className="menu-icon" >
                 </div>
-
                 <ul className="nav-menu">
                     {menu.map(el =>
                         <Menulinks
@@ -55,6 +62,8 @@ const Header = ({ isLogged, state }) => {
                             isSelected={el.id === clicked}
                             onClick={setClicked}
                             text={el.text}
+                            path={el.path}
+                            user={el.user}
                         />
 
                     )}

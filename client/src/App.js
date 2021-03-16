@@ -8,7 +8,8 @@ import Login from './components/Auth/Login'
 import About from './components/About'
 import Home from './components/Home'
 import Logout from './components/Logout'
-import Dashboard from './components/Dashboard'
+import Profile from './components/Profile'
+import JobQuiz from './components/Quizes/jobQuiz'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode';
 
@@ -35,18 +36,21 @@ function App() {
 
   return (
     <Router>
-      <div>
-        < Header isLogged={setLogged} state={logged} />
+      <div className='main-container '>
+        < Header user={logged} />
         <div className="container">
 
           <Route
-            path='/home' exact
-            component={Home}
+            path='/' exact
+            component={() => < Home />}
           />
-
           <Route
-            path='/dashboard' exact
-            component={() => <Dashboard user={logged} />}
+            path='/jobs' exact
+            component={() => <JobQuiz user={logged} />}
+          />
+          <Route
+            path='/profile' exact
+            component={() => <Profile user={logged} />}
           />
           <Route
             path='/register' exact

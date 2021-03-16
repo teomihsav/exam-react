@@ -9,8 +9,22 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.main-container {
+  
+  max-width: 100%;
+  margin: 0px auto;
+  overflow: auto;
+  min-height: 0px;
+}
+.Site-content {
+  
+}
+.backgroung-image {
+  background: url(./Biking2020-GettyImages-1021722230.jpg);
+  background-size: cover;
+}
 .container {
-  max-width: 500px;
+  max-width: 650px;
   margin: 30px auto;
   overflow: auto;
   min-height: 50px;
@@ -55,21 +69,37 @@ body {
   width: 100%;
 }
 
-.task {
-  background: #f4f4f4;
-  margin: 5px;
-  padding: 10px 20px;
+.btn-home {
+  background-color: rgba(56, 151, 1, 0.925);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
   cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 32px 76px;
+  text-decoration: none;
+}
+.btn-home:hover {
+  background-color: #3f831f;
+}
+.btn-home:active {
+  position: relative;
+  top: 1px;
+}
+.btn-home:focus {
+  outline: none;
+}
+.btn-home:active {
+  transform: scale(0.98);
 }
 
-.task.reminder {
-  border-left: 5px solid green;
-}
-
-.task h3 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.btn-block-home {
+  display: block;
+  width: 100%;
+  height: 50%;
 }
 
 .add-form {
@@ -83,7 +113,7 @@ body {
 
 .form-control-out-border {
   max-width: 450px;
-  margin: 30px auto;
+  margin: 20px auto;
   overflow: auto;
   min-height: 30px;
   border: 1px solid rgba(56, 151, 1, 0.925);
@@ -91,6 +121,24 @@ body {
   border-radius: 5px;
 }
 
+.form-control-out-border-quiz {
+  max-width: 500px;
+  margin: 10px auto;
+  overflow: auto;
+  min-height: 0px;
+  border: 1px solid rgba(56, 151, 1, 0.925);
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+.form-control-out-border-home {
+  max-width: 100%;
+  margin: 100px auto;
+  overflow: auto;
+  min-height: 0px;
+  padding: 50px;
+  font-size: 13px;
+}
 .form-control-border {
   border: 1px solid rgba(56, 151, 1, 0.925);
   border-Radius: 5px;
@@ -131,12 +179,10 @@ body {
 }
 
 .footer {
-  max-width: 1000px;
-  min-height: 50px;
-  margin: 30px auto;
+  max-width: 100%x;
+  margin: center;
   overflow: auto;
   padding: 30px;
-  border-radius: 5px;
   text-align: center;
   font-size: 10px;
 }

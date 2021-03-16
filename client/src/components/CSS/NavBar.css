@@ -39,6 +39,10 @@
     margin-left: 20px;
     cursor: pointer;
 }
+.text-logo-link {
+    color: inherit;
+    text-decoration: inherit;
+}
 
 .fa-react {
     margin-left: 0.5rem;
