@@ -8,7 +8,7 @@ const About = () => {
     window.scrollTo(0, 0)
 });
     return (
-        <div>
+        <div className='about'>
             <h1> Matching data - Version 1.0</h1>
         </div>
     )

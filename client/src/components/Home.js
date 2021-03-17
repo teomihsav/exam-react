@@ -1,6 +1,7 @@
 
 
 import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom'
 
 
 const Home = (props) => {
@@ -17,11 +18,11 @@ const Home = (props) => {
 
     return (
         <div className='form-control-out-border-home'>
-            <h2 style={{ align : 'center' }}>Be healty, keep do your body</h2>
+            <h2 style={{ align : 'center' }}>We will keep it simple, just answer on few questions...</h2>
             <br></br>
             <br></br>
             
-            <button className='btn-home btn-block-home'> Let's get start... </button>
+            <Link className='text-logo-link' to='/start'><button className='btn-home btn-block-home' >  Let's get start... </button></Link>
         </div>
     )
 }

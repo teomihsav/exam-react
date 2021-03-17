@@ -2,9 +2,9 @@
 import { useState, useEffect } from 'react'
 import Menulinks from './MenuLinks'
 import { Link } from 'react-router-dom'
-import TextStartQuiz from './Quizes/QuizOne'
+import { isExpired } from '../actions/clientAction'
 
-const Header = ({ user }) => {
+const Header = ({ user, setLogged, state }) => {
 
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState()
@@ -35,21 +35,22 @@ const Header = ({ user }) => {
         { id: 4, text: 'Login', path: 'login' },
         { id: 5, text: 'About', path: 'about' },
     ]
-    console.log('Header loggin state: ', user)
+    console.log('Header loggin state: ', state)
+
+    isExpired() && setLogged(false)
+
 
     console.log(clicked)
 
-    if (user) {
-        menu.splice(0, 4, { id: 1, text: 'Logout', user }, { id: 2, text: 'Profile' })
-    } else {
+    if (state) {
+        menu.splice(0, 4, { id: 3, text: 'Logout', user, path: 'logout' }, { id: 4, text: 'Profile', path: 'profile' })
+    } else { }
 
-    }
-    
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className="navbar-logo">
-                    <Link className='text-logo-link ' to='/Home'> iMatch </Link>
+                    <Link className='text-logo-link ' to='/'> iMatch </Link>
                     <i className="fab fa-react"> </i>
                 </h1>
                 <div className="menu-icon" >

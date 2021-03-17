@@ -9,7 +9,8 @@ import About from './components/About'
 import Home from './components/Home'
 import Logout from './components/Logout'
 import Profile from './components/Profile'
-import JobQuiz from './components/Quizes/jobQuiz'
+import JobQuiz from './components/Quizes/JobQuiz'
+import ClientQuiz from './components/Quizes/ClientQuiz'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode';
 
@@ -20,8 +21,8 @@ function App() {
   // console.log('State at App: ', logged.name)
 
   // {id: "604e2942e9b06206ace5a745", name: "teo", iat: 1615810085, exp: 1615813685}
-
   useEffect(() => {
+
     if (localStorage.getItem('jwtToken')) {
       const token = localStorage.getItem('jwtToken')
       const decoded = jwt_decode(token)
@@ -36,13 +37,17 @@ function App() {
 
   return (
     <Router>
-      <div className='main-container '>
-        < Header user={logged} />
+      <div className='main-container background-color'>
+        < Header user={logged} setLogged={setLogged} state={logged}/>
         <div className="container">
 
           <Route
             path='/' exact
             component={() => < Home />}
+          />
+          <Route
+            path='/start' exact
+            component={() => <ClientQuiz user={logged} />}
           />
           <Route
             path='/jobs' exact

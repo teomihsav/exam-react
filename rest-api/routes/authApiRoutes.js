@@ -2,11 +2,11 @@
 const express = require('express')
 const router = express.Router();
 const bcrypt = require('bcrypt')
-const User = require('../models/User')
+const Client = require('../models/Client')
 const apiValidateRegistration = require('../validationApi/apiValidateRegister')
 const apiValidateLogin = require('../validationApi/apiValidateLogin')
 const jwt = require('jsonwebtoken')
-
+const keys = require('../config/kyes');
 
 const errors = {}
 
@@ -17,13 +17,13 @@ router.post('/register', (req, res) => {
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     } else {
-        User.findOne({ email: req.body.email })
+        Client.findOne({ email: req.body.email })
             .then(user => {
                 if (user) {
                     errors.email = 'The user with that mail exists!'
                     return res.status(400).json(errors);
                 } else {
-                    const user = new User({
+                    const user = new Client({
                         username: req.body.username,
                         email: req.body.email,
                         password: req.body.password,
@@ -59,7 +59,7 @@ router.post('/login', (req, res) => {
     const password = req.body.password;
 
     // find user by email
-    User.findOne({ email })
+    Client.findOne({ email })
         .then(user => {
             console.log(user)
             // Check for user
@@ -76,8 +76,8 @@ router.post('/login', (req, res) => {
                         // Sign Token
                         jwt.sign(
                             payload,
-                            keys = 'somekeyhere',
-                            { expiresIn: 3600 },
+                            keys.secretOrKey,
+                            { expiresIn: 10 },
                             (err, token) => {
                                 res.json({
                                     success: true,

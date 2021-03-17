@@ -55,6 +55,7 @@ const Login = ({ isLogged, state }) => {
         setErrors({ ...errors });
 
         if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
+            
             loginUser({ values, setErrors, isLogged })
             console.log('State in Login : ', state)
 
