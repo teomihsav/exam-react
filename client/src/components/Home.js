@@ -18,7 +18,7 @@ const Home = (props) => {
 
     return (
         <div className='form-control-out-border-home'>
-            <h2 style={{ align : 'center' }}>We will keep it simple, just answer on few questions...</h2>
+            <h2 style={{ align : 'center' }}>We will keep it simple, just answer on few questions and we will help you to start your sport live </h2>
             <br></br>
             <br></br>
             

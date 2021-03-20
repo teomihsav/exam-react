@@ -21,8 +21,8 @@ const isExpired = () => {
     }
 }
 
-const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
-    axios.post('http://localhost:5000/clientProfie/answers', { ...values })
+const saveJobsAswers = ({ values, setErrors, setRegistered }) => {
+    axios.post('http://localhost:5000/clientProfie/jobAnswers', { ...values })
         .then(res => {
             console.log('Response Status Answers: ', res.status)
             if (res.status === 200) {
@@ -39,19 +39,4 @@ const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
         })
 }
 
-const takeClientAnswersToProfile = ({ setData }) => {
-    axios.get('http://localhost:5000/clientProfie/takeAnswers')
-        .then(res => {
-            console.log('Response Status Profile Answers: ', res.data)
-            if (res.status === 200) {
-                setData(res.data)
-            }
-        })
-        .catch(err => {
-            if (err.response) {
-                console.log('Afer API response Profile Answers: ', err.response)
-            }
-        })
-}
-
-export { saveClientAnswers, takeClientAnswersToProfile, isExpired }
+export { saveJobsAswers, isExpired }

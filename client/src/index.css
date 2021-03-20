@@ -16,9 +16,7 @@ body {
   overflow: auto;
   min-height: 0px;
 }
-.Site-content {
-  
-}
+
 .backgroung-image {
   background: url(./photo-1536514498073-50e69d39c6cf.jpg);
   background-size: cover;
@@ -71,9 +69,8 @@ body {
   display: block;
   width: 100%;
 }
-
 .btn-home {
-  background-color: rgba(56, 151, 1, 0.925);
+  background-color: rgba(255, 181, 43, 0.925);
   border: none;
   border-radius: 5px;
   display: inline-block;
@@ -86,8 +83,25 @@ body {
   text-decoration: none;
 }
 .btn-home:hover {
+  background-color: rgba(255, 168, 6, 0.925);
+}
+.btn-home-jobs {
+  background-color: rgba(56, 151, 1, 0.925);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 32px 76px;
+  text-decoration: none;
+}
+.btn-home-jobs:hover {
   background-color: #3f831f;
 }
+
 .btn-home:active {
   position: relative;
   top: 1px;
@@ -106,7 +120,7 @@ body {
 }
 
 .add-form {
-  margin-bottom: 100%;
+  margin-bottom: 0%;
 }
 
 .form-control {
@@ -123,8 +137,7 @@ body {
   padding: 20px;
   border-radius: 5px;
 }
-
-.form-control-out-border-quiz {
+.form-control-out-border-quiz-jobs {
   max-width: 500px;
   margin: 10px auto;
   overflow: auto;
@@ -134,10 +147,20 @@ body {
   border-radius: 5px;
   font-size: 13px;
 }
+.form-control-out-border-quiz {
+  max-width: 500px;
+  margin: 10px auto;
+  overflow: auto;
+  min-height: 0px;
+  border: 1px solid rgba(255, 181, 43, 0.925);
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
 .form-control-out-border-home {
   max-width: 100%;
   margin: 100px auto;
-  margin-bottom: 100%;
   overflow: auto;
   min-height: 0px;
   padding: 50px;
@@ -185,7 +208,7 @@ body {
 .about {
   max-width: 100%;
   margin: 100px auto;
-  margin-bottom: 100%;
+  margin-bottom: 0%;
   overflow: auto;
   min-height: 0px;
   padding: 50px;

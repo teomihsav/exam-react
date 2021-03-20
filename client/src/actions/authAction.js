@@ -4,8 +4,8 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken'
 
-const registerUser = ({ values, setErrors, setRegistered }) => { // console.log('TEST: ', values)
-    axios.post('http://localhost:5000/auth/register', { ...values })
+const registerUser = ({ values, setErrors, setRegistered, typeUser }) => { // console.log('TEST: ', values)
+    axios.post('http://localhost:5000/auth/register', { ...values, typeUser })
         .then(res => {
             console.log('Response Status: ', res.status)
             if (res.status === 200) {

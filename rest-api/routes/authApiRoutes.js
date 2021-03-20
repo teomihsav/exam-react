@@ -17,6 +17,9 @@ router.post('/register', (req, res) => {
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     } else {
+        
+        console.log(req.body.typeUser)
+
         Client.findOne({ email: req.body.email })
             .then(user => {
                 if (user) {
@@ -27,6 +30,7 @@ router.post('/register', (req, res) => {
                         username: req.body.username,
                         email: req.body.email,
                         password: req.body.password,
+                        typeUser: req.body.typeUser,
                         verifiedUserByEmail: false
                     })
                     bcrypt.genSalt(10, (err, salt) => {
@@ -77,7 +81,7 @@ router.post('/login', (req, res) => {
                         jwt.sign(
                             payload,
                             keys.secretOrKey,
-                            { expiresIn: 10 },
+                            { expiresIn: 43200 },
                             (err, token) => {
                                 res.json({
                                     success: true,

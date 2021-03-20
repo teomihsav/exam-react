@@ -1,96 +1,99 @@
 
 
-import { useForm } from "react-hook-form";
+import { useState, useEffect } from 'react'
+import { saveJobsAswers } from '../../actions/jobAction'
+import { useHistory, Redirect } from "react-router-dom";
 
+const JobQuiz = ({ user }) => {
 
-const JobQuiz = (props) => {
+    const [values, setValues] = useState()
+    const [errors, setErrors] = useState({})
+    let typeUser = 'jobs'
 
-    const formSubmit = () => {
+    let history = useHistory();
 
+    const formSubmit = (e) => {
+        e.preventDefault()
+        if (user) {
+            console.log('Start: ', user)
+            console.log('Start: ', values)
+            saveJobsAswers({ values, setErrors })
+            history.push("/profile")
+        } else {
+            // history.push("/register", { typeUser })
+            // <Redirect to='/register'/>
+            history.push({
+                pathname:  "/register",
+                state: {
+                  data: typeUser 
+                } 
+             });
+        }
     }
 
-    const onValueChange = () => {
-
+    const onValueChange = (e) => {
+        setValues(values => ({ ...values, [e.target.name]: e.target.value }));
     }
-    const { register, watch } = useForm();
 
-    const numDrivers = watch("drivers", props.drivers);
-
-    const errors = {}
-    
     return (
-       
+
         <div>
             <p>Please answer on next questions:</p>
             <br></br>
             <form className='add-form' onSubmit={formSubmit}>
 
 
-                <div className='form-control-out-border-quiz' id="contactChoice1">
-                    <label><h2>You working at sport related field</h2></label>
+                <div className='form-control-out-border-quiz-jobs' id="contactChoice1">
+                    <label><h2>Your field at sport</h2></label>
 
-                    <div className='form-control-out-border-quiz' > <input  type="radio" name="contactChoice1" value={0} ref={register} />
+                    <div className='form-control-out-border-quiz-jobs' > <input type="radio" name="contactChoice1" value={0} onChange={onValueChange} />
                         <label> Rehabilitation</label>
                     </div>
 
-                    <div className='form-control-out-border-quiz'> <input  type="radio" name="contactChoice1" value={1} ref={register} />
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice1" value={1} onChange={onValueChange} />
                         <label> Fitness/Body building instructor</label>
                     </div>
 
-                    <div className='form-control-out-border-quiz'> <input  type="radio" name="contactChoice1" value={2} ref={register} />
-                        <label> Nature hickung/cicling event</label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice1" value={2} onChange={onValueChange} />
+                        <label> Nature hickung/cicling events</label>
                     </div>
 
                     <span className='error'>{errors.email}</span>
                 </div>
 
-                <div className='form-control-out-border-quiz' id="contactChoice2">
-                    <label><h2>Streaching during the day</h2></label>
+                <div className='form-control-out-border-quiz-jobs' id="contactChoice2">
+                    <label><h2> Are you traning with pro atlets</h2></label>
 
-                    <div className='form-control-out-border-quiz'> <input type="radio" name="contactChoice2" value={0} ref={register} />
-                        <label> Do you strech 15 to 30 minutes during the day? </label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice2" value={0} onChange={onValueChange} />
+                        <label> Pro atlets and regular people </label>
                     </div>
 
-                    <div className='form-control-out-border-quiz'> <input type="radio" name="contactChoice2" value={1} ref={register} />
-                        <label> Do you strech 30 to 60 minutes during the day? </label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice2" value={1} onChange={onValueChange} />
+                        <label> Just regular people </label>
                     </div>
 
-                    <div className='form-control-out-border-quiz'> <input type="radio" name="contactChoice2" value={2} ref={register} />
-                        <label> Do you strech 1 hour and more during the day? </label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice2" value={2} onChange={onValueChange} />
+                        <label> Just pro atlets </label>
                     </div>
 
                     <span className='error'>{errors.email}</span>
                 </div>
 
-                <div className='form-control-out-border-quiz' id="contactChoice3">
-                    <label><h2>Active sports like cicling, hicking, body bulid etc.</h2> </label>
-                    <div className='form-control-out-border-quiz'> <input type="radio" name="contactChoice3" value={0} ref={register} />
-                        <label> Do you have active sports 15 to 30 minutes during the day? </label>
+                <div className='form-control-out-border-quiz-jobs' id="contactChoice3">
+                    <label><h2> What sport education/certificates do you have  </h2> </label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice3" value={0} onChange={onValueChange} />
+                        <label> Magister/Bacalar degree </label>
                     </div>
 
-                    <div className='form-control-out-border-quiz'> <input type="radio" name="contactChoice3" value={1} ref={register} />
-                        <label> Do you have active sports 30 to 60 minutes during the day? </label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice3" value={1} onChange={onValueChange} />
+                        <label> Certificates </label>
                     </div>
 
-                    <div className='form-control-out-border-quiz'> <input type="radio" name="contactChoice3" value={2} ref={register} />
-                        <label> Do you have active sports 1 hour and more during the day? </label>
+                    <div className='form-control-out-border-quiz-jobs'> <input type="radio" name="contactChoice3" value={2} onChange={onValueChange} />
+                        <label> Organizing sport events hicking/cicling </label>
                         <span className='error'>{errors.email}</span>
                     </div>
                 </div>
-                
-                {numDrivers > 0 && (
-                    <div>
-                        <p>Driver 1:</p>
-                        <input name="driver1" placeholder="driver1" ref={register} />
-                    </div>
-                )}
-                {numDrivers > 1 && (
-                    <div>
-                        <p>Driver 2:</p>
-                        <input name="driver2" placeholder="driver2" ref={register} />
-                    </div>
-                )}
-
 
                 <br></br>
 

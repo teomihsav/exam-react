@@ -29,9 +29,9 @@ const Header = ({ user, setLogged, state }) => {
     }
 
     let menu = [
-        { id: 1, text: 'Home', path: '/' },
+        { id: 1, text: 'Home', path: '' },
         { id: 2, text: 'Jobs', path: 'jobs' },
-        { id: 3, text: 'Register', path: 'register' },
+        // { id: 3, text: 'Register', path: 'register' },
         { id: 4, text: 'Login', path: 'login' },
         { id: 5, text: 'About', path: 'about' },
     ]
@@ -43,7 +43,7 @@ const Header = ({ user, setLogged, state }) => {
     console.log(clicked)
 
     if (state) {
-        menu.splice(0, 4, { id: 3, text: 'Logout', user, path: 'logout' }, { id: 4, text: 'Profile', path: 'profile' })
+        menu.splice(0, 3, { id: 3, text: 'Logout', user, path: 'logout' }, { id: 4, text: 'Profile', path: 'profile' })
     } else { }
 
     return (

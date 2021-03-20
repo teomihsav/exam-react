@@ -5,9 +5,10 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
+import Logout from './components/Auth/Logout'
 import About from './components/About'
 import Home from './components/Home'
-import Logout from './components/Logout'
+import JobHome from './components/JobHome'
 import Profile from './components/Profile'
 import JobQuiz from './components/Quizes/JobQuiz'
 import ClientQuiz from './components/Quizes/ClientQuiz'
@@ -20,13 +21,13 @@ function App() {
 
   // console.log('State at App: ', logged.name)
 
-  // {id: "604e2942e9b06206ace5a745", name: "teo", iat: 1615810085, exp: 1615813685}
+  // After refresh -> F5 check for token and overright the state setLogged
   useEffect(() => {
 
     if (localStorage.getItem('jwtToken')) {
       const token = localStorage.getItem('jwtToken')
       const decoded = jwt_decode(token)
-      console.log(decoded.name)
+      console.log('decoded user: ', decoded.name)
       setLogged(decoded.name)
       console.log('State after login: ', decoded.name)
     } else {
@@ -38,7 +39,7 @@ function App() {
   return (
     <Router>
       <div className='main-container background-color'>
-        < Header user={logged} setLogged={setLogged} state={logged}/>
+        < Header user={logged} setLogged={setLogged} state={logged} />
         <div className="container">
 
           <Route
@@ -51,6 +52,10 @@ function App() {
           />
           <Route
             path='/jobs' exact
+            component={() => <JobHome user={logged} />}
+          />
+          <Route
+            path='/startjobs' exact
             component={() => <JobQuiz user={logged} />}
           />
           <Route

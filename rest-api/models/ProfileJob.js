@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const ProfileSchema = new Schema({
+const ProfileJobSchema = new Schema({
     client: {
         type: Schema.Types.ObjectId,
         ref: 'clients'
@@ -29,4 +29,4 @@ const ProfileSchema = new Schema({
     }
 });
 
-module.exports = Profile = mongoose.model('profileClient', ProfileSchema);
+module.exports = Profile = mongoose.model('profileJob', ProfileJobSchema);

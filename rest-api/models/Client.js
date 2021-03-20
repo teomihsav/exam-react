@@ -16,6 +16,10 @@ const ClientSchema = new mongoose.Schema(
             type: String,
             require: true
         },
+        typeUser:
+        {
+            type: String,
+        },
         verifiedUserByEmail: {
             type: Boolean
         },

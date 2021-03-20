@@ -5,13 +5,15 @@ import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegist
 import { useHistory } from "react-router-dom";
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
 
-const Register = ({ props }) => {
+const Register = ( ) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
     const [registered, setRegistered] = useState(false)
     let history = useHistory();
-
+    let typeUser = history.location.state.data
+    
+    console.log('User: ', history.location.state.data)
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
@@ -32,9 +34,10 @@ const Register = ({ props }) => {
 
         if (!isEmpty(errors).includes(true)) { // console.log('--> ', errors)
 
-            registerUser({ values, setErrors, setRegistered }) // User register call ~registerUser
+            registerUser({ values, setErrors, setRegistered, typeUser }) // User register call ~registerUser
         }
     }
+    console.log('typeUser: ', typeUser)
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
