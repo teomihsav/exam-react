@@ -3,7 +3,6 @@
 import { React, Suspense, lazy } from 'react'
 import { takeClientAnswersToProfile } from '../actions/clientAction'
 import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
 import Home from './Home'
 
 
@@ -47,10 +46,10 @@ const Test = ({ data }) => {
     )
 }
 
-const Profile = ({ user }) => {
+const Profile = ({ user, typeUser }) => {
 
-    const [data, setData] = useState({client: 'f'})
-
+    const [data, setData] = useState({ client: 'f' })
+    
     useEffect(() => {
         takeClientAnswersToProfile({ setData })
         return () => {
@@ -58,16 +57,15 @@ const Profile = ({ user }) => {
         }
     }, [])
 
-    let code = ''
     console.log('Logged: ', data)
 
     // if (data == {}) { code = data && <Test data={data} /> } else { code = <Test data={data} /> }
 
-    console.log('Code: ', code)
+    console.log('TypeUser: ', typeUser)
 
     return (
         <div>
-            {(Object.keys(data).length > 0) && <Test data={data} /> }
+            {(Object.keys(data).length > 0) && <Test data={data} />}
             {(Object.keys(data).length <= 0) && <Home />}
         </div>
     )

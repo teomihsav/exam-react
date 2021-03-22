@@ -18,7 +18,7 @@ import jwt_decode from 'jwt-decode';
 function App() {
 
   const [logged, setLogged] = useState(false)
-
+  let typeUser
   // console.log('State at App: ', logged.name)
 
   // After refresh -> F5 check for token and overright the state setLogged
@@ -29,6 +29,7 @@ function App() {
       const decoded = jwt_decode(token)
       console.log('decoded user: ', decoded.name)
       setLogged(decoded.name)
+      typeUser = decoded.typeUser
       console.log('State after login: ', decoded.name)
     } else {
       localStorage.removeItem('jwtToken')
@@ -60,11 +61,11 @@ function App() {
           />
           <Route
             path='/profile' exact
-            component={() => <Profile user={logged} />}
+            component={() => <Profile user={logged} typeUser={typeUser} />}
           />
           <Route
             path='/register' exact
-            component={() => <Register text={'Register'} />}
+            component={() => <Register isLogged={setLogged} state={logged} />}
           />
 
           <Route

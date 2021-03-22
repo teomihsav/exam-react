@@ -17,7 +17,7 @@ router.post('/register', (req, res) => {
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     } else {
-        
+
         console.log(req.body.typeUser)
 
         Client.findOne({ email: req.body.email })
@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
                 .then(isMatch => {
                     if (isMatch) {
                         // User match
-                        const payload = { id: user.id, name: user.username } // Create JWT payload
+                        const payload = { id: user.id, name: user.username, typeUser: user.typeUser } // Create JWT payload
                         // Sign Token
                         jwt.sign(
                             payload,

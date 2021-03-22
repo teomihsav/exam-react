@@ -1,24 +1,37 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
-import { registerUser } from '../../actions/authAction'
+import { registerUser, loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegister'
 import { useHistory } from "react-router-dom";
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
 
-const Register = ( ) => {
+const Register = ({ isLogged, state }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
     const [registered, setRegistered] = useState(false)
     let history = useHistory();
-    let typeUser = history.location.state.data
-    
-    console.log('User: ', history.location.state.data)
+    let typeUser = history.location.state.typeUser
+    let dataRadioForm = history.location.state.data
+
+    console.log('User: ', history.location.state.typeUser)
+    console.log('Data: ', history.location.state.data)
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
-        // console.log('toTrue', toTrue)
-        registered && history.push("/login") // Redirect based on state -> true on registered user
+        registered && loginUser({ values, setErrors, isLogged })
+        state && history.push({
+            pathname: "/start",
+            state: {
+                data: dataRadioForm
+            }
+        })
+        // state && history.push("/start")
+
+        console.log('Registered: ', registered)
+        console.log('Logged: ', state)
+
+        // registered && history.push("/login") // Redirect based on state -> true on registered user
     }, [registered])
 
     const spreadFormData = (e) => {
@@ -37,7 +50,6 @@ const Register = ( ) => {
             registerUser({ values, setErrors, setRegistered, typeUser }) // User register call ~registerUser
         }
     }
-    console.log('typeUser: ', typeUser)
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
