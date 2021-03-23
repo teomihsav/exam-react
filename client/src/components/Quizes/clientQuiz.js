@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { saveClientAnswers } from '../../actions/clientAction'
 import { useHistory, Redirect } from "react-router-dom"
-import CompRadio from './test'
+import { isEmpty, isClientRadioFormEmpty } from '../../validation/clientRadioFormValidation'
+import RadioClient from './RadioClient'
 
 const ClientQuiz = ({ user }) => {
 
@@ -34,6 +35,13 @@ const ClientQuiz = ({ user }) => {
         console.log('Array: ', radioChoices)
     }, [values])
 
+    useEffect(() => {
+        // (Object.keys(errors).length < 0) && history.push("/profile")
+        console.log('UseEffect Error check', Object.keys(errors).length)
+        console.log(errors)
+        errors === 200 && history.push("/profile")
+    }, [errors])
+
     const onValueChange = (e) => {
 
         setValues(values => ({ ...values, [e.target.name]: e.target.value })) // console.log('After value set: ', values)
@@ -41,24 +49,38 @@ const ClientQuiz = ({ user }) => {
 
     const formSubmit = (e) => {
         e.preventDefault()
-        if (user) {
-            console.log('Start: ', user)
-            console.log('Start: ', values)
-            saveClientAnswers({ values, setErrors })
-            history.push("/profile")
-        } else {
-            history.push({
-                pathname: "/register",
-                state: {
-                    typeUser: typeUser,
-                    data: radioChoices
-                }
-            })
+
+        isClientRadioFormEmpty(values, errors)
+
+        setErrors({ ...errors })
+        console.log(errors)
+
+        if (!isEmpty(errors).includes(true)) {
+            if (user) {
+                console.log('Start: ', user)
+                console.log('Start: ', values)
+                console.log('Start: ', errors)
+                saveClientAnswers({ values, setErrors })
+                console.log('From ...', errors)
+            } else {
+                history.push({
+                    pathname: "/register",
+                    state: {
+                        typeUser: typeUser,
+                        data: radioChoices
+                    }
+                })
+            }
         }
     }
     console.log('---> ', values.AnswerOne)
     console.log('------> ', dataRadioForm.AnswerOne)
+    let compRadio = [
+        { id: 1, checked: "{values.AnswerOne === '1. 15 to 30 minutes'}", name: 'AnswerOne', value: '1. 15 to 30 minutes' },
+        { id: 2, checked: "{values.AnswerOne === '1. 15 to 30 minutes'}", name: 'AnswerOne', value: '1. 15 to 30 minutes' },
+        { id: 3, checked: "{values.AnswerOne === '1. 15 to 30 minutes'}", name: 'AnswerOne', value: '1. 15 to 30 minutes' },
 
+    ]
     return (
         <div>
             <p>Please answer on next questions:</p>
@@ -175,15 +197,15 @@ const ClientQuiz = ({ user }) => {
                             onChange={onValueChange}
                         />
                         <label> Do you have active sports 1 hour and more during the day? </label>
-                        <span className='error'>{errors.profileAlreadyDone}</span>
                     </div>
+                    <span className='error'>{errors.profileAlreadyDone}</span>
                 </div>
 
                 <br></br>
 
                 <button className="btn btn-block" type="submit">
                     Submit
-        </button>
+                </button>
             </form>
         </div>
     )

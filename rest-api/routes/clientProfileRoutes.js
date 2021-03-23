@@ -33,7 +33,7 @@ router.post('/answers', passport.authenticate('jwt', { session: false }), (req, 
             if (profile) {
                 console.log(profile)
                 errors.profileAlreadyDone = 'You already did answer this question'
-                return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
+                return res.status(404).json(errors) // On found "answers" at DB returns errors and display it at page form
             } else {
                 new ProfileClient(profileAnswers)
                     .save()

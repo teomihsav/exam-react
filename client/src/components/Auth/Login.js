@@ -58,7 +58,6 @@ const Login = ({ isLogged, state }) => {
             
             loginUser({ values, setErrors, isLogged })
             console.log('State in Login : ', state)
-
         }
     }
 

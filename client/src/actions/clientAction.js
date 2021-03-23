@@ -26,14 +26,14 @@ const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
         .then(res => {
             console.log('Response Status Answers: ', res.status)
             if (res.status === 200) {
+                setErrors(res.status)
                 // setRegistered(true)
             }
         })
         .catch(err => {
             if (err.response.data) {
                 setErrors(err.response.data)
-                console.log('Afer API response: ', err.response.data)
-                //setErrors(err.response.data)
+                console.log('Afer API Error response: ', err.response.data)
                 // setRegistered(false)
             }
         })
