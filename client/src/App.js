@@ -9,8 +9,9 @@ import Logout from './components/Auth/Logout'
 import About from './components/About'
 import Home from './components/Home'
 import JobHome from './components/JobHome'
-import Profile from './components/Profile'
+import Profile from './components/Profiles/Profile'
 import JobQuiz from './components/Quizes/JobQuiz'
+import JobsFront from './components/JobsFront'
 import ClientQuiz from './components/Quizes/ClientQuiz'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode';
@@ -18,8 +19,7 @@ import jwt_decode from 'jwt-decode';
 function App() {
 
   const [logged, setLogged] = useState(false)
-  let typeUser
-  // console.log('State at App: ', logged.name)
+  const [typeUser, setTypeUser] = useState()
 
   // After refresh -> F5 check for token and overright the state setLogged
   useEffect(() => {
@@ -27,15 +27,16 @@ function App() {
     if (localStorage.getItem('jwtToken')) {
       const token = localStorage.getItem('jwtToken')
       const decoded = jwt_decode(token)
-      console.log('decoded user: ', decoded.name)
+      console.log('Decoded user: ', decoded.name)
       setLogged(decoded.name)
-      typeUser = decoded.typeUser
+      setTypeUser(decoded.typeUser)
+      console.log('TypeUser App: ', typeUser)
       console.log('State after login: ', decoded.name)
     } else {
       localStorage.removeItem('jwtToken')
       setLogged(false)
     }
-  }, [])
+  }, [logged])
 
   return (
     <Router>
@@ -83,6 +84,10 @@ function App() {
             component={About}
           />
 
+        </div>
+
+        <div className='jobs-load-front'>
+          {!logged && <JobsFront />}
         </div>
 
         <div className="footer">

@@ -18,7 +18,7 @@ router.post('/register', (req, res) => {
         return res.status(400).json(errors);
     } else {
 
-        console.log(req.body.typeUser)
+        console.log('Type User: ', req.body.typeUser)
 
         Client.findOne({ email: req.body.email })
             .then(user => {

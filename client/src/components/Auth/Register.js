@@ -10,28 +10,37 @@ const Register = ({ isLogged, state }) => {
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
     const [registered, setRegistered] = useState(false)
+    
     let history = useHistory();
     let typeUser = history.location.state.typeUser
     let dataRadioForm = history.location.state.data
 
-    console.log('User: ', history.location.state.typeUser)
-    console.log('Data: ', history.location.state.data)
+    console.log('Type User from History: ', history.location.state.typeUser)
+    console.log('Data from History: ', history.location.state.data)
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
         registered && loginUser({ values, setErrors, isLogged })
-        state && history.push({
-            pathname: "/start",
-            state: {
-                data: dataRadioForm
-            }
-        })
-        // state && history.push("/start")
 
-        console.log('Registered: ', registered)
+        console.log('Type User from History - 02: ', typeUser)
         console.log('Logged: ', state)
 
-        // registered && history.push("/login") // Redirect based on state -> true on registered user
+        if (typeUser === 'clients') {
+            state && history.push({
+                pathname: "/start",
+                state: {
+                    data: dataRadioForm
+                }
+            })
+        } else if (typeUser === 'jobs') {
+            state && history.push({
+                pathname: "/startjobs",
+                state: {
+                    data: dataRadioForm
+                }
+            })
+        }
+
     }, [registered])
 
     const spreadFormData = (e) => {

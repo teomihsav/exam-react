@@ -22,7 +22,7 @@ const isExpired = () => {
 }
 
 const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
-    axios.post('http://localhost:5000/clientProfie/answers', { ...values })
+    axios.post('http://localhost:5000/clientProfile/answers', { ...values })
         .then(res => {
             console.log('Response Status Answers: ', res.status)
             if (res.status === 200) {
@@ -40,7 +40,7 @@ const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
 }
 
 const takeClientAnswersToProfile = ({ setData }) => {
-    axios.get('http://localhost:5000/clientProfie/takeAnswers')
+    axios.get('http://localhost:5000/clientProfile/takeAnswers')
         .then(res => {
             console.log('Response Status Profile Answers: ', res.data)
             if (res.status === 200) {

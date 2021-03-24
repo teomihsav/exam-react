@@ -163,7 +163,7 @@ body {
   margin: 100px auto;
   overflow: auto;
   min-height: 0px;
-  padding: 50px;
+  padding: 10px;
   font-size: 13px;
 }
 .form-control-border {
@@ -224,6 +224,14 @@ body {
   font-size: 10px;
 }
 
+.jobsFront {
+  max-width: 100%x;
+  margin: center;
+  overflow: auto;
+  padding: 30px;
+  text-align: center;
+  font-size: 16px;
+}
 /* .registration {
   text-align: center;
 } */

@@ -6,6 +6,7 @@ const app = express()
 const mongoose = require('mongoose')
 const authApiRoutes = require('./routes/authApiRoutes')
 const clientProfileRoutes = require('./routes/clientProfileRoutes')
+const jobProfileRoutes = require('./routes/jobProfileRoutes')
 const passport = require('passport');
 
 app.use(cors("*"))
@@ -25,7 +26,8 @@ app.use(passport.initialize());
 require('./config/passport.js')(passport);
 
 app.use('/auth', authApiRoutes);
-app.use('/clientProfie', clientProfileRoutes);
+app.use('/clientProfile', clientProfileRoutes);
+app.use('/jobProfile', jobProfileRoutes);
 
 
 app.listen(5000, () => {

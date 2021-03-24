@@ -19,14 +19,16 @@ router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (re
     //     return res.status(400).json(errors);
     // } else {
 
-    console.log('Response: ', req.user.id)
+    console.log('Response: ', req.body)
 
     let profileJobAnswers = {}
-    ProfileJobAnswers.client = req.user.id
-    ProfileJobAnswers.username = req.user.username
-    ProfileJobAnswers.AnswerOne = req.body.AnswerOne
-    ProfileJobAnswers.AnswerTwo = req.body.AnswerTwo
-    ProfileJobAnswers.AnswerThree = req.body.AnswerThree
+    profileJobAnswers.client = req.user.id
+    profileJobAnswers.username = req.user.username
+    profileJobAnswers.jobChoiceOne = req.body.jobChoiceOne
+    profileJobAnswers.jobChoiceTwo = req.body.jobChoiceTwo
+    profileJobAnswers.jobChoiceThree = req.body.jobChoiceThree
+    profileJobAnswers.image = req.body.image
+    profileJobAnswers.description = req.body.description
 
     ProfileJob.findOne({ client: req.user.id })
         .then(profile => {
@@ -35,7 +37,7 @@ router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (re
                 errors.profileAlreadyDone = 'You already did answer this question'
                 return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
             } else {
-                new ProfileJob(ProfileJobAnswers)
+                new ProfileJob(profileJobAnswers)
                     .save()
                     .then(profile => res.json(profile));
                 console.log('After user auth: ', profile)
@@ -56,7 +58,7 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
 
     let profileAnswers = {}
 
-    ProfileClient.findOne({ client: req.user.id })
+    ProfileJob.findOne({ client: req.user.id })
         .then(profile => {
             if (profile) {
                 console.log('Api:', profile)
@@ -70,5 +72,27 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
             console.log(err.response)
         })
 })
+
+router.get('/takeJobsToFront', (req, res) => {
+
+    console.log('Response takeJobsToFront')
+
+    let profileAnswers = {}
+
+    ProfileJob.find()
+        .then(profile => {
+            if (profile) {
+                console.log('Api TakeJobsToFront:', profile)
+                return res.status(200).json(profile)
+            } else {
+                console.log('Error, no data:')
+                res.end().json()
+            }
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+})
+
 
 module.exports = router

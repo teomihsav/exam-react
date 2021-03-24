@@ -23,10 +23,6 @@ const ClientQuiz = ({ user }) => {
     const [errors, setErrors] = useState({})
     let typeUser = 'clients'
 
-    useEffect(() => {
-
-    }, [])
-
     let radioChoices = []
 
     useEffect(() => {
@@ -79,7 +75,6 @@ const ClientQuiz = ({ user }) => {
         { id: 1, checked: "{values.AnswerOne === '1. 15 to 30 minutes'}", name: 'AnswerOne', value: '1. 15 to 30 minutes' },
         { id: 2, checked: "{values.AnswerOne === '1. 15 to 30 minutes'}", name: 'AnswerOne', value: '1. 15 to 30 minutes' },
         { id: 3, checked: "{values.AnswerOne === '1. 15 to 30 minutes'}", name: 'AnswerOne', value: '1. 15 to 30 minutes' },
-
     ]
     return (
         <div>
