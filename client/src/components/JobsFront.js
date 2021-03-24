@@ -19,9 +19,9 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image }) => {
 
                 <div className='control-out-border-in'>
                     {username}:
-                <hr></hr>
+                    <hr></hr>
 
-                Specializing at: {' '}<br /><br />
+                    Specializing at: {' '}<br /><br />
                     {jobOne}<br />
                     {jobTwo}<br />
                     {jobThree}<br />
