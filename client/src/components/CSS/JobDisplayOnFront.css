@@ -10,37 +10,39 @@
   /* Float four columns side by side */
   .column {
     float: left;
+    display: flex;
+    margin-left: 10px;
     width: 25%;
     padding: 20 10px;
   }
   
   /* Remove extra left and right margins, due to padding */
-  .row {margin: 0 -5px;}
+
   
   /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
+  .row {
+    display: flex;
+    flex-direction: row;
     
   }
   
   /* Style the counter cards */
-  /* .card {
+  .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 0px;
     text-align: center;
     background-color: #ffffff;
-  } */
+  }
 
-.control-out-border {
-    max-width: 450px;
+.control-out-border-front {
+    max-width: 350px;
     margin: 0px auto;
     overflow: auto;
     min-height: 30px;
     border: 1px solid rgba(163, 168, 163, 0.925);
     padding: 20px;
     border-radius: 5px;
+
 }
 
 .control-out-border-in {

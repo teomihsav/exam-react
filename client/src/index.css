@@ -25,7 +25,7 @@ body {
   background-color: white;
 }
 .container {
-  max-width: 650px;
+  max-width: 1200px;
   margin: 30px auto;
   overflow: auto;
   min-height: 50px;
@@ -166,6 +166,7 @@ body {
   padding: 10px;
   font-size: 13px;
 }
+
 .form-control-border {
   border: 1px solid rgba(56, 151, 1, 0.925);
   border-Radius: 5px;
@@ -224,14 +225,7 @@ body {
   font-size: 10px;
 }
 
-.jobsFront {
-  max-width: 100%x;
-  margin: center;
-  overflow: auto;
-  padding: 30px;
-  text-align: center;
-  font-size: 16px;
-}
+
 /* .registration {
   text-align: center;
 } */

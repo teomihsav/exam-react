@@ -10,7 +10,7 @@ import Jobs from './Jobs'
 
 const Profile = ({ user, typeUser }) => {
 
-    const [data, setData] = useState({t:'.'})
+    const [data, setData] = useState({})
 
     useEffect(() => {
         if (typeUser === 'clients') {

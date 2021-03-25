@@ -1,5 +1,6 @@
 
 
+
 import { takeJobsToFront } from '../actions/jobAction'
 import { useState, useEffect } from 'react'
 import './CSS/JobDisplayOnFront.css'
@@ -8,14 +9,11 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image }) => {
 
     return (
         <div class="column">
-            <div className='control-out-border'>
+            <div className='control-out-border-front'>
 
-                <div class="column">
-                    <div class="card">
-                        <img src={image} alt={username} width="100%" height="100%" />
-
+                    <div className="card">
+                        <img src={image} alt={username} width="50%" height="50%" />
                     </div>
-                </div>
 
                 <div className='control-out-border-in'>
                     {username}:
@@ -42,10 +40,10 @@ const JobsFront = () => {
 
     }, [])
 
-    console.log('Data:', data)
+    console.log('Data from Jobs Front:', data)
 
     return (
-        <div className="jobsFront">
+        <div className="row">
             {
 
                 (Object.keys(data).length > 0)

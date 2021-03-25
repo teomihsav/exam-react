@@ -1,4 +1,5 @@
 
+import '../CSS/JobsProfile.css'
 
 const Jobs = ({ data }) => {
 
@@ -6,29 +7,38 @@ const Jobs = ({ data }) => {
         console.log('Jobs -->', data)
 
         return (
-                <div>
-                        Dear {data.username}, your answers are:
-                        <hr></hr>
-                        <p></p>
-            Your field at sport:
-                        <hr></hr>
-                        <p></p>
-                        <li> {data.jobChoiceOne} </li>
-                        <br/>
+                <div className='control-out-border-single-job-profile'>
 
-            Are you traning with pro atlets:
+                        <div className="card-single-job-profile">
+                                <img src={data.image} alt={data.username} width="100%" height="100%" />
+
+                        </div>
+                        <div>
+                                Dear {data.username}, your answers are:
+                                <br />
+                                <br />
+
+                                 Your field at sport:
+                        <hr></hr>
+                                <p></p>
+                                {data.jobChoiceOne}
+                                <br />
+                                <br />
+
+                                Are you traning with pro atlets:
                         <hr></hr>
 
-                        <li> {data.jobChoiceTwo} </li>
-                        <br/>
+                                {data.jobChoiceTwo}
+                                <br />
+                                <br />
 
-            What sport education/certificates do you have:
+                                What sport education/certificates do you have:
                         <hr></hr>
 
-                        <li> {data.jobChoiceThree} </li>
-                        <br/>
+                                {data.jobChoiceThree}
+                                <br />
 
-                        <hr></hr>
+                        </div>
                 </div>
         )
 }

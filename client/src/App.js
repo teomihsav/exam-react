@@ -13,6 +13,7 @@ import Profile from './components/Profiles/Profile'
 import JobQuiz from './components/Quizes/JobQuiz'
 import JobsFront from './components/JobsFront'
 import ClientQuiz from './components/Quizes/ClientQuiz'
+import TestSlide from './components/Quizes/TestSlide'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode';
 
@@ -86,15 +87,17 @@ function App() {
 
         </div>
 
-        <div className='jobs-load-front'>
+        <div>
           {!logged && <JobsFront />}
         </div>
 
         <div className="footer">
           <Footer data={'Всички права запазени'} />
+
         </div>
 
       </div>
+
     </Router>
   );
 }
