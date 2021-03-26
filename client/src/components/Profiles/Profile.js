@@ -11,13 +11,18 @@ import Jobs from './Jobs'
 const Profile = ({ user, typeUser }) => {
 
     const [data, setData] = useState({})
+    const [test, setTest] = useState(false)
 
     useEffect(() => {
         if (typeUser === 'clients') {
             takeClientAnswersToProfile({ setData })
         }
+
         if (typeUser === 'jobs') {
             takeJobsAnswersToProfile({ setData })
+        }
+        return () => {
+            setTest(false)
         }
     }, [])
 
@@ -30,14 +35,13 @@ const Profile = ({ user, typeUser }) => {
                 &&
                 (typeUser === 'clients')
                 &&
-                < Clients data={data} />
+                < Clients data={data} setTest={setTest} test={test}/>
                 ||
                 (typeUser === 'jobs')
                 &&
                 < Jobs data={data} />
             }
 
-            {(Object.keys(data).length <= 0) && <Home />}
         </div>
     )
 }

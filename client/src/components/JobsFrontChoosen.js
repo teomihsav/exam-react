@@ -29,33 +29,16 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image }) => {
     )
 }
 
-const JobsFront = ({ arr }) => {
+const JobsFrontChoosen = ({ arr }) => {
 
-    const [data, setData] = useState({})
-
-    useEffect(() => {
-        takeJobsToFront()
-            .then(res => {
-                setData(res.data)
-                console.log('Data Jobs: ', res.data)
-            })
-            .catch(err => {
-                if (err.response) {
-                    console.log('Afer API response error: ', err.response)
-                }
-            })
-
-    }, [])
-
-    console.log('Data from Jobs Front:', data)
+    console.log('Data from Jobs Front:', arr)
 
     return (
         <div className="row">
             {
-
-                (Object.keys(data).length > 0)
+                (Object.keys(arr).length > 0)
                 &&
-                data.map(el =>
+                arr.map(el =>
                     <ViewerJobs
                         key={el._id}
                         username={el.username}
@@ -65,6 +48,7 @@ const JobsFront = ({ arr }) => {
                         image={el.image}
 
                     />
+
                 )
             }
 
@@ -72,4 +56,4 @@ const JobsFront = ({ arr }) => {
     )
 }
 
-export default JobsFront
+export default JobsFrontChoosen

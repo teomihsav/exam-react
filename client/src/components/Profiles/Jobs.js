@@ -21,21 +21,21 @@ const Jobs = ({ data }) => {
                                  Your field at sport:
                         <hr></hr>
                                 <p></p>
-                                {data.jobChoiceOne}
+                                {data.one}
                                 <br />
                                 <br />
 
                                 Are you traning with pro atlets:
                         <hr></hr>
 
-                                {data.jobChoiceTwo}
+                                {data.two}
                                 <br />
                                 <br />
 
                                 What sport education/certificates do you have:
                         <hr></hr>
 
-                                {data.jobChoiceThree}
+                                {data.three}
                                 <br />
 
                         </div>

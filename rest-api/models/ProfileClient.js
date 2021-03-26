@@ -11,13 +11,13 @@ const ProfileSchema = new Schema({
     username: {
         type: String
     },
-    AnswerOne: {
+    one: {
         type: String
     },
-    AnswerTwo: {
+    two: {
         type: String
     },
-    AnswerThree: {
+    three: {
         type: String
     },
     description: {

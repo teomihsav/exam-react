@@ -24,9 +24,9 @@ router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (re
     let profileJobAnswers = {}
     profileJobAnswers.client = req.user.id
     profileJobAnswers.username = req.user.username
-    profileJobAnswers.jobChoiceOne = req.body.jobChoiceOne
-    profileJobAnswers.jobChoiceTwo = req.body.jobChoiceTwo
-    profileJobAnswers.jobChoiceThree = req.body.jobChoiceThree
+    profileJobAnswers.one = req.body.one
+    profileJobAnswers.two = req.body.two
+    profileJobAnswers.three = req.body.three
     profileJobAnswers.image = req.body.image
     profileJobAnswers.description = req.body.description
 
@@ -73,21 +73,39 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
         })
 })
 
-router.get('/takeJobsToFront', (req, res) => {
+router.get('/takeJobsToFront', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     console.log('Response takeJobsToFront')
 
     let profileAnswers = {}
 
+    
+
     ProfileJob.find()
         .then(profile => {
             if (profile) {
-                console.log('Api TakeJobsToFront:', profile)
+                // console.log('Api TakeJobsToFront:', profile)
                 return res.status(200).json(profile)
             } else {
                 console.log('Error, no data:')
                 res.end().json()
             }
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+})
+
+router.post('/takeJobsToFrontMatchedJobs',  (req, res) => {
+
+    console.log('Response takeJobsToFrontMatchedJobs')
+    console.log('Arr data: ', req.body.id)
+    let profileAnswers = {}
+
+    ProfileJob.findById(req.body.id)
+        .then(profile => {
+                console.log('Api takeJobsToFrontMatchedJobs:', profile)
+                return res.status(200).json(profile)
         })
         .catch(err => {
             console.log(err.response)

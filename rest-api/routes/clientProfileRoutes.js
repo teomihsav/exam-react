@@ -24,9 +24,9 @@ router.post('/answers', passport.authenticate('jwt', { session: false }), (req, 
     let profileAnswers = {}
     profileAnswers.client = req.user.id
     profileAnswers.username = req.user.username
-    profileAnswers.AnswerOne = req.body.AnswerOne
-    profileAnswers.AnswerTwo = req.body.AnswerTwo
-    profileAnswers.AnswerThree = req.body.AnswerThree
+    profileAnswers.one = req.body.one
+    profileAnswers.two = req.body.two
+    profileAnswers.three = req.body.three
 
     ProfileClient.findOne({ client: req.user.id })
         .then(profile => {

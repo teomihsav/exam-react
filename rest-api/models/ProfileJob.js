@@ -11,13 +11,13 @@ const ProfileJobSchema = new Schema({
     username: {
         type: String
     },
-    jobChoiceOne: {
+    one: {
         type: String
     },
-    jobChoiceTwo: {
+    two: {
         type: String
     },
-    jobChoiceThree: {
+    three: {
         type: String
     },
     image: {

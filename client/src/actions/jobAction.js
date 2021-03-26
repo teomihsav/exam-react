@@ -55,19 +55,20 @@ const takeJobsAnswersToProfile = ({ setData }) => {
         })
 }
 
-const takeJobsToFront = ({ setData }) => {
-    axios.get('http://localhost:5000/jobProfile/takeJobsToFront')
-        .then(res => {
-            console.log('Response Status Profile Answers: ', res.data)
-            if (res.status === 200) {
-                setData(res.data)
-            }
-        })
-        .catch(err => {
-            if (err.response) {
-                console.log('Afer API response Profile Answers: ', err.response)
-            }
-        })
+const takeJobsToFront = () => {
+    return axios.get('http://localhost:5000/jobProfile/takeJobsToFront')
+
+}
+const takeJobsToFrontMatchedJobs = (id) => {
+    return axios.post('http://localhost:5000/jobProfile/takeJobsToFrontMatchedJobs', (id)
+
+    )
 }
 
-export { saveJobsAswers, takeJobsAnswersToProfile, takeJobsToFront, isExpired }
+export {
+    saveJobsAswers,
+    takeJobsAnswersToProfile,
+    takeJobsToFront,
+    takeJobsToFrontMatchedJobs,
+    isExpired
+}
