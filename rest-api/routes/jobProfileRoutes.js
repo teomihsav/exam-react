@@ -98,7 +98,6 @@ router.get('/takeJobsToFront', passport.authenticate('jwt', { session: false }),
 
 router.post('/takeJobsToFrontMatchedJobs',  (req, res) => {
 
-    console.log('Response takeJobsToFrontMatchedJobs')
     console.log('Arr data: ', req.body.id)
     let profileAnswers = {}
 

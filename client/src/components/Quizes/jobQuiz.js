@@ -4,19 +4,19 @@ import { useState, useEffect } from 'react'
 import { saveJobsAswers } from '../../actions/jobAction'
 import { useHistory, Redirect } from "react-router-dom";
 
-const Media = ({onChange, values}) => {
+const Media = ({ onChange, values }) => {
     return (
-                <div className='form-control'>
-                    <label>Image of you</label>
-                    <input className='form-control-border'
-                        type='text'
-                        name='image'
-                        placeholder='the link of your image'
-                        value={values.image || ''}
-                        onChange={onChange}
-                    >
-                    </input>
-                </div>
+        <div className='form-control'>
+            <label>Image of you</label>
+            <input className='form-control-border'
+                type='text'
+                name='image'
+                placeholder='the link of your image'
+                value={values.image || ''}
+                onChange={onChange}
+            >
+            </input>
+        </div>
     )
 }
 
@@ -25,6 +25,8 @@ const JobQuiz = ({ user }) => {
     let dataRadioForm = {}
 
     let history = useHistory();
+
+    console.log(history)
 
     if (history.location.state !== undefined) {
         dataRadioForm = history.location.state.data[0]
@@ -81,12 +83,13 @@ const JobQuiz = ({ user }) => {
     return (
 
         <div>
-            <p>Please answer on next questions:</p>
-            <br></br>
+
             <form className='add-form' onSubmit={formSubmit}>
 
 
                 <div className='form-control-out-border-quiz-jobs' id="one">
+                    <h1>{history.location.myProps.title}</h1>
+                    <br></br>
                     <label><h2>Your field at sport</h2></label>
 
                     <div className='form-control-out-border-quiz-jobs' >
@@ -203,7 +206,7 @@ const JobQuiz = ({ user }) => {
 
                 <br />
                 <div>
-                    < Media onChange={onValueChange} values={values}/>
+                    < Media onChange={onValueChange} values={values} />
                 </div>
                 <button className="btn btn-block" type="submit">
                     Submit

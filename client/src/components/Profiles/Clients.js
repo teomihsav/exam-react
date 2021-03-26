@@ -33,6 +33,7 @@ const Clients = ({ data, setTest, test }) => {
                         let one = 0; let two = 0; let three = 0
                         let oneJ = 0; let twoJ = 0; let threeJ = 0
 
+
                         data.one === '15 to 30 minutes' && (one = 1)
                         data.one === '30 to 60 minutes' && (one = 2)
                         data.one === '1 hour and more' && (one = 3)
@@ -46,6 +47,7 @@ const Clients = ({ data, setTest, test }) => {
                         data.three === '1 hour and more' && (three = 3)
 
                         console.log(dataJob[0].one, dataJob[0].two, dataJob[0].three)
+
                         dataJob.forEach(el => {
                                 el.one === 'Nature hickung or cicling' && (oneJ = 1)
                                 el.one === 'Fitness or Body building' && (oneJ = 2)
@@ -66,16 +68,10 @@ const Clients = ({ data, setTest, test }) => {
                                 let jobsRes = oneJ + twoJ + threeJ
 
                                 if (jobsRes === clientRes) {
-                                        // console.log('Choosen: ', arrChoosenJobs.push(el.client))
-                                        console.log('Choosen: ', el._id)
                                         let id = el._id
                                         takeJobsToFrontMatchedJobs({ id })
                                                 .then(res => {
-                                                        console.log('Response Status Answers: ', res.status)
-                                                        if (res.status === 200) {
-                                                                console.log('Data from Api: ', res.data)
-                                                                arrChoosenJobs.push(res.data)
-                                                        }
+                                                        arrChoosenJobs.push(res.data)
                                                 })
                                                 .catch(err => {
                                                         if (err.response) {
@@ -127,7 +123,7 @@ const Clients = ({ data, setTest, test }) => {
                         </div>
 
                         <Suspense fallback={renderLoader()}>
-                                < JobsFrontChoosen arr={dataJobsChoosen} setTest={setTest} test={test} />
+                                < JobsFrontChoosen key={data.username} arr={dataJobsChoosen} setTest={setTest} test={test} />
                         </Suspense>
                 </div>
         )

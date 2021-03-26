@@ -30,6 +30,9 @@ const Register = ({ isLogged, state }) => {
                 pathname: "/start",
                 state: {
                     data: dataRadioForm
+                },
+                myProps: {
+                    title: "Last Look at your answers and submit"
                 }
             })
         } else if (typeUser === 'jobs') {
@@ -37,6 +40,9 @@ const Register = ({ isLogged, state }) => {
                 pathname: "/startjobs",
                 state: {
                     data: dataRadioForm
+                },
+                myProps: {
+                    title: "Last Look at your answers and submit"
                 }
             })
         }

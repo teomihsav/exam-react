@@ -18,11 +18,17 @@ const JobHome = (props) => {
 
     return (
         <div className='form-control-out-border-home'>
-            <h2 style={{ align : 'center' }}>We will keep it simple, just answer on few questions to describe your education level and certificates </h2>
+            <h2 style={{ align: 'center' }}>We will keep it simple, just answer on few questions to describe your education level and certificates </h2>
             <br></br>
             <br></br>
-            
-            <Link className='text-logo-link' to='/startjobs'><button className='btn-home-jobs btn-block-home' >  Let's get start... </button></Link>
+
+            <Link className='text-logo-link'
+                to={{
+                    pathname: "/startjobs",
+                    myProps: {
+                        title: "Let's get start..."
+                    }
+                }} ><button className='btn-home-jobs btn-block-home ' > Let's get start...  </button></Link>
         </div>
     )
 }

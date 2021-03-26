@@ -1,4 +1,7 @@
 
+
+import { Link } from 'react-router-dom'
+
 import '../CSS/JobsProfile.css'
 
 const Jobs = ({ data }) => {
@@ -39,6 +42,13 @@ const Jobs = ({ data }) => {
                                 <br />
 
                         </div>
+                        <Link className='text-logo-link'
+                                to={{
+                                        pathname: "/startjobs",
+                                        myProps: {
+                                                title: 'Edit Profile'
+                                        }
+                                }} ><button className='btn-home-jobs-edit ' > Edit Profile </button></Link>
                 </div>
         )
 }
