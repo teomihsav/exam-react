@@ -1,10 +1,11 @@
 
 
-import JobsFrontChoosen from '../JobsFrontChoosen'
+import React, { lazy, Suspense } from 'react';
+
 import '../CSS/ClientProfile.css'
 import { takeJobsToFront, takeJobsToFrontMatchedJobs } from '../../actions/jobAction'
 import { useState, useEffect } from 'react'
-
+import JobsFrontChoosen from '../JobsFrontChoosen'
 
 const Clients = ({ data, setTest, test }) => {
 
@@ -18,6 +19,7 @@ const Clients = ({ data, setTest, test }) => {
                         .then(res => {
                                 setData(res.data)
                                 setTest(true)
+                                console.log('State: ', test)
                                 //console.log('Data Jobs: ', res.data[0])
                         })
                         .catch(err => {
@@ -85,8 +87,13 @@ const Clients = ({ data, setTest, test }) => {
                         setdataJobsChoosen(arrChoosenJobs)
                         console.log('Array: ', arrChoosenJobs)
                 }
+                // return () => {
+                //         setTest(true)
+                // }
 
         }, [test])
+
+        const renderLoader = () => <p>Loading...</p>;
 
         return (
                 <div>
@@ -118,7 +125,10 @@ const Clients = ({ data, setTest, test }) => {
 
                                 </div>
                         </div>
-                        < JobsFrontChoosen arr={dataJobsChoosen} />
+
+                        <Suspense fallback={renderLoader()}>
+                                < JobsFrontChoosen arr={dataJobsChoosen} setTest={setTest} test={test} />
+                        </Suspense>
                 </div>
         )
 }

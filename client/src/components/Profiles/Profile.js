@@ -15,7 +15,10 @@ const Profile = ({ user, typeUser }) => {
 
     useEffect(() => {
         if (typeUser === 'clients') {
+            setTest(true)
+            console.log('State: ', test)
             takeClientAnswersToProfile({ setData })
+            setTest(true)
         }
 
         if (typeUser === 'jobs') {
@@ -23,6 +26,7 @@ const Profile = ({ user, typeUser }) => {
         }
         return () => {
             setTest(false)
+            console.log('State: ', test)
         }
     }, [])
 
