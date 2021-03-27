@@ -50,7 +50,7 @@ const Header = ({ user, setLogged, state }) => {
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className="navbar-logo">
-                    <Link className='text-logo-link ' to='/'> iMatch </Link>
+                    <Link className='text-logo' to='/'> bySporty </Link>
                     <i className="fab fa-react"> </i>
                 </h1>
                 <div className="menu-icon" >

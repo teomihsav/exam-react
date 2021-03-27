@@ -43,7 +43,11 @@
     color: inherit;
     text-decoration: inherit;
 }
-
+.text-logo {
+    color: inherit;
+    text-decoration: inherit;
+    font-family: cursive;
+}
 .fa-react {
     margin-left: 0.5rem;
     font-size: 1.6rem;

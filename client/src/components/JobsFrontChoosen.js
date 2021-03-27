@@ -39,10 +39,8 @@ const JobsFrontChoosen = ({ arr, setTest, test }) => {
                             setTest={setTest}
                         />
                     </Suspense>
-
                 )
             }
-
         </div>
     )
 }

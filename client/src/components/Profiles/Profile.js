@@ -4,7 +4,7 @@ import { React, Suspense, lazy } from 'react'
 import { takeClientAnswersToProfile } from '../../actions/clientAction'
 import { takeJobsAnswersToProfile } from '../../actions/jobAction'
 import { useState, useEffect } from 'react'
-import Home from '../Home'
+import ClientHome from '../ClientHome'
 import Clients from './Clients'
 import Jobs from './Jobs'
 

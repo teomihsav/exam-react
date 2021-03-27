@@ -33,9 +33,14 @@ router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (re
     ProfileJob.findOne({ client: req.user.id })
         .then(profile => {
             if (profile) {
-                console.log(profile)
-                errors.profileAlreadyDone = 'You already did answer this question'
-                return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
+                ProfileJob.findOneAndUpdate(
+                    { client: req.user.id },
+                    { $set: profileJobAnswers },
+                    { new: true }
+                ).then(profile => res.json(profile))           
+                //console.log(profile)
+                //errors.profileAlreadyDone = 'You already did answer this question'
+                // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
             } else {
                 new ProfileJob(profileJobAnswers)
                     .save()

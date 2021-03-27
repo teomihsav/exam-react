@@ -1,6 +1,7 @@
 
 
 import React, { lazy, Suspense } from 'react';
+import { Link } from 'react-router-dom'
 
 import '../CSS/ClientProfile.css'
 import { takeJobsToFront, takeJobsToFrontMatchedJobs } from '../../actions/jobAction'
@@ -120,6 +121,13 @@ const Clients = ({ data, setTest, test }) => {
                                          We recommend you from your instructors:
 
                                 </div>
+                                <Link className='text-logo-link'
+                                        to={{
+                                                pathname: "/start",
+                                                myProps: {
+                                                        title: 'Edit Profile'
+                                                }
+                                        }} ><button className='btn-home-jobs-edit ' > Edit Profile </button></Link>
                         </div>
 
                         <Suspense fallback={renderLoader()}>

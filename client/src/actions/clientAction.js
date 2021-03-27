@@ -39,6 +39,21 @@ const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
         })
 }
 
+const takeClientsAnswersToEdit = ({ setValues }) => {
+    axios.get('http://localhost:5000/clientProfile/takeAnswers')
+        .then(res => {
+            console.log('Response Status Profile Answers: ', res.data)
+            if (res.status === 200) {
+                setValues(res.data)
+            }
+        })
+        .catch(err => {
+            if (err.response) {
+                console.log('Afer API response Profile Answers: ', err.response)
+            }
+        })
+}
+
 const takeClientAnswersToProfile = ({ setData }) => {
     axios.get('http://localhost:5000/clientProfile/takeAnswers')
         .then(res => {
@@ -54,4 +69,8 @@ const takeClientAnswersToProfile = ({ setData }) => {
         })
 }
 
-export { saveClientAnswers, takeClientAnswersToProfile, isExpired }
+export { 
+    saveClientAnswers, 
+    takeClientAnswersToProfile, 
+    takeClientsAnswersToEdit,
+    isExpired }

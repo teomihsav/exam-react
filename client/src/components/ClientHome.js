@@ -4,26 +4,27 @@ import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom'
 
 
-const JobHome = (props) => {
+const ClientHome = (props) => {
+
 
     const errors = {}
 
     return (
         <div className='form-control-out-border-home'>
-            <h1 style={{ align: 'center' }}>We will keep it simple,</h1> <br /> 
-            <h2>just answer on few questions to describe your sport field, education level and certificates</h2> 
+            <h2 style={{ align: 'center' }}>We will keep it simple, just answer on few questions and we will help you to start your sport live </h2>
             <br></br>
             <br></br>
 
             <Link className='text-logo-link'
                 to={{
-                    pathname: "/startjobs",
+                    pathname: "start",
                     myProps: {
                         title: "Let's get start..."
                     }
-                }} ><button className='btn-home-jobs btn-block-home ' > Let's get start...  </button></Link>
+                }}
+            ><button className='btn-home btn-block-home' >  Let's get start... </button></Link>
         </div>
     )
 }
 
-export default JobHome
+export default ClientHome

@@ -1,8 +1,8 @@
 
 
 import { useState, useEffect } from 'react'
-import { saveClientAnswers } from '../../actions/clientAction'
-import { useHistory, Redirect } from "react-router-dom"
+import { saveClientAnswers, takeClientsAnswersToEdit } from '../../actions/clientAction'
+import { useHistory } from "react-router-dom"
 import { isEmpty, isClientRadioFormEmpty } from '../../validation/clientRadioFormValidation'
 import RadioClient from './RadioClient'
 
@@ -10,7 +10,7 @@ const ClientQuiz = ({ user }) => {
 
     let dataRadioForm = {}
 
-    let history = useHistory();
+    let history = useHistory()
 
     if (history.location.state !== undefined) {
         dataRadioForm = history.location.state.data[0]
@@ -18,12 +18,15 @@ const ClientQuiz = ({ user }) => {
             console.log('Data from History: ', dataRadioForm)
         }
     }
-
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
     let typeUser = 'clients'
 
     let radioChoices = []
+
+    useEffect(() => {
+        takeClientsAnswersToEdit({ setValues })
+    }, [])
 
     useEffect(() => {
         console.log('State :', values)
@@ -78,11 +81,10 @@ const ClientQuiz = ({ user }) => {
     ]
     return (
         <div>
-            <p>Please answer on next questions:</p>
-            <br></br>
             <form className='add-form' onSubmit={formSubmit}>
-
                 <div className='form-control-out-border-quiz' id="one">
+                <h1>{history.location.myProps.title}</h1>
+                    <br></br>
                     <label><h2>  Walk during the day</h2></label>
 
                     <div className='form-control-out-border-quiz' >

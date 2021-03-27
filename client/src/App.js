@@ -7,7 +7,7 @@ import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import Logout from './components/Auth/Logout'
 import About from './components/About'
-import Home from './components/Home'
+import ClientHome from './components/ClientHome'
 import JobHome from './components/JobHome'
 import Profile from './components/Profiles/Profile'
 import JobQuiz from './components/Quizes/JobQuiz'
@@ -47,7 +47,7 @@ function App() {
 
           <Route
             path='/' exact
-            component={() => < Home />}
+            component={() => < ClientHome />}
           />
           <Route
             path='/start' exact

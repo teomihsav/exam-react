@@ -1,8 +1,9 @@
 
 
 import { useState, useEffect } from 'react'
-import { saveJobsAswers } from '../../actions/jobAction'
-import { useHistory, Redirect } from "react-router-dom";
+import { saveJobsAswers, takeJobsAnswersToEdit } from '../../actions/jobAction'
+import { isEmpty, isClientRadioFormEmpty } from '../../validation/clientRadioFormValidation'
+import { useHistory } from "react-router-dom";
 
 const Media = ({ onChange, values }) => {
     return (
@@ -24,9 +25,7 @@ const JobQuiz = ({ user }) => {
 
     let dataRadioForm = {}
 
-    let history = useHistory();
-
-    console.log(history)
+    let history = useHistory()
 
     if (history.location.state !== undefined) {
         dataRadioForm = history.location.state.data[0]
@@ -34,12 +33,15 @@ const JobQuiz = ({ user }) => {
             console.log('Data from History: ', dataRadioForm)
         }
     }
-
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
     let typeUser = 'jobs'
 
     let radioChoices = []
+
+    useEffect(() => {
+        takeJobsAnswersToEdit({ setValues })
+    }, [])
 
     useEffect(() => {
         console.log('State :', values)
