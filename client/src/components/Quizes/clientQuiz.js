@@ -20,12 +20,15 @@ const ClientQuiz = ({ user }) => {
     }
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
+    
     let typeUser = 'clients'
 
     let radioChoices = []
 
     useEffect(() => {
-        takeClientsAnswersToEdit({ setValues })
+        if (history.location.myProps.title === 'Edit Profile') {
+            takeClientsAnswersToEdit({ setValues })
+        }
     }, [])
 
     useEffect(() => {

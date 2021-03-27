@@ -32,7 +32,7 @@ const Register = ({ isLogged, state }) => {
                     data: dataRadioForm
                 },
                 myProps: {
-                    title: "Last Look at your answers and submit"
+                    title: "Last look at your answers and submit"
                 }
             })
         } else if (typeUser === 'jobs') {
@@ -42,7 +42,7 @@ const Register = ({ isLogged, state }) => {
                     data: dataRadioForm
                 },
                 myProps: {
-                    title: "Last Look at your answers and submit"
+                    title: "Last look at your answers and submit"
                 }
             })
         }
