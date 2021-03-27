@@ -15,12 +15,25 @@
     width: 25%;
     padding: 20 10px;
   }
-  
+  .column-profile {
+    float: left;
+    display: flex;
+    margin-left: 10px;
+    width: 100%;
+    padding: 20 10px;
+  }
   /* Remove extra left and right margins, due to padding */
 
   
   /* Clear floats after the columns */
   .row {
+    
+    display: flex;
+    flex-direction: row;
+    
+  }
+  
+  .row-profiles {
     display: flex;
     flex-direction: row;
     

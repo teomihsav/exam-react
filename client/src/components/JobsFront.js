@@ -52,7 +52,6 @@ const JobsFront = ({ arr }) => {
     return (
         <div className="row">
             {
-
                 (Object.keys(data).length > 0)
                 &&
                 data.map(el =>
@@ -67,7 +66,6 @@ const JobsFront = ({ arr }) => {
                     />
                 )
             }
-
         </div>
     )
 }

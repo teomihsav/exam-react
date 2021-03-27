@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 const Media = ({ onChange, values }) => {
     return (
         <div className='form-control'>
-            <label>Image of you</label>
+            <label >Image of you</label>
             <input className='form-control-border'
                 type='text'
                 name='image'
@@ -33,14 +33,18 @@ const JobQuiz = ({ user }) => {
             console.log('Data from History: ', dataRadioForm)
         }
     }
+
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
+
     let typeUser = 'jobs'
 
     let radioChoices = []
 
     useEffect(() => {
-        takeJobsAnswersToEdit({ setValues })
+        if (history.location.myProps.title === 'Edit Profile') {
+            takeJobsAnswersToEdit({ setValues })
+        }
     }, [])
 
     useEffect(() => {
@@ -83,137 +87,138 @@ const JobQuiz = ({ user }) => {
     }
 
     return (
-
         <div>
-
+            <h1>{history.location.myProps.title}</h1> <br />
             <form className='add-form' onSubmit={formSubmit}>
+                <div className='row-profiles'>
+                    <div className="column-profile">
+                        <div className='form-control-out-border-quiz-jobs-out' id="one">
+                            <label><h2>Your field at sport</h2></label>
 
+                            <div className='form-control-out-border-quiz-jobs' >
+                                <input
+                                    type="radio"
+                                    checked={values.one === 'Nature hickung or cicling'}
+                                    name="one"
+                                    value='Nature hickung or cicling'
+                                    onChange={onValueChange}
+                                />
+                                <label> Nature hickung or cicling</label>
+                            </div>
 
-                <div className='form-control-out-border-quiz-jobs' id="one">
-                    <h1>{history.location.myProps.title}</h1>
-                    <br></br>
-                    <label><h2>Your field at sport</h2></label>
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.one === 'Fitness or Body building'}
+                                    name="one"
+                                    value='Fitness or Body building'
+                                    onChange={onValueChange}
+                                />
+                                <label> Fitness or Body building</label>
+                            </div>
 
-                    <div className='form-control-out-border-quiz-jobs' >
-                        <input
-                            type="radio"
-                            checked={values.one === 'Nature hickung or cicling'}
-                            name="one"
-                            value='Nature hickung or cicling'
-                            onChange={onValueChange}
-                        />
-                        <label> Nature hickung or cicling</label>
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.one === 'Rehabilitation or Healing'}
+                                    name="one"
+                                    value='Rehabilitation or Healing'
+                                    onChange={onValueChange}
+                                />
+                                <label> Rehabilitation or Healing</label>
+                            </div>
+
+                            <span className='error'>{errors.email}</span>
+                        </div>
                     </div>
 
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.one === 'Fitness or Body building'}
-                            name="one"
-                            value='Fitness or Body building'
-                            onChange={onValueChange}
-                        />
-                        <label> Fitness or Body building</label>
+                    <div className="column-profile">
+                        <div className='form-control-out-border-quiz-jobs-out' id="two">
+                            <label><h2> Are you traning with pro atlets</h2></label>
+
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.two === 'Just regular people'}
+                                    name="two"
+                                    value='Just regular people'
+                                    onChange={onValueChange}
+                                />
+                                <label> Just regular people </label>
+                            </div>
+
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.two === 'Pro atlets and regular people'}
+                                    name="two"
+                                    value='Pro atlets and regular people'
+                                    onChange={onValueChange}
+                                />
+                                <label> Pro atlets and regular people </label>
+                            </div>
+
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.two === 'Just pro atlets'}
+                                    name="two"
+                                    value='Just pro atlets'
+                                    onChange={onValueChange}
+                                />
+                                <label> Just pro atlets </label>
+                            </div>
+
+                            <span className='error'>{errors.email}</span>
+                        </div>
                     </div>
 
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.one === 'Rehabilitation or Healing'}
-                            name="one"
-                            value='Rehabilitation or Healing'
-                            onChange={onValueChange}
-                        />
-                        <label> Rehabilitation or Healing</label>
-                    </div>
+                    <div className="column-profile">
+                        <div className='form-control-out-border-quiz-jobs-out' id="three">
+                            <label><h2> What sport education/certificates do you have  </h2> </label>
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.three === 'Organizing sport events hicking or cicling'}
+                                    name="three"
+                                    value='Organizing sport events hicking or cicling'
+                                    onChange={onValueChange}
+                                />
+                                <label> Organizing sport events hicking or cicling </label>
+                            </div>
 
-                    <span className='error'>{errors.email}</span>
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.three === 'Certificates'}
+                                    name="three"
+                                    value='Certificates'
+                                    onChange={onValueChange}
+                                />
+                                <label> Certificates </label>
+                            </div>
+
+                            <div className='form-control-out-border-quiz-jobs'>
+                                <input
+                                    type="radio"
+                                    checked={values.three === 'Magister or Bacalar'}
+                                    name="three"
+                                    value='Magister or Bacalar'
+                                    onChange={onValueChange}
+                                />
+                                <label> Magister or Bacalar </label>
+                                <span className='error'>{errors.email}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div className='form-control-out-border-quiz-jobs' id="two">
-                    <label><h2> Are you traning with pro atlets</h2></label>
-
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.two === 'Just regular people'}
-                            name="two"
-                            value='Just regular people'
-                            onChange={onValueChange}
-                        />
-                        <label> Just regular people </label>
-                    </div>
-
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.two === 'Pro atlets and regular people'}
-                            name="two"
-                            value='Pro atlets and regular people'
-                            onChange={onValueChange}
-                        />
-                        <label> Pro atlets and regular people </label>
-                    </div>
-
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.two === 'Just pro atlets'}
-                            name="two"
-                            value='Just pro atlets'
-                            onChange={onValueChange}
-                        />
-                        <label> Just pro atlets </label>
-                    </div>
-
-                    <span className='error'>{errors.email}</span>
-                </div>
-
-                <div className='form-control-out-border-quiz-jobs' id="three">
-                    <label><h2> What sport education/certificates do you have  </h2> </label>
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.three === 'Organizing sport events hicking or cicling'}
-                            name="three"
-                            value='Organizing sport events hicking or cicling'
-                            onChange={onValueChange}
-                        />
-                        <label> Organizing sport events hicking or cicling </label>
-                    </div>
-
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.three === 'Certificates'}
-                            name="three"
-                            value='Certificates'
-                            onChange={onValueChange}
-                        />
-                        <label> Certificates </label>
-                    </div>
-
-                    <div className='form-control-out-border-quiz-jobs'>
-                        <input
-                            type="radio"
-                            checked={values.three === 'Magister or Bacalar'}
-                            name="three"
-                            value='Magister or Bacalar'
-                            onChange={onValueChange}
-                        />
-                        <label> Magister or Bacalar </label>
-                        <span className='error'>{errors.email}</span>
-                    </div>
-                </div>
-
                 <br />
-                <div>
-                    < Media onChange={onValueChange} values={values} />
-                </div>
+                < Media onChange={onValueChange} values={values} />
                 <button className="btn btn-block" type="submit">
                     Submit
-            </button>
+                    </button>
             </form>
+
         </div>
     )
 }
