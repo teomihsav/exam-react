@@ -2,14 +2,7 @@
 
 import { useState, useEffect } from 'react'
 
-const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, setTest }) => {
-
-    useEffect(() => {
-        setTest(true)
-        return () => {
-            setTest(true)
-        }
-    }, [])
+const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image }) => {
 
     return (
         <div className="column">

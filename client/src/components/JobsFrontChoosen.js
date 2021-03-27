@@ -7,18 +7,11 @@ import { useState, useEffect } from 'react'
 import './CSS/JobDisplayOnFront.css'
 import ViewerJobs from './ViewerJobs'
 
-const JobsFrontChoosen = ({ arr, setTest, test }) => {
-
-    useEffect(() => {
-        setTest(false)
-        return () => {
-            setTest(false)
-        }
-    }, [])
+const JobsFrontChoosen = ({ arr }) => {
 
     console.log('Data from Jobs Front:', arr)
     
-    const renderLoader = () => <p>Loading...</p>;
+    const renderLoader = () => <p>Loading...</p>
 
     return (
 
@@ -35,12 +28,12 @@ const JobsFrontChoosen = ({ arr, setTest, test }) => {
                             jobTwo={el.two}
                             jobThree={el.three}
                             image={el.image}
-                            test={test}
-                            setTest={setTest}
                         />
                     </Suspense>
+
                 )
             }
+
         </div>
     )
 }

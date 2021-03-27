@@ -10,10 +10,74 @@ import JobsFrontChoosen from '../JobsFrontChoosen'
 
 const Clients = ({ data, setTest, test }) => {
 
+        let arrChoosenJobs = []
+
+        const calc = (data) => {
+                let one = 0; let two = 0; let three = 0
+
+                data.one === '15 to 30 minutes' && (one = 1)
+                data.one === '30 to 60 minutes' && (one = 2)
+                data.one === '1 hour and more' && (one = 3)
+
+                data.two === '15 to 30 minutes' && (two = 1)
+                data.two === '30 to 60 minutes' && (two = 2)
+                data.two === '1 hour and more' && (two = 3)
+
+                data.three === '15 to 30 minutes' && (three = 1)
+                data.three === '30 to 60 minutes' && (three = 2)
+                data.three === '1 hour and more' && (three = 3)
+
+                // console.log(dataJob[0].one, dataJob[0].two, dataJob[0].three)
+                return { one, two, three }
+        }
+
+        const calcForEach = (res) => {
+                let oneJ = 0; let twoJ = 0; let threeJ = 0
+
+                dataJob.forEach(el => {
+                        el.one === 'Nature hickung or cicling' && (oneJ = 1)
+                        el.one === 'Fitness or Body building' && (oneJ = 2)
+                        el.one === 'Rehabilitation or Healing' && (oneJ = 3)
+
+                        el.two === 'Just regular people' && (twoJ = 1)
+                        el.two === 'Pro atlets and regular people' && (twoJ = 2)
+                        el.two === 'Just pro atlets' && (twoJ = 3)
+
+                        el.three === 'Organizing sport events hicking or cicling' && (threeJ = 1)
+                        el.three === 'Certificates' && (threeJ = 2)
+                        el.three === 'Magister or Bacalar' && (threeJ = 3)
+
+                        //console.log('Data from client at Client:', one, two, three)
+                        console.log('Data from Jobs at Client:', oneJ, twoJ, threeJ)
+
+                        let clientRes = res.one + res.two + res.three
+                        let jobsRes = oneJ + twoJ + threeJ
+
+                        if (jobsRes === clientRes) {
+                                let id = el._id
+                                takeJobsToFrontMatchedJobs({ id })
+                                        .then(res => {
+                                                // arrChoosenJobs.push(res.data)
+                                                 console.log('Match Jobs Array', res.data)
+                                                setdataJobsChoosen(dataJobsChoosen => [...dataJobsChoosen, res.data])
+                                        })
+                                        .catch(err => {
+                                                if (err.response) {
+                                                        console.log('Afer API response: ', err.response)
+                                                }
+                                        })
+                        }
+                })
+        }
+
+        const promiseA = new Promise((resolve, reject) => {
+                resolve(calc(data))
+        })
+
+
         const [dataJob, setData] = useState({})
         const [dataJobsChoosen, setdataJobsChoosen] = useState([])
 
-        let arrChoosenJobs = []
 
         useEffect(() => {
                 takeJobsToFront()
@@ -21,75 +85,30 @@ const Clients = ({ data, setTest, test }) => {
                                 setData(res.data)
                                 setTest(true)
                                 console.log('State: ', test)
-                                //console.log('Data Jobs: ', res.data[0])
+                                console.log('Data Jobs: ', res.data)
                         })
                         .catch(err => {
                                 if (err.response) {
                                         console.log('Afer API response error: ', err.response)
                                 }
                         })
+        }, [])
 
+        useEffect(() => {
                 if (Object.keys(data) && dataJob.length) {
 
-                        let one = 0; let two = 0; let three = 0
-                        let oneJ = 0; let twoJ = 0; let threeJ = 0
+                        promiseA.then((res) => {
+                                console.log('Promise A: ', res)
 
-
-                        data.one === '15 to 30 minutes' && (one = 1)
-                        data.one === '30 to 60 minutes' && (one = 2)
-                        data.one === '1 hour and more' && (one = 3)
-
-                        data.two === '15 to 30 minutes' && (two = 1)
-                        data.two === '30 to 60 minutes' && (two = 2)
-                        data.two === '1 hour and more' && (two = 3)
-
-                        data.three === '15 to 30 minutes' && (three = 1)
-                        data.three === '30 to 60 minutes' && (three = 2)
-                        data.three === '1 hour and more' && (three = 3)
-
-                        console.log(dataJob[0].one, dataJob[0].two, dataJob[0].three)
-
-                        dataJob.forEach(el => {
-                                el.one === 'Nature hickung or cicling' && (oneJ = 1)
-                                el.one === 'Fitness or Body building' && (oneJ = 2)
-                                el.one === 'Rehabilitation or Healing' && (oneJ = 3)
-
-                                el.two === 'Just regular people' && (twoJ = 1)
-                                el.two === 'Pro atlets and regular people' && (twoJ = 2)
-                                el.two === 'Just pro atlets' && (twoJ = 3)
-
-                                el.three === 'Organizing sport events hicking or cicling' && (threeJ = 1)
-                                el.three === 'Certificates' && (threeJ = 2)
-                                el.three === 'Magister or Bacalar' && (threeJ = 3)
-
-                                console.log('Data from client at Client:', one, two, three)
-                                console.log('Data from Jobs at Client:', oneJ, twoJ, threeJ)
-
-                                let clientRes = one + two + three
-                                let jobsRes = oneJ + twoJ + threeJ
-
-                                if (jobsRes === clientRes) {
-                                        let id = el._id
-                                        takeJobsToFrontMatchedJobs({ id })
-                                                .then(res => {
-                                                        arrChoosenJobs.push(res.data)
-                                                })
-                                                .catch(err => {
-                                                        if (err.response) {
-                                                                console.log('Afer API response: ', err.response)
-                                                        }
-                                                })
-                                }
+                                const promiseB = new Promise((resolve, reject) => { 
+                                        resolve(calcForEach(res))
+                                })
                         })
-                        setdataJobsChoosen(arrChoosenJobs)
-                        console.log('Array: ', arrChoosenJobs)
+
                 }
-                // return () => {
-                //         setTest(true)
-                // }
+        }, [dataJob])
 
-        }, [test])
-
+        console.log('Test: ', dataJobsChoosen)
         const renderLoader = () => <p>Loading...</p>;
 
         return (
@@ -131,7 +150,7 @@ const Clients = ({ data, setTest, test }) => {
                         </div>
 
                         <Suspense fallback={renderLoader()}>
-                                < JobsFrontChoosen key={data.username} arr={dataJobsChoosen} setTest={setTest} test={test} />
+                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} setTest={setTest} test={test} />
                         </Suspense>
                 </div>
         )

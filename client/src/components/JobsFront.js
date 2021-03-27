@@ -62,7 +62,6 @@ const JobsFront = ({ arr }) => {
                         jobTwo={el.two}
                         jobThree={el.three}
                         image={el.image}
-
                     />
                 )
             }
