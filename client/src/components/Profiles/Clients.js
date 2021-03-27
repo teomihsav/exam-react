@@ -127,7 +127,7 @@ const Clients = ({ data, setTest, test }) => {
                                                 myProps: {
                                                         title: 'Edit Profile'
                                                 }
-                                        }} ><button className='btn-home-jobs-edit ' > Edit Profile </button></Link>
+                                        }} ><button className='btn-home-client-edit' > Edit Profile </button></Link>
                         </div>
 
                         <Suspense fallback={renderLoader()}>
