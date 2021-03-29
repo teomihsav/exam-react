@@ -9,8 +9,10 @@ import ViewerJobs from './ViewerJobs'
 
 const JobsFrontChoosen = ({ arr }) => {
 
+    const [modal, setModal] = useState()
+
     console.log('Data from Jobs Front:', arr)
-    
+
     const renderLoader = () => <p>Loading...</p>
 
     return (
@@ -28,12 +30,15 @@ const JobsFrontChoosen = ({ arr }) => {
                             jobTwo={el.two}
                             jobThree={el.three}
                             image={el.image}
+                            setModal={setModal}
+                            modal={modal}
                         />
+
+
                     </Suspense>
 
                 )
             }
-
         </div>
     )
 }
