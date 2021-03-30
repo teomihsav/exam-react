@@ -131,8 +131,8 @@ router.post('/sendEmail', (req, res) => {
     console.log('Data from Front at beckend: ', req.body)
 
     let mailOptions = {
-        from: '"Client" <contact@ben.bg>', 
-        to: 'contact@ben.bg', // data.emailJob
+        from: req.body.emailClient, 
+        to: req.body.emailJob,
         subject: req.body.values.subject, 
         text: req.body.values.message, 
         html: req.body.values.message
@@ -140,7 +140,7 @@ router.post('/sendEmail', (req, res) => {
 
     transporter.sendMail(mailOptions, function (errors, info) {
         if (errors) {
-            res.status(404).json({ errors: error });
+            res.status(404).json({ errors: error = 'Error, mail is nor sent!' });
         } else {
             res.status(250).json({ success: info.response });
         };

@@ -109,6 +109,7 @@ const Clients = ({ data }) => {
 
         console.log('Test: ', dataJobsChoosen)
         const renderLoader = () => <p>Loading...</p>;
+        // console.log('takeClientAnswersToProfile: ', data)
 
         return (
                 <div>
@@ -135,6 +136,7 @@ const Clients = ({ data }) => {
 
                                         <li> {data.three} </li>
                                         <br />
+                                        <li> {data.client.email} </li>
 
                                          We recommend you from your instructors:
 
@@ -149,7 +151,7 @@ const Clients = ({ data }) => {
                         </div>
 
                         <Suspense fallback={renderLoader()}>
-                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} />
+                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} emailClient={data.client.email}/>
                         </Suspense>
                 </div>
         )

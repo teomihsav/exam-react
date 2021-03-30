@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 import './CSS/JobDisplayOnFront.css'
 import ViewerJobs from './ViewerJobs'
 
-const JobsFrontChoosen = ({ arr }) => {
+const JobsFrontChoosen = ({ arr, emailClient }) => {
 
     console.log('Data from Jobs Front:', arr)
 
@@ -29,6 +29,7 @@ const JobsFrontChoosen = ({ arr }) => {
                             jobThree={el.three}
                             image={el.image}
                             emailJob={el.client.email}
+                            emailClient={emailClient}
                         />
                     </Suspense>
                 )

@@ -1,18 +1,21 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import TooltipPopover from "./popUpCard/TooltipPopover";
 import Portal from "./popUpCard/Portal";
 import "./popUpCard/index.css";
 import Email from './popUpCard/Email'
 
-const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob }) => {
+const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, emailClient }) => {
 
     const [visible, setVisible] = useState(false)
     const [isOn, setOn] = useState(false); // toggles dropdown visibility
     const [coords, setCoords] = useState({}); // takes current button coordinates
+    const [email, setEmail] = useState(); // takes current button coordinates
     const btnRef = React.createRef();
 
+    let emailsJob = []
+    emailsJob.push(emailJob)
     const updateTooltipCoords = (button) => {
         if (button) {
             const rect = button.getBoundingClientRect();
@@ -22,7 +25,14 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob }) => 
             });
         }
     };
+    useEffect(() => {
+        setEmail(emailJob)
+        // setdataJobsChoosen(dataJobsChoosen => [...dataJobsChoosen, res.data])
+        
+    }, [])
 
+    console.log(email)
+    
     return (
         <div className="column">
             <div className='control-out-border-front'>
@@ -54,7 +64,7 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob }) => 
                                 }
                             >
                                 <div>
-                                    <Email setOn={setOn} isOn={isOn} emailJob={emailJob}/>
+                                    <Email setOn={setOn} isOn={isOn} emailJob={email} emailClient={emailClient} />
                                 </div>
                             </TooltipPopover>
                         </Portal>

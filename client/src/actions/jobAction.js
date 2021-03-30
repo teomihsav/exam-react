@@ -77,8 +77,8 @@ const takeJobsToFrontMatchedJobs = (id) => {
     return axios.post('http://localhost:5000/jobProfile/takeJobsToFrontMatchedJobs', (id))
 }
 
-const sendEmail = ({  values, emailJob }) => {
-    return axios.post('http://localhost:5000/jobProfile/sendEmail', ({  values, emailJob }))
+const sendEmail = ({  values, emailJob, emailClient }) => {
+    return axios.post('http://localhost:5000/jobProfile/sendEmail', ({  values, emailJob, emailClient }))
 }
 
 export {
