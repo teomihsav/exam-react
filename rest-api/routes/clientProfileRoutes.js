@@ -35,7 +35,7 @@ router.post('/answers', passport.authenticate('jwt', { session: false }), (req, 
                     { client: req.user.id },
                     { $set: profileAnswers },
                     { new: true }
-                ).then(profile => res.json(profile))    
+                ).then(profile => res.json(profile))
                 // console.log(profile)
                 // errors.profileAlreadyDone = 'You already did answer this question'
                 // return res.status(404).json(errors) // On found "answers" at DB returns errors and display it at page form
@@ -62,6 +62,7 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
     let profileAnswers = {}
 
     ProfileClient.findOne({ client: req.user.id })
+        .populate('client', ['email'])
         .then(profile => {
             if (profile) {
                 console.log('Api:', profile)

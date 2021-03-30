@@ -12,13 +12,12 @@ const Login = ({ isLogged, state }) => {
     let history = useHistory();
 
     useEffect(() => {
-        let errors = {}
 
         if (!values.email) {
             errors.email = ''
         } else {
             if (!/\S+@\S+\.\S+/.test(values.email)) {
-                errors.email = 'Must be valid e-mail.'
+                errors.email = 'Must be valid e-mail'
             } else {
                 errors.email = ''
             }
@@ -33,15 +32,13 @@ const Login = ({ isLogged, state }) => {
                 errors.password = '';
             }
         }
-        setErrors(errors)
+        setErrors({ ...errors })
     }, [values.email, values.password])
 
 
     // On "logged" state changed to token id --> redirect  
     useEffect(() => {
-
         state && history.push("/profile")
-
     }, [state])
 
 

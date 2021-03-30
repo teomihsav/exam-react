@@ -7,9 +7,10 @@ const ProfileJob = require('../models/ProfileJob')
 const Client = require('../models/Client')
 const apiValidateRegistration = require('../validationApi/apiValidateRegister')
 const apiValidateLogin = require('../validationApi/apiValidateLogin')
+const mx = require('./mx')
 
-
-const errors = {}
+const nodemailer = require('nodemailer');
+// const key = require('../../config/mxKey');
 
 router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (req, res) => {
 
@@ -37,7 +38,7 @@ router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (re
                     { client: req.user.id },
                     { $set: profileJobAnswers },
                     { new: true }
-                ).then(profile => res.json(profile))           
+                ).then(profile => res.json(profile))
                 //console.log(profile)
                 //errors.profileAlreadyDone = 'You already did answer this question'
                 // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
@@ -78,13 +79,12 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
         })
 })
 
-router.get('/takeJobsToFront', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.get('/takeJobsToFront', (req, res) => {
 
     console.log('Response takeJobsToFront')
 
     let profileAnswers = {}
 
-    
 
     ProfileJob.find()
         .then(profile => {
@@ -101,20 +101,50 @@ router.get('/takeJobsToFront', passport.authenticate('jwt', { session: false }),
         })
 })
 
-router.post('/takeJobsToFrontMatchedJobs',  (req, res) => {
+router.post('/takeJobsToFrontMatchedJobs', (req, res) => {
 
     console.log('Arr data: ', req.body.id)
     let profileAnswers = {}
 
     ProfileJob.findById(req.body.id)
+        .populate('client', ['email'])
         .then(profile => {
-                console.log('Api takeJobsToFrontMatchedJobs:', profile)
-                return res.status(200).json(profile)
+            console.log('Api takeJobsToFrontMatchedJobs:', profile)
+            return res.status(200).json(profile)
         })
         .catch(err => {
             console.log(err.response)
         })
 })
 
+const transporter = nodemailer.createTransport({
+    host: "ben.bg",
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'ben@ben.bg', 
+        pass: 'po282rigorexh' 
+    }
+})
+
+router.post('/sendEmail', (req, res) => {
+    console.log('Data from Front at beckend: ', req.body)
+
+    let mailOptions = {
+        from: '"Client" <contact@ben.bg>', 
+        to: 'contact@ben.bg', // data.emailJob
+        subject: req.body.values.subject, 
+        text: req.body.values.message, 
+        html: req.body.values.message
+    }
+
+    transporter.sendMail(mailOptions, function (errors, info) {
+        if (errors) {
+            res.status(404).json({ errors: error });
+        } else {
+            res.status(250).json({ success: info.response });
+        };
+    });
+});
 
 module.exports = router

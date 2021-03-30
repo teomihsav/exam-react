@@ -44,7 +44,6 @@ const JobsFront = ({ arr }) => {
                     console.log('Afer API response error: ', err.response)
                 }
             })
-
     }, [])
 
     console.log('Data from Jobs Front:', data)

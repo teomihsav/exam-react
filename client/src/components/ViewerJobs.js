@@ -6,7 +6,7 @@ import Portal from "./popUpCard/Portal";
 import "./popUpCard/index.css";
 import Email from './popUpCard/Email'
 
-const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image }) => {
+const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob }) => {
 
     const [visible, setVisible] = useState(false)
     const [isOn, setOn] = useState(false); // toggles dropdown visibility
@@ -54,7 +54,7 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image }) => {
                                 }
                             >
                                 <div>
-                                    <Email setOn={setOn} isOn={isOn} />
+                                    <Email setOn={setOn} isOn={isOn} emailJob={emailJob}/>
                                 </div>
                             </TooltipPopover>
                         </Portal>

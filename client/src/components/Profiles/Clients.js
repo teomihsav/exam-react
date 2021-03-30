@@ -8,7 +8,7 @@ import { takeJobsToFront, takeJobsToFrontMatchedJobs } from '../../actions/jobAc
 import { useState, useEffect } from 'react'
 import JobsFrontChoosen from '../JobsFrontChoosen'
 
-const Clients = ({ data, setTest, test }) => {
+const Clients = ({ data }) => {
 
         let arrChoosenJobs = []
 
@@ -83,7 +83,6 @@ const Clients = ({ data, setTest, test }) => {
                 takeJobsToFront()
                         .then(res => {
                                 setData(res.data)
-                                setTest(true)
                                 console.log('State: ', test)
                                 console.log('Data Jobs: ', res.data)
                         })
@@ -150,7 +149,7 @@ const Clients = ({ data, setTest, test }) => {
                         </div>
 
                         <Suspense fallback={renderLoader()}>
-                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} setTest={setTest} test={test} />
+                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} />
                         </Suspense>
                 </div>
         )
