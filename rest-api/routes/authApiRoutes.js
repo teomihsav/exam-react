@@ -68,7 +68,7 @@ router.post('/login', (req, res) => {
             console.log(user)
             // Check for user
             if (!user) {
-                errors.password = 'E-mail or password are wrong';
+                errors.password = 'E-mail or password are wrong!';
                 return res.status(400).json(errors);
             }
             // Check password
@@ -89,7 +89,7 @@ router.post('/login', (req, res) => {
                                 });
                             });
                     } else {
-                        errors.password = 'E-mail or password are wrong';
+                        errors.password = 'E-mail or password are wrong!';
                         return res.status(400).json(errors);
                     }
                 })

@@ -1,12 +1,32 @@
 
+  
+  .form-control-jobs {
+    margin: 10px 0;
+    border-color: rgba(56, 151, 1, 0.925)
+  }
 
-  .select-jobs {
+  .select-jobs-select {
+    outline: none;
     margin: 10px;
-    width: 150px;
+    width: 350px;
+    height: 35px;
     padding: 5px 35px 5px 5px;
     font-size: 16px;
     border: 1px solid #CCC;
-    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
+  .select-jobs-input {
+    outline: none;
+    margin: 10px;
+    width: 350px;
+    height: 35px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #CCC;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -14,7 +34,20 @@
     /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
   }
   
-  
+  .select-jobs-text-area {
+    outline: none;
+    margin: 10px;
+    width: 350px;
+    height: 300px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
   /* CAUTION: Internet Explorer hackery ahead */
   
   

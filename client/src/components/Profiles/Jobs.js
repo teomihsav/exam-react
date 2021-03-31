@@ -47,39 +47,35 @@ const Jobs = ({ data }) => {
                 <div className='row-single-job-profile'>
                         <form className='add-form' onSubmit={onSubmit} >
                                 <div className='form-control-out-border-jobs'>
-                                        <div className='form-control'>
+                                        <div className='form-control-jobs'>
 
                                                 {loading ? dots : text}
-
+                                                <br />
                                                 <label htmlFor='Choose Category'>Choose Categoty</label>
-                                                <div >
-                                                        <select className='select-jobs'
-                                                                name='category'
-                                                                id='category'
-                                                                onChange={validForm}
-                                                        >
-                                                                <option value=''> ... </option>
-                                                                <option value='healthy'>Healthy eating</option>
-                                                                <option value='exercices'>Exercices for beginners</option>
-                                                        </select>
-                                                </div>
-
+                                                <select className='select-jobs-select'
+                                                        name='category'
+                                                        id='category'
+                                                        onChange={validForm}
+                                                >
+                                                        <option value=''> ... </option>
+                                                        <option value='healthy'>Healthy eating</option>
+                                                        <option value='exercices'>Exercices for beginners</option>
+                                                </select>
+                                                <br />
                                                 <label>Title</label>
-                                                <input className='select-jobs'
+                                                <br />
+                                                <input className='select-jobs-input'
                                                         type='text'
                                                         name='title'
                                                         value={values.title || ''}
                                                         onChange={validForm}
                                                 >
                                                 </input>
-                                        </div>
-
-                                        <label>Type your inspired words here</label>
-
-                                        <div className='form-control'>
-                                                <textarea className='select-jobs'
-                                                        rows='36'
-                                                        cols='56'
+                                                <br />
+                                                <label>Type your inspired words here</label>
+                                                <textarea className='select-jobs-text-area'
+                                                        cols="36"
+                                                        rows="56"
                                                         name='article'
                                                         value={values.article || ''}
                                                         onChange={validForm}
