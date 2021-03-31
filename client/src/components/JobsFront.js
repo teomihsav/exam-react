@@ -49,21 +49,25 @@ const JobsFront = ({ arr }) => {
     console.log('Data from Jobs Front:', data)
 
     return (
-        <div className="row">
-            {
-                (Object.keys(data).length > 0)
-                &&
-                data.map(el =>
-                    <ViewerJobs
-                        key={el._id}
-                        username={el.username}
-                        jobOne={el.one}
-                        jobTwo={el.two}
-                        jobThree={el.three}
-                        image={el.image}
-                    />
-                )
-            }
+        <div>
+            <div className='control-out-border-in'><h2>Here you can see our great instructors</h2>  </div>
+            <div className="row">
+
+                {
+                    (Object.keys(data).length > 0)
+                    &&
+                    data.map(el =>
+                        <ViewerJobs
+                            key={el._id}
+                            username={el.username}
+                            jobOne={el.one}
+                            jobTwo={el.two}
+                            jobThree={el.three}
+                            image={el.image}
+                        />
+                    )
+                }
+            </div>
         </div>
     )
 }

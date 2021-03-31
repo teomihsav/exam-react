@@ -7,12 +7,14 @@ import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import Logout from './components/Auth/Logout'
 import About from './components/About'
+import Articles from './components/Articles/Articles'
 import ClientHome from './components/ClientHome'
 import JobHome from './components/JobHome'
 import Profile from './components/Profiles/Profile'
 import JobQuiz from './components/Quizes/JobQuiz'
 import JobsFront from './components/JobsFront'
 import ClientQuiz from './components/Quizes/ClientQuiz'
+import SingleArticle from './components/Articles/SingleArticle'
 import TestSlide from './components/Quizes/TestSlide'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode';
@@ -42,7 +44,9 @@ function App() {
   return (
     <Router>
       <div className='main-container background-color'>
-        < Header user={logged} setLogged={setLogged} state={logged} />
+
+        <Header user={logged} setLogged={setLogged} state={logged} />
+
         <div className="container">
 
           <Route
@@ -78,6 +82,14 @@ function App() {
           <Route
             path='/logout' exact
             component={() => <Logout isLogged={setLogged} state={logged} />}
+          />
+          <Route
+            path='/singlearticle' exact
+            component={() => <SingleArticle user={logged} />}
+          />
+          <Route exact
+            path='/articles'
+            component={Articles}
           />
 
           <Route exact

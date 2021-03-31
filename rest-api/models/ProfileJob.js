@@ -23,6 +23,19 @@ const ProfileJobSchema = new Schema({
     image: {
         type: String
     },
+    articles: [
+        {
+            category: {
+                type: String
+            },
+            title: {
+                type: String
+            },
+            article: {
+                type: String
+            },
+        }
+    ],
     description: {
         type: String
     },

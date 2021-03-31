@@ -33,24 +33,25 @@ const Header = ({ user, setLogged, state }) => {
         { id: 2, text: 'Jobs', path: 'jobs' },
         // { id: 3, text: 'Register', path: 'register' },
         { id: 4, text: 'Login', path: 'login' },
-        { id: 5, text: 'About', path: 'about' },
+        { id: 5, text: 'Articles', path: 'articles' },
+        { id: 6, text: 'About', path: 'about' },
     ]
     console.log('Header loggin state: ', state)
 
-    isExpired() && setLogged(false)
+    isExpired() && setLogged(false) // console.log(clicked)
 
-
-    console.log(clicked)
-
+    let link 
+    
     if (state) {
         menu.splice(0, 3, { id: 3, text: 'Logout', user, path: 'logout' }, { id: 4, text: 'Profile', path: 'profile' })
+        link = ''
     } else { }
 
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className="navbar-logo">
-                    <Link className='text-logo' to='/'> bySporty </Link>
+                   { state ? <Link className='text-logo'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
                     <i className="fab fa-react"> </i>
                 </h1>
                 <div className="menu-icon" >
@@ -66,7 +67,6 @@ const Header = ({ user, setLogged, state }) => {
                             path={el.path}
                             user={el.user}
                         />
-
                     )}
                 </ul>
             </nav>

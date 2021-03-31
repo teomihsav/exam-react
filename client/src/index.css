@@ -251,7 +251,7 @@ body {
 }
 
 .add-form {
-  margin-bottom: 0%;
+  margin-bottom: 5.3%;
 }
 
 .form-control {
@@ -355,16 +355,6 @@ body {
   height: 20px;
 }
 
-.about {
-  max-width: 100%;
-  margin: 100px auto;
-  margin-bottom: 0%;
-  overflow: auto;
-  min-height: 0px;
-  padding: 50px;
-  font-size: 13px;
-}
-
 .footer {
   max-width: 100%x;
   margin: center;
@@ -387,3 +377,4 @@ body {
   font-weight: bold;
   font-size: 18px;
 }
+

@@ -31,11 +31,11 @@ const Profile = ({ user, typeUser }) => {
                 &&
                 (typeUser === 'clients')
                 &&
-                < Clients data={data} />
+                <Clients data={data}/>
                 ||
                 (typeUser === 'jobs')
                 &&
-                < Jobs data={data} />
+                <Jobs data={data}/>
             }
         </div>
     )

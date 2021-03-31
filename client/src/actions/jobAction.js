@@ -71,14 +71,19 @@ const takeJobsAnswersToEdit = ({ setValues }) => {
 
 const takeJobsToFront = () => {
     return axios.get('http://localhost:5000/jobProfile/takeJobsToFront')
-
 }
 const takeJobsToFrontMatchedJobs = (id) => {
     return axios.post('http://localhost:5000/jobProfile/takeJobsToFrontMatchedJobs', (id))
 }
 
-const sendEmail = ({  values, emailJob, emailClient }) => {
-    return axios.post('http://localhost:5000/jobProfile/sendEmail', ({  values, emailJob, emailClient }))
+const sendEmail = ({ values, emailJob, emailClient }) => {
+    return axios.post('http://localhost:5000/jobProfile/sendEmail', ({ values, emailJob, emailClient }))
+}
+const saveArticle = ({ values }) => {
+    return axios.post('http://localhost:5000/jobProfile/saveArticle', ({ values }))
+}
+const takeAllArticles = () => {
+    return axios.get('http://localhost:5000/jobProfile/takeAllArticles')
 }
 
 export {
@@ -88,5 +93,7 @@ export {
     takeJobsToFront,
     takeJobsToFrontMatchedJobs,
     sendEmail,
+    saveArticle,
+    takeAllArticles,
     isExpired
 }

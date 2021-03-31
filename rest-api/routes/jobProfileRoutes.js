@@ -83,13 +83,9 @@ router.get('/takeJobsToFront', (req, res) => {
 
     console.log('Response takeJobsToFront')
 
-    let profileAnswers = {}
-
-
     ProfileJob.find()
         .then(profile => {
-            if (profile) {
-                // console.log('Api TakeJobsToFront:', profile)
+            if (profile) { // console.log('Api TakeJobsToFront:', profile)
                 return res.status(200).json(profile)
             } else {
                 console.log('Error, no data:')
@@ -122,8 +118,8 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: 'ben@ben.bg', 
-        pass: 'po282rigorexh' 
+        user: 'ben@ben.bg',
+        pass: 'po282rigorexh'
     }
 })
 
@@ -131,10 +127,10 @@ router.post('/sendEmail', (req, res) => {
     console.log('Data from Front at beckend: ', req.body)
 
     let mailOptions = {
-        from: req.body.emailClient, 
+        from: req.body.emailClient,
         to: req.body.emailJob,
-        subject: req.body.values.subject, 
-        text: req.body.values.message, 
+        subject: req.body.values.subject,
+        text: req.body.values.message,
         html: req.body.values.message
     }
 
@@ -146,5 +142,48 @@ router.post('/sendEmail', (req, res) => {
         };
     });
 });
+
+router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    console.log('Arr data: ', req.body)
+    let articles = {
+        title: req.body.values.title,
+        article: req.body.values.article,
+        category: req.body.values.category
+    }
+    console.log('Arr data: ', articles)
+
+    ProfileJob.findOne({ client: req.user.id })
+        .then(profile => {
+
+            profile.articles.unshift(articles);
+
+            profile.save().then(profile => res.json(profile));
+
+        })
+})
+
+router.get('/takeAllArticles', (req, res) => {
+
+    console.log('Response takeAllArticles')
+    let arrayArticles = []
+
+    ProfileJob.find()
+        .then(profile => {
+            if (profile) { // console.log('Api TakeJobsToFront:', profile)
+                profile.map(el => {
+                    console.log(el.articles)
+                     arrayArticles.push(el.articles)
+                })
+                return res.status(200).json(arrayArticles)
+            } else {
+                console.log('Error, no data:')
+                res.end().json()
+            }
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+})
 
 module.exports = router
