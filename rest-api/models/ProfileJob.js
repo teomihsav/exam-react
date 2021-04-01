@@ -25,6 +25,9 @@ const ProfileJobSchema = new Schema({
     },
     articles: [
         {
+            id: {
+                type: Schema.Types.ObjectId
+            },
             category: {
                 type: String
             },

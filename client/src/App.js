@@ -23,6 +23,7 @@ function App() {
 
   const [logged, setLogged] = useState(false)
   const [typeUser, setTypeUser] = useState()
+  const [id, setId] = useState()
 
   // After refresh -> F5 check for token and overright the state setLogged
   useEffect(() => {
@@ -33,8 +34,9 @@ function App() {
       console.log('Decoded user: ', decoded.name)
       setLogged(decoded.name)
       setTypeUser(decoded.typeUser)
+      setId(decoded.id)
       console.log('TypeUser App: ', typeUser)
-      console.log('State after login: ', decoded.name)
+      console.log('State after login: ', decoded)
     } else {
       localStorage.removeItem('jwtToken')
       setLogged(false)
@@ -67,7 +69,7 @@ function App() {
           />
           <Route
             path='/profile' exact
-            component={() => <Profile user={logged} typeUser={typeUser} />}
+            component={() => <Profile id={id} typeUser={typeUser} />}
           />
           <Route
             path='/register' exact

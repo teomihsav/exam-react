@@ -11,8 +11,8 @@ const isExpired = () => {
     if (token) {
         let decoded = jwt_decode(token)
         let dateNow = new Date()
-        console.log('Date now  : ', Math.round(dateNow.getTime() / 1000))
-        console.log('Date token: ', decoded.exp)
+        // console.log('Date now  : ', Math.round(dateNow.getTime() / 1000))
+        // console.log('Date token: ', decoded.exp)
         if (decoded.exp < Math.round(dateNow.getTime() / 1000)) {
             console.log('From Header -> Session expired!')
             localStorage.removeItem('jwtToken')
@@ -42,7 +42,7 @@ const saveClientAnswers = ({ values, setErrors, setRegistered }) => {
 const takeClientsAnswersToEdit = ({ setValues }) => {
     axios.get('http://localhost:5000/clientProfile/takeAnswers')
         .then(res => {
-            console.log('Response Status Profile Answers: ', res.data)
+            // console.log('Response Status Profile Answers: ', res.data)
             if (res.status === 200) {
                 setValues(res.data)
             }
@@ -57,7 +57,7 @@ const takeClientsAnswersToEdit = ({ setValues }) => {
 const takeClientAnswersToProfile = ({ setData }) => {
     axios.get('http://localhost:5000/clientProfile/takeAnswers')
         .then(res => {
-            console.log('Response Status Profile Answers: ', res.data)
+            // console.log('Response Status Profile Answers: ', res.data)
             if (res.status === 200) {
                 setData(res.data)
             }

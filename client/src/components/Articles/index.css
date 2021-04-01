@@ -1,27 +1,54 @@
-
-
 .column-articles {
   display: flex;
   width: 100%;
   padding: 30px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 300px;
+  /* Should be removed. Only for demonstration */
 }
+
 /* Clear floats after the columns */
-.row-articles  {
+
+.row-articles {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
 }
+.row-articles-buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.row-my-articles {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.my-article-button-place {
+  margin-block-end: initial;
+  margin: 5px
+}
+
+.column-button-my-article {
+  float: left;
+  display: inline-grid;
+  margin: 0px;
+  width: 25%;
+  padding: 20 10px;
+  justify-content: flex-start;
+}
+
 .about-articles {
   max-width: 100%;
   margin: 0px auto;
+  margin-left: 0%;
   margin-bottom: 0%;
   overflow: auto;
   min-height: 0px;
   padding: 20px;
   font-size: 13px;
 }
+
 .card-articles {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -31,6 +58,17 @@
   text-align: center;
   background-color: #ffffff;
 }
+
+.card-my-articles {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 450px;
+  height: 100%;
+  padding: 0px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
 .card-header {
   color: #063105;
   text-align: left;
@@ -40,6 +78,7 @@
   background-color: #fff;
   padding: 5px 10px;
 }
+
 .card-footer {
   color: #063105;
   text-align: left;
@@ -49,8 +88,21 @@
   background-color: #fff;
   padding: 5px 10px;
 }
+
 .card-mid {
   color: #063105;
+  display: block;
+  text-align: left;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid #cbf8c0;
+  background-color: #fff;
+  padding: 5px 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.card-mid-my-article{
+  color: #063105;
+  display: block;
   text-align: left;
   font-size: 15px;
   font-weight: 600;
@@ -63,7 +115,7 @@
   color: #063105;
   text-align: left;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 600;
   border-bottom: 1px solid #cbf8c0;
   background-color: #fff;
   padding: 5px 10px;
@@ -71,6 +123,7 @@
 }
 
 /* Card - LEFT */
+
 .card-articles-left {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -80,6 +133,7 @@
   text-align: center;
   background-color: #ffffff;
 }
+
 .card-header-left {
   color: #063105;
   text-align: center;
@@ -89,6 +143,7 @@
   background-color: #fff;
   padding: 5px 10px;
 }
+
 .card-footer-left {
   color: #063105;
   text-align: center;
@@ -98,6 +153,7 @@
   background-color: #fff;
   padding: 5px 10px;
 }
+
 .card-mid-left {
   color: #063105;
   text-align: left;
@@ -109,8 +165,8 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* Card - RIGHT */
+
 .card-articles-right {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -120,6 +176,7 @@
   text-align: center;
   background-color: #ffffff;
 }
+
 .card-header-right {
   color: #063105;
   text-align: center;
@@ -129,6 +186,7 @@
   background-color: #fff;
   padding: 5px 10px;
 }
+
 .card-footer-right {
   color: #063105;
   text-align: v;
@@ -138,6 +196,7 @@
   background-color: #fff;
   padding: 5px 10px;
 }
+
 .card-mid-right {
   color: #063105;
   text-align: left;
@@ -148,4 +207,3 @@
   padding: 5px 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
-

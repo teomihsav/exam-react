@@ -30,6 +30,7 @@ const Articles = () => {
                         firstFive.push(elInner)
                     })
                 })
+                console.log(firstFive)
                 setData(firstFive.slice(0, 5))
                 setCatHealthy(catHealthyArray)
                 setCatExerc(catExercArray)
@@ -45,80 +46,83 @@ const Articles = () => {
 
     return (
         <div>
-            <div className='about-articles'>
-                <div className="card-articles card-header card-footer">
-                    <h2 style={{borderBottom: '1px solid #cbf8c0', display: 'inline-block'}}> Last articles here </h2>
-                    {(Object.keys(data).length > 0)
-                        &&
-                        data.map(el =>
-                            <div className="card-mid">
-                                <Link className='text-logo-link'
-                                    to={{
-                                        pathname: "/singlearticle",
-                                        myProps: {
-                                            title: el.title,
-                                            article: el.article
-                                        }
-                                    }} >
+            <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Last articles here </h2>
+            <div className='row-articles'>
+                <div className='about-articles'>
+                    <div className="card-articles card-header card-footer">
+                        {(Object.keys(data).length > 0)
+                            &&
+                            data.map(el =>
+                                <div className="card-mid">
+                                    <Link className='text-logo-link'
+                                        to={{
+                                            pathname: "/singlearticle",
+                                            myProps: {
+                                                title: el.title,
+                                                article: el.article
+                                            }
+                                        }} >
 
-                                    {el.title}
-                                </Link>
-                            </div>
-                        )}
+                                        {el.title}
+                                    </Link>
+                                </div>
+                            )}
+                    </div>
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}>Categories</h2>
+            <div className='row-articles'>
+                <div className='column-articles'>
+                    <div className="card-articles-left card-header-left card-footer-left">
+                        <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Eating the right peace of the world  </h2>
+                        {(Object.keys(catHealthy).length > 0)
+                            &&
+                            catHealthy.map(el =>
+                                <div className="card-mid-left">
+                                    <Link className='text-logo-link'
+                                        to={{
+                                            pathname: "/singlearticle",
+                                            myProps: {
+                                                title: el.title,
+                                                article: el.article
+                                            }
+                                        }} >
+
+                                        {el.title}
+                                    </Link>
+                                </div>
+                            )}
+                    </div>
                 </div>
 
-                <br />
-                <br />
-                <h2 style={{borderBottom: '1px solid #cbf8c0', display: 'inline-block'}}>Categories</h2>
-                <div className='row-articles'>
-                    <div className='column-articles'>
-                        <div className="card-articles-left card-header-left card-footer-left">
-                            <h2 style={{borderBottom: '1px solid #cbf8c0', display: 'inline-block'}}> Eating the right peace of the world  </h2>
-                            {(Object.keys(catHealthy).length > 0)
-                                &&
-                                catHealthy.map(el =>
-                                    <div className="card-mid-left">
-                                        <Link className='text-logo-link'
-                                            to={{
-                                                pathname: "/singlearticle",
-                                                myProps: {
-                                                    title: el.title,
-                                                    article: el.article
-                                                }
-                                            }} >
+                <div className='column-articles'>
+                    <div className="card-articles-right card-header-right card-footer-right">
+                        <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Sports and exercices for beginners </h2>
+                        {(Object.keys(catExerc).length > 0)
+                            &&
+                            catExerc.map(el =>
+                                <div className="card-mid-right">
+                                    <Link className='text-logo-link'
+                                        to={{
+                                            pathname: "/singlearticle",
+                                            myProps: {
+                                                title: el.title,
+                                                article: el.article
+                                            }
+                                        }} >
 
-                                            {el.title}
-                                        </Link>
-                                    </div>
-                                )}
-                        </div>
-                    </div>
-
-                    <div className='column-articles'>
-                        <div className="card-articles-right card-header-right card-footer-right">
-                            <h2 style={{borderBottom: '1px solid #cbf8c0', display: 'inline-block'}}> Sports and exercices for beginners </h2>
-                            {(Object.keys(catExerc).length > 0)
-                                &&
-                                catExerc.map(el =>
-                                    <div className="card-mid-right">
-                                        <Link className='text-logo-link'
-                                            to={{
-                                                pathname: "/singlearticle",
-                                                myProps: {
-                                                    title: el.title,
-                                                    article: el.article
-                                                }
-                                            }} >
-
-                                            {el.title}
-                                        </Link>
-                                    </div>
-                                )}
-                        </div>
+                                        {el.title}
+                                    </Link>
+                                </div>
+                            )}
                     </div>
                 </div>
             </div>
         </div>
-    )}
+    )
+}
 
 export default Articles

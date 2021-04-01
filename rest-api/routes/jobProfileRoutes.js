@@ -7,12 +7,13 @@ const ProfileJob = require('../models/ProfileJob')
 const Client = require('../models/Client')
 const apiValidateRegistration = require('../validationApi/apiValidateRegister')
 const apiValidateLogin = require('../validationApi/apiValidateLogin')
+const apiValidateJobsArticle = require('../validationApi/apiValidateJobsArticle')
 const mx = require('./mx')
 
 const nodemailer = require('nodemailer');
 // const key = require('../../config/mxKey');
 
-router.post('/jobAnswers', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     // const { errors } = apiValidateRegistration(req.body)
 
@@ -67,7 +68,7 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
     ProfileJob.findOne({ client: req.user.id })
         .then(profile => {
             if (profile) {
-                console.log('Api:', profile)
+                // console.log('Api:', profile)
                 return res.status(200).json(profile)
             } else {
                 console.log('Error, no data:')
@@ -99,13 +100,13 @@ router.get('/takeJobsToFront', (req, res) => {
 
 router.post('/takeJobsToFrontMatchedJobs', (req, res) => {
 
-    console.log('Arr data: ', req.body.id)
+    console.log('takeJobsToFrontMatchedJobs data: ', req.body.id)
     let profileAnswers = {}
 
     ProfileJob.findById(req.body.id)
         .populate('client', ['email'])
         .then(profile => {
-            console.log('Api takeJobsToFrontMatchedJobs:', profile)
+            // console.log('Api takeJobsToFrontMatchedJobs:', profile)
             return res.status(200).json(profile)
         })
         .catch(err => {
@@ -124,7 +125,7 @@ const transporter = nodemailer.createTransport({
 })
 
 router.post('/sendEmail', (req, res) => {
-    console.log('Data from Front at beckend: ', req.body)
+    // console.log('Data from Front at beckend: ', req.body)
 
     let mailOptions = {
         from: req.body.emailClient,
@@ -143,37 +144,18 @@ router.post('/sendEmail', (req, res) => {
     });
 });
 
-router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (req, res) => {
-
-    console.log('Arr data: ', req.body)
-    let articles = {
-        title: req.body.values.title,
-        article: req.body.values.article,
-        category: req.body.values.category
-    }
-    console.log('Arr data: ', articles)
-
-    ProfileJob.findOne({ client: req.user.id })
-        .then(profile => {
-
-            profile.articles.unshift(articles);
-
-            profile.save().then(profile => res.json(profile));
-
-        })
-})
-
 router.get('/takeAllArticles', (req, res) => {
 
     console.log('Response takeAllArticles')
+
     let arrayArticles = []
 
     ProfileJob.find()
         .then(profile => {
             if (profile) { // console.log('Api TakeJobsToFront:', profile)
                 profile.map(el => {
-                    console.log(el.articles)
-                     arrayArticles.push(el.articles)
+                    // console.log(el.articles)
+                    arrayArticles.push(el.articles)
                 })
                 return res.status(200).json(arrayArticles)
             } else {
@@ -185,5 +167,98 @@ router.get('/takeAllArticles', (req, res) => {
             console.log(err.response)
         })
 })
+
+router.post('/takeJobsUserArticles', (req, res) => {
+
+    console.log('takeJobsUserArticles data: ', req.body.id)
+    // console.log('Logged user ID data: ', req.user.id)
+
+    let profileAnswers = {}
+
+    ProfileJob.find({ client: req.body.id })
+        .then(profile => {
+            console.log('Api takeJobsUserArticles:', profile)
+            return res.status(200).json(profile)
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+})
+
+router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    let articleID = req.body.values._id
+    // const { errors, isValid } = apiValidateJobsArticle(req.body)
+
+    // if (Object.keys(errors).length > 0) {
+    //     return res.status(400).json(errors);
+    // }
+    // ProfileJob.findOne({ client: req.user.id })
+    // .then(profile => {
+    //     if (profile) {
+    //         ProfileJob.findOneAndUpdate(
+    //             { client: req.user.id },
+    //             { $set: profileJobAnswers },
+    //             { new: true }
+    //         ).then(profile => res.json(profile))
+    //         //console.log(profile)
+    //         //errors.profileAlreadyDone = 'You already did answer this question'
+    //         // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
+    //     } else {
+    //         new ProfileJob(profileJobAnswers)
+    //             .save()
+    //             .then(profile => res.json(profile));
+    //         console.log('After user auth: ', profile)
+
+    let articles = {
+        title: req.body.values.title,
+        article: req.body.values.article,
+        category: req.body.values.category
+    }
+
+    ProfileJob.findOne({ 'client': req.user.id, 'articles._id': articleID })
+        .then(profile => {
+            // res.json(profile)
+            console.log('Articles after having a profile: ', profile)
+            if (profile) {
+                ProfileJob.updateOne(
+                    { client: req.user.id, 'articles._id': articleID },
+                    { $set: { 'articles.$': articles } },
+                    { new: true }
+                )
+                    .then(profile => {
+                        res.json(profile)
+                        console.log(profile)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            }
+            else {
+                console.log('Articles before save: ', articles)
+                ProfileJob.findOne({ client: req.user.id })
+                    .then(profile => {
+                        if (profile)
+                            profile.articles.unshift(articles);
+                        profile.save().then(profile => res.json(profile));
+                    })
+            }
+        })
+})
+
+router.post('/loadArticleForEdit', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    console.log('loadArticleForEdit data: ', req.body.id)
+    console.log('Logged user ID data: ', req.user.id)
+
+    ProfileJob.find({ client: req.user.id }, { articles: { $elemMatch: { _id: req.body.id } } })
+        .then(profile => {
+            console.log('Api loadArticleForEdit:', profile)
+            return res.status(200).json(profile)
+        })
+        .catch(err => {
+            console.log(err.response)
+        })
+})
+
 
 module.exports = router

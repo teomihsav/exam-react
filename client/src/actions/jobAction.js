@@ -11,8 +11,8 @@ const isExpired = () => {
     if (token) {
         let decoded = jwt_decode(token)
         let dateNow = new Date()
-        console.log('Date now  : ', Math.round(dateNow.getTime() / 1000))
-        console.log('Date token: ', decoded.exp)
+        // console.log('Date now  : ', Math.round(dateNow.getTime() / 1000))
+        // console.log('Date token: ', decoded.exp)
         if (decoded.exp < Math.round(dateNow.getTime() / 1000)) {
             console.log('From Header -> Session expired!')
             localStorage.removeItem('jwtToken')
@@ -22,7 +22,7 @@ const isExpired = () => {
 }
 
 const saveJobsAswers = ({ values, setErrors, setRegistered }) => {
-    axios.post('http://localhost:5000/jobProfile/jobAnswers', { ...values })
+    axios.post('http://localhost:5000/jobProfile/saveJobsAswers', { ...values })
         .then(res => {
             console.log('Response Status Answers: ', res.status)
             if (res.status === 200) {
@@ -43,7 +43,7 @@ const saveJobsAswers = ({ values, setErrors, setRegistered }) => {
 const takeJobsAnswersToProfile = ({ setData }) => {
     axios.get('http://localhost:5000/jobProfile/takeAnswers')
         .then(res => {
-            console.log('Response Status Profile Answers: ', res.data)
+            // console.log('Response Status Profile Answers: ', res.data)
             if (res.status === 200) {
                 setData(res.data)
             }
@@ -57,7 +57,7 @@ const takeJobsAnswersToProfile = ({ setData }) => {
 const takeJobsAnswersToEdit = ({ setValues }) => {
     axios.get('http://localhost:5000/jobProfile/takeAnswers')
         .then(res => {
-            console.log('Response Status Profile Answers: ', res.data)
+            //  console.log('Response Status Profile Answers: ', res.data)
             if (res.status === 200) {
                 setValues(res.data)
             }
@@ -79,11 +79,17 @@ const takeJobsToFrontMatchedJobs = (id) => {
 const sendEmail = ({ values, emailJob, emailClient }) => {
     return axios.post('http://localhost:5000/jobProfile/sendEmail', ({ values, emailJob, emailClient }))
 }
-const saveArticle = ({ values }) => {
-    return axios.post('http://localhost:5000/jobProfile/saveArticle', ({ values }))
+const saveArticle = ({ id, values }) => {
+    return axios.post('http://localhost:5000/jobProfile/saveArticle', ({ id, values }))
 }
 const takeAllArticles = () => {
     return axios.get('http://localhost:5000/jobProfile/takeAllArticles')
+}
+const loadArticleForEdit = (id) => {
+    return axios.post('http://localhost:5000/jobProfile/loadArticleForEdit', (id))
+}
+const takeJobsUserArticles = (id) => {
+    return axios.post('http://localhost:5000/jobProfile/takeJobsUserArticles', (id))
 }
 
 export {
@@ -95,5 +101,7 @@ export {
     sendEmail,
     saveArticle,
     takeAllArticles,
+    loadArticleForEdit,
+    takeJobsUserArticles,
     isExpired
 }

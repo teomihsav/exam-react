@@ -8,7 +8,7 @@ import ClientHome from '../ClientHome'
 import Clients from './Clients'
 import Jobs from './Jobs'
 
-const Profile = ({ user, typeUser }) => {
+const Profile = ({ id, typeUser }) => {
 
     const [data, setData] = useState({})
 
@@ -35,7 +35,7 @@ const Profile = ({ user, typeUser }) => {
                 ||
                 (typeUser === 'jobs')
                 &&
-                <Jobs data={data}/>
+                <Jobs id={id} data={data}/>
             }
         </div>
     )
