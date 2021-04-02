@@ -51,12 +51,10 @@ const SubmitArticle = ({ setReload, reload }) => {
         if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
             saveArticle({ values })
                 .then(res => {
-                    console.log('Response API Save:', res.data.articles[0]._id)
+                    console.log('Response API Save:', res.data) // .articles[0]._id
                     setStatus({ errMailConnect: 'Article is saved' })
                     setValues('')
-                    setReload({ id: res.data.articles[0]._id })
-
-                    history.push("/profile")
+                    setReload( res.data )
                 })
                 .catch(errors => {
                     if (errors.response) {
