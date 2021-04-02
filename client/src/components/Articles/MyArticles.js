@@ -11,7 +11,7 @@ const MyArticles = ({ id, reload }) => {
     let history = useHistory()
 
     const [data, setData] = useState({})
-    const [dataLoaded, setDataLoaded] = useState({})
+    const [articleDeleted, setArticleDeleted] = useState({})
 
     let firstFive = []
 
@@ -22,10 +22,11 @@ const MyArticles = ({ id, reload }) => {
     const delArticle = (id) => {
         delArticleAction(id)
             .then(res => {
-                setDataLoaded(id)
+                setArticleDeleted(id)
             })
             .catch(err => { console.log(err) })
     }
+
     useEffect(() => {
         takeJobsUserArticles({ id })
             .then(res => {
@@ -40,7 +41,7 @@ const MyArticles = ({ id, reload }) => {
                     console.log('Afer API response Profile Articles: ', err.response)
                 }
             })
-    }, [dataLoaded, reload])
+    }, [reload, articleDeleted])
 
     return (
         <div>
