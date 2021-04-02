@@ -59,7 +59,8 @@ const Articles = () => {
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,
-                                                article: el.article
+                                                article: el.article,
+                                                goBack: 'articles'
                                             }
                                         }} >
 
@@ -77,7 +78,7 @@ const Articles = () => {
             <div className='row-articles'>
                 <div className='column-articles'>
                     <div className="card-articles-left card-header-left card-footer-left">
-                        <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Eating the right peace of the world  </h2>
+                        <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Eating the right piece of the world  </h2>
                         {(Object.keys(catHealthy).length > 0)
                             &&
                             catHealthy.map(el =>

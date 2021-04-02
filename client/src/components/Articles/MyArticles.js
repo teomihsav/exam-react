@@ -20,11 +20,13 @@ const MyArticles = ({ id, reload }) => {
     });
 
     const delArticle = (id) => {
-        delArticleAction(id)
-            .then(res => {
-                setArticleDeleted(id)
-            })
-            .catch(err => { console.log(err) })
+        if (window.confirm('sure?')) { // ? someHandler(e) : e.preventDefault()
+            delArticleAction(id)
+                .then(res => {
+                    setArticleDeleted(id)
+                })
+                .catch(err => { console.log(err) })
+        }
     }
 
     useEffect(() => {
@@ -60,7 +62,8 @@ const MyArticles = ({ id, reload }) => {
                                                     pathname: "/singlearticle",
                                                     myProps: {
                                                         title: el.title,
-                                                        article: el.article
+                                                        article: el.article,
+                                                        goBack: 'profile'
                                                     }
                                                 }} >
 

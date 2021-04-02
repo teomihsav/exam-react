@@ -11,6 +11,8 @@ const SingleArticle = ({ data }) => {
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     });
+    
+    console.log(history.location.myProps)
 
     return (
         <div className='about-articles'>
@@ -22,8 +24,8 @@ const SingleArticle = ({ data }) => {
                 {history.location.myProps && history.location.myProps.article}
             </div>
             <br />
-            
-            { history.location.pathname === '/articles' ? null : <Link to='/profile'>Back</Link>}
+
+            { history.location.myProps.goBack === 'articles' ? <Link to='/articles'>Back</Link> : <Link to='/profile'>Back</Link>}
         </div >
     )
 }

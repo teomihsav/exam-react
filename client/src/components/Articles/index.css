@@ -7,7 +7,10 @@
 }
 
 /* Clear floats after the columns */
-
+.text-logo-link {
+  color: inherit;
+  text-decoration: inherit;
+}
 .row-articles {
   display: flex;
   flex-direction: row;
@@ -36,7 +39,6 @@
   display: inline-grid;
   margin: 0px;
   width: 25%;
-  padding: 20 10px;
   justify-content: flex-start;
 }
 

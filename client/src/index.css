@@ -363,11 +363,6 @@ body {
   text-align: center;
   font-size: 10px;
 }
-
-/* .registration {
-  text-align: center;
-} */
-
 .error {
   color: red;
   font-size: 13px;
@@ -377,4 +372,7 @@ body {
   font-weight: bold;
   font-size: 18px;
 }
-
+.home-page-link{
+  color: inherit;
+  text-decoration: inherit;
+}
