@@ -91,7 +91,9 @@ const loadArticleForEdit = (id) => {
 const takeJobsUserArticles = (id) => {
     return axios.post('http://localhost:5000/jobProfile/takeJobsUserArticles', (id))
 }
-
+const delArticleAction = (id) => {
+    return axios.delete(`http://localhost:5000/jobProfile/delArticleAction/${id}`)
+}
 export {
     saveJobsAswers,
     takeJobsAnswersToProfile,
@@ -103,5 +105,6 @@ export {
     takeAllArticles,
     loadArticleForEdit,
     takeJobsUserArticles,
+    delArticleAction,
     isExpired
 }

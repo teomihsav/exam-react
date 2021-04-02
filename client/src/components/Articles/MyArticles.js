@@ -1,16 +1,17 @@
 
 import { useState, useEffect, useLayoutEffect } from 'react'
 import './index.css'
-import { takeJobsUserArticles } from '../../actions/jobAction'
+import { takeJobsUserArticles, delArticleAction } from '../../actions/jobAction'
 import { Link } from 'react-router-dom'
 import SingleArticle from './SingleArticle'
 import { useHistory } from "react-router-dom";
 
-const MyArticles = ({ id }) => {
+const MyArticles = ({ id, reload }) => {
 
     let history = useHistory()
 
     const [data, setData] = useState({})
+    const [dataLoaded, setDataLoaded] = useState({})
 
     let firstFive = []
 
@@ -18,12 +19,19 @@ const MyArticles = ({ id }) => {
         window.scrollTo(0, 0)
     });
 
+    const delArticle = (id) => {
+        delArticleAction(id)
+            .then(res => {
+                setDataLoaded(id)
+            })
+            .catch(err => { console.log(err) })
+    }
     useEffect(() => {
         takeJobsUserArticles({ id })
             .then(res => {
-                console.log('Response Status Jobs User Articles: ', res.data[0].articles)
+                //console.log('Response Status Jobs User Articles: ', res.data[0].articles)
                 res.data[0].articles.forEach(el => {
-                    firstFive.push(el)
+                    firstFive.unshift(el)
                 })
                 setData(firstFive)
             })
@@ -32,12 +40,7 @@ const MyArticles = ({ id }) => {
                     console.log('Afer API response Profile Articles: ', err.response)
                 }
             })
-    }, [])
-
-    const editArticle = () => {
-
-    }
-    console.log('Data from Jobs User Articels Front:', data)
+    }, [dataLoaded, reload])
 
     return (
         <div>
@@ -72,11 +75,14 @@ const MyArticles = ({ id }) => {
                                                         myProps: {
                                                             id: el._id
                                                         }
-                                                    }} > <button className='my-article-button-place' >Edit</button>
+                                                    }} > <button className='my-article-button-place btn-article-edit' >Edit</button>
                                                 </Link>
 
 
-                                                <button className='my-article-button-place' >Delete</button>
+                                                <Link className='text-logo-link'
+                                                    to={'/profile'} >
+                                                    <button className='my-article-button-place btn-article-delete' onClick={() => delArticle(el._id)}>Delete</button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>

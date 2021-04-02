@@ -188,27 +188,13 @@ router.post('/takeJobsUserArticles', (req, res) => {
 router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (req, res) => {
 
     let articleID = req.body.values._id
-    // const { errors, isValid } = apiValidateJobsArticle(req.body)
 
-    // if (Object.keys(errors).length > 0) {
-    //     return res.status(400).json(errors);
-    // }
-    // ProfileJob.findOne({ client: req.user.id })
-    // .then(profile => {
-    //     if (profile) {
-    //         ProfileJob.findOneAndUpdate(
-    //             { client: req.user.id },
-    //             { $set: profileJobAnswers },
-    //             { new: true }
-    //         ).then(profile => res.json(profile))
-    //         //console.log(profile)
-    //         //errors.profileAlreadyDone = 'You already did answer this question'
-    //         // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
-    //     } else {
-    //         new ProfileJob(profileJobAnswers)
-    //             .save()
-    //             .then(profile => res.json(profile));
-    //         console.log('After user auth: ', profile)
+    const { errors, isValid } = apiValidateJobsArticle(req.body)
+
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json(errors);
+    }
+
 
     let articles = {
         title: req.body.values.title,
@@ -260,5 +246,17 @@ router.post('/loadArticleForEdit', passport.authenticate('jwt', { session: false
         })
 })
 
+router.delete('/delArticleAction/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    ProfileJob.findOne({ client: req.user.id }).then(profile => {
+        // Get remove index
+        const removeIndex = profile.articles
+            .map(el => el._id)
+            .indexOf(req.params.id)
+        profile.articles.splice(removeIndex, 1);
+        profile.save().then(profile => res.json(profile));
+    })
+        .catch(err => res.status(404).json(err));
+});
 
 module.exports = router

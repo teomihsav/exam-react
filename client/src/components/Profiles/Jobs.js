@@ -9,25 +9,26 @@ import { saveArticle, loadArticleForEdit } from '../../actions/jobAction'
 import MyArticles from '../Articles/MyArticles'
 import { useHistory } from "react-router-dom";
 
-const Jobs = ({id, data }) => {
+const Jobs = ({ id, data }) => {
 
         let history = useHistory()
-console.log('id: ', id)
+
         const [values, setValues] = useState({})
         const [errors, setErrors] = useState({}) // console.log('Jobs -->', data)
         const [loading, setLoading] = useState(false)
+        const [reload, setReload] = useState({})
 
         const validForm = (e) => {
-                setValues(values => ({ ...values, [e.target.name]: e.target.value }));
-                console.log(values)
+                setValues(values => ({ ...values, [e.target.name]: e.target.value }))
+                console.log('Values: ',values)
+                console.log('ID: ', reload)
+
         }
 
         history.location.myProps && console.log(history.location.myProps)
 
         useEffect(() => {
-
                 if (history.location.myProps) {
-
                         history.location.myProps && console.log(history.location.myProps)
                         loadArticleForEdit(history.location.myProps && history.location.myProps)
                                 .then(profile => {
@@ -45,6 +46,9 @@ console.log('id: ', id)
                 }
         }, [history.location.myProps])
 
+        useEffect(() => {
+
+        }, [reload])
 
         const onSubmit = (e) => {
                 e.preventDefault()
@@ -55,9 +59,10 @@ console.log('id: ', id)
                 if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
                         saveArticle({ values })
                                 .then(res => {
-                                        console.log('Response API Save:', res.data)
+                                        console.log('Response API Save:', res.data.articles[0]._id)
                                         let status = { errMailConnect: 'Article is saved' }
                                         setErrors(status)
+                                        setValues(values)
                                 })
                                 .catch(errors => {
                                         if (errors.response) {
@@ -118,7 +123,7 @@ console.log('id: ', id)
                                 </form>
 
                                 <div className='column-jobs-article'>
-                                        <MyArticles id={id}/>
+                                        <MyArticles id={id} relaod={reload} />
                                 </div>
                         </div>
 

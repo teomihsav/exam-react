@@ -13,11 +13,13 @@
   flex-direction: row;
   justify-content: space-around;
 }
-.row-articles-buttons{
+
+.row-articles-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
+
 .row-my-articles {
   display: flex;
   flex-direction: row;
@@ -100,7 +102,8 @@
   padding: 5px 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.card-mid-my-article{
+
+.card-mid-my-article {
   color: #063105;
   display: block;
   text-align: left;
@@ -111,6 +114,7 @@
   padding: 5px 10px;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .card-mid-singleArticle {
   color: #063105;
   text-align: left;
@@ -206,4 +210,51 @@
   background-color: #fff;
   padding: 5px 10px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-article-edit {
+  border-radius: 5px;
+  display: inline-block;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+  margin: 0px;
+  width: 50px;
+  height: 35px;
+  border: 1px solid #CCC;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: 96% / 15% no-repeat #3f831f;}
+
+.btn-article-edit:hover {
+  background-color: #4b663d;
+}
+
+.btn-article-delete {
+  border-radius: 5px;
+  display: inline-block;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+  margin: 0px;
+  width: 50px;
+  height: 35px;
+  border: 1px solid #CCC;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: 96% / 15% no-repeat rgb(219, 19, 19);
+}
+
+.btn-article-delete:hover {
+  background-color: #83261f;
 }

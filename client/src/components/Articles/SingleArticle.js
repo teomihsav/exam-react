@@ -22,12 +22,12 @@ const SingleArticle = ({ data }) => {
                 {history.location.myProps && history.location.myProps.article}
             </div>
             <br />
-            <Link to='/profile'>Back</Link>
-
+            
+            { history.location.pathname === '/articles' ? null : <Link to='/profile'>Back</Link>}
         </div >
     )
 }
-// { history.location.pathname === '/profile' ? null : <Link to='/articles'>Back</Link>}
+// <Link to='/profile'>Back</Link>
 
 export default SingleArticle
 
