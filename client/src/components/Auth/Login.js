@@ -4,6 +4,7 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 import { loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationLogin'
 import { useHistory } from "react-router-dom"
+import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
 
 const Login = ({ isLogged, state }) => {
 
@@ -11,30 +12,7 @@ const Login = ({ isLogged, state }) => {
     const [errors, setErrors] = useState({})
     let history = useHistory();
 
-    useEffect(() => {
-
-        if (!values.email) {
-            errors.email = ''
-        } else {
-            if (!/\S+@\S+\.\S+/.test(values.email)) {
-                errors.email = 'Must be valid e-mail'
-            } else {
-                errors.email = ''
-            }
-        }
-
-        if (!values.password) {
-            errors.password = ''
-        } else {
-            if (values.password.length < 6) {
-                errors.password = 'Password must be more than 6 charecters';
-            } else {
-                errors.password = '';
-            }
-        }
-        setErrors({ ...errors })
-    }, [values.email, values.password])
-
+    useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     // On "logged" state changed to token id --> redirect  
     useEffect(() => {

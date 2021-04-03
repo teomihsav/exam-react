@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { saveClientAnswers, takeClientsAnswersToEdit } from '../../actions/clientAction'
 import { useHistory } from "react-router-dom"
-import { isEmpty, isClientRadioFormEmpty } from '../../validation/clientRadioFormValidation'
+import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 import RadioClient from './RadioClient'
 
 const ClientQuiz = ({ user }) => {
@@ -38,9 +38,6 @@ const ClientQuiz = ({ user }) => {
     }, [values])
 
     useEffect(() => {
-        // (Object.keys(errors).length < 0) && history.push("/profile")
-        console.log('UseEffect Error check', Object.keys(errors).length)
-        console.log(errors)
         errors === 200 && history.push("/profile")
     }, [errors])
 
@@ -52,16 +49,13 @@ const ClientQuiz = ({ user }) => {
     const formSubmit = (e) => {
         e.preventDefault()
 
-        isClientRadioFormEmpty(values, errors)
+        isRadioFormEmpty(values, errors)
 
         setErrors({ ...errors })
         console.log(errors)
 
         if (!isEmpty(errors).includes(true)) {
             if (user) {
-                console.log('Start: ', user)
-                console.log('Start: ', values)
-                console.log('Start: ', errors)
                 saveClientAnswers({ values, setErrors })
                 console.log('From ...', errors)
             } else {
@@ -75,13 +69,7 @@ const ClientQuiz = ({ user }) => {
             }
         }
     }
-    console.log('---> ', values.one)
-    console.log('------> ', dataRadioForm.one)
-    let compRadio = [
-        { id: 1, checked: "{values.one === '1. 15 to 30 minutes'}", name: 'one', value: '1. 15 to 30 minutes' },
-        { id: 2, checked: "{values.one === '1. 15 to 30 minutes'}", name: 'one', value: '1. 15 to 30 minutes' },
-        { id: 3, checked: "{values.one === '1. 15 to 30 minutes'}", name: 'one', value: '1. 15 to 30 minutes' },
-    ]
+
     return (
         <div>
             <h1>{history.location.myProps.title}</h1>

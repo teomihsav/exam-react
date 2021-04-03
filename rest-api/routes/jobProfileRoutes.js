@@ -190,11 +190,10 @@ router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (r
     let articleID = req.body.values._id
 
     const { errors, isValid } = apiValidateJobsArticle(req.body)
-
+console.log(errors.title)
     if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     }
-
 
     let articles = {
         title: req.body.values.title,

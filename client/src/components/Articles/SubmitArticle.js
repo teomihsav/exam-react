@@ -2,17 +2,16 @@
 import { useState, useEffect, useLayoutEffect } from 'react'
 import './index.css'
 import { saveArticle, loadArticleForEdit } from '../../actions/jobAction'
-import { isEmpty, isBodyFieldEmptyArticle } from '../../validation/authValidationEmailContactJob'
 
 import { useHistory } from "react-router-dom";
 
-const SubmitArticle = ({ setReload, reload }) => {
+const SubmitArticle = ({ setReload }) => {
 
     let history = useHistory()
 
     const [values, setValues] = useState({})
-    const [errors, setErrors] = useState({}) 
-    const [status, setStatus] = useState({}) 
+    const [errors, setErrors] = useState({})
+    const [status, setStatus] = useState({})
     const [loading, setLoading] = useState(false)
 
     useLayoutEffect(() => {
@@ -25,8 +24,7 @@ const SubmitArticle = ({ setReload, reload }) => {
         if (history.location.myProps) {
             loadArticleForEdit(history.location.myProps && history.location.myProps) // Takes id: 'some id' from history, sent by MyArticle comp. with Link
                 .then(profile => {
-                    setValues(profile.data[0].articles[0]) // Data from choosen array/articel 
-                    console.log('loadArticleForEdit from Jobs ', profile.data[0].articles[0])
+                    setValues(profile.data[0].articles[0]) // Data from choosen array/articel // console.log('loadArticleForEdit from Jobs ', profile.data[0].articles[0])
                 })
                 .catch(errors => {
                     if (errors.response) {
@@ -47,27 +45,25 @@ const SubmitArticle = ({ setReload, reload }) => {
         e.preventDefault()
 
         setErrors('')
+        setLoading(true)
 
-        if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
-            saveArticle({ values })
-                .then(res => {
-                    console.log('Response API Save:', res.data) // .articles[0]._id
-                    setStatus({ errMailConnect: 'Article is saved' })
-                    setValues('')
-                    setReload( res.data )
-                })
-                .catch(errors => {
-                    if (errors.response) {
-                        console.log('Error: ', errors.response.data)
-                        setStatus({ errMailConnect: <h4 style={{ color: "red" }}>{errors.response.data.article}</h4> })
-                        setErrors(errors)
-                    }
-                })
-        } else {
-            console.log('Reset the errors')
-        }
+        saveArticle({ values })
+            .then(res => {
+                console.log('Response API Save:', res.data) // .articles[0]._id
+                setStatus({ errMailConnect: 'Article is saved' })
+                setValues('')
+                setReload(res.data)
+                setLoading(false)
+            })
+            .catch(errors => {
+                if (errors.response) {
+                    console.log('Error: ', errors.response.data)
+                    setStatus({ errMailConnect: <h5 style={{ color: "red" }}>{errors.response.data.article}</h5> })
+                    setErrors(errors.response.data)
+                    setLoading(false)
+                }
+            })
     }
-
     const dots = <div class="col-sm-2"><div id="dots2"><span></span><span></span><span></span><span></span></div></div>
     const text = <div className='center-text-jobs'>{loading ? dots : status.errMailConnect}</div>
 
@@ -90,6 +86,7 @@ const SubmitArticle = ({ setReload, reload }) => {
                             <option value='healthy' >Healthy eating</option>
                             <option value='exercices'>Exercices for beginners</option>
                         </select>
+                        <span>{<h5 style={{ color: "red" }}>{errors.category}</h5>}</span>
                         <br />
                         <label>Title</label>
                         <br />
@@ -100,6 +97,7 @@ const SubmitArticle = ({ setReload, reload }) => {
                             onChange={validForm}
                         >
                         </input>
+                        <span>{<h5 style={{ color: "red" }}>{errors.title}</h5>}</span>
                         <br />
                         <label>Type your inspired words here</label>
                         <textarea className='select-jobs-text-area'
@@ -110,6 +108,7 @@ const SubmitArticle = ({ setReload, reload }) => {
                             onChange={validForm}
                         >
                         </textarea>
+                        <span>{<h5 style={{ color: "red" }}>{errors.article}</h5>}</span>
                     </div>
                     <input type='submit' value='Submit Article' className='btn btn-block' />
                 </div>

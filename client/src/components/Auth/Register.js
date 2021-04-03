@@ -10,7 +10,7 @@ const Register = ({ isLogged, state }) => {
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
     const [registered, setRegistered] = useState(false)
-    
+
     let history = useHistory();
     let typeUser = history.location.state.typeUser
     let dataRadioForm = history.location.state.data

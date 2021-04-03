@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { saveJobsAswers, takeJobsAnswersToEdit } from '../../actions/jobAction'
-import { isEmpty, isClientRadioFormEmpty } from '../../validation/clientRadioFormValidation'
+import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 import { useHistory } from "react-router-dom";
 
-const Media = ({ onChange, values }) => {
+const Media = ({ onChange, values, errors }) => {
     return (
         <div className='form-control'>
             <label >Image of you</label>
@@ -42,7 +42,7 @@ const JobQuiz = ({ user }) => {
     let radioChoices = []
 
     useEffect(() => {
-        if (history.location.myProps.title === 'Editing this answers will change chosen clients for you') {
+        if (history.location.myProps && history.location.myProps.title === 'Editing this answers will change chosen clients for you') {
             takeJobsAnswersToEdit({ setValues })
         }
     }, [])
@@ -68,27 +68,30 @@ const JobQuiz = ({ user }) => {
     const formSubmit = (e) => {
         e.preventDefault()
 
+        isRadioFormEmpty(values, errors)
+
         setErrors({ ...errors })
         console.log(errors)
 
-        //if (!isEmpty(errors).includes(true)) {
-        if (user) {
-            saveJobsAswers({ values, setErrors })
-        } else {
-            history.push({
-                pathname: "/register",
-                state: {
-                    typeUser: typeUser,
-                    data: radioChoices
-                }
-            })
+        if (!isEmpty(errors).includes(true)) {
+            if (user) {
+                saveJobsAswers({ values, setErrors })
+                console.log('From ...', errors)
+            } else {
+                history.push({
+                    pathname: "/register",
+                    state: {
+                        typeUser: typeUser,
+                        data: radioChoices
+                    }
+                })
+            }
         }
-        //}
     }
 
     return (
         <div>
-            <h1>{history.location.myProps.title}</h1> <br />
+            <h1>{history.location.myProps && history.location.myProps.title}</h1> <br />
             <form className='add-form' onSubmit={formSubmit}>
                 <div className='row-profiles'>
                     <div className="column-profile">
@@ -127,8 +130,7 @@ const JobQuiz = ({ user }) => {
                                 />
                                 <label> Rehabilitation or Healing</label>
                             </div>
-
-                            <span className='error'>{errors.email}</span>
+                            <span className='error'>{errors.profileAlreadyDone}</span>
                         </div>
                     </div>
 
@@ -168,8 +170,7 @@ const JobQuiz = ({ user }) => {
                                 />
                                 <label> Just pro atlets </label>
                             </div>
-
-                            <span className='error'>{errors.email}</span>
+                            <span className='error'>{errors.profileAlreadyDone}</span>
                         </div>
                     </div>
 
@@ -207,13 +208,13 @@ const JobQuiz = ({ user }) => {
                                     onChange={onValueChange}
                                 />
                                 <label> Magister or Bacalar </label>
-                                <span className='error'>{errors.email}</span>
                             </div>
+                            <span className='error'>{errors.profileAlreadyDone}</span>
                         </div>
                     </div>
                 </div>
                 <br />
-                < Media onChange={onValueChange} values={values} />
+                < Media onChange={onValueChange} values={values} errors={errors}/>
                 <button className="btn btn-block" type="submit">
                     Submit
                     </button>
