@@ -50,7 +50,7 @@ const SubmitArticle = ({ setReload }) => {
         saveArticle({ values })
             .then(res => {
                 console.log('Response API Save:', res.data) // .articles[0]._id
-                setStatus({ errMailConnect: 'Article is saved' })
+                setStatus({ info: 'Article is saved' })
                 setValues('')
                 setReload(res.data)
                 setLoading(false)
@@ -58,14 +58,14 @@ const SubmitArticle = ({ setReload }) => {
             .catch(errors => {
                 if (errors.response) {
                     console.log('Error: ', errors.response.data)
-                    setStatus({ errMailConnect: <h5 style={{ color: "red" }}>{errors.response.data.article}</h5> })
+                    setStatus({ info: <h5 style={{ color: "red" }}>Articles is not saved</h5> })
                     setErrors(errors.response.data)
                     setLoading(false)
                 }
             })
     }
     const dots = <div class="col-sm-2"><div id="dots2"><span></span><span></span><span></span><span></span></div></div>
-    const text = <div className='center-text-jobs'>{loading ? dots : status.errMailConnect}</div>
+    const text = <div className='center-text-jobs'>{loading ? dots : status.info}</div>
 
     return (
         <div>

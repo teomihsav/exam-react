@@ -10,7 +10,7 @@ const apiValidateJobsArticle = (data) => {
     }
 
     if (!data.values.title) {
-        errors.title = 'Please, fill all fields!'
+        errors.title = 'Please, fill the title!'
     } else if (data.values.title.length > 50) {
         errors.title = 'Title must be less than 50 charecters!'
     }
