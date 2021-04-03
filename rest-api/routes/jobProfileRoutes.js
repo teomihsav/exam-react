@@ -100,8 +100,7 @@ router.get('/takeJobsToFront', (req, res) => {
 
 router.post('/takeJobsToFrontMatchedJobs', (req, res) => {
 
-    console.log('takeJobsToFrontMatchedJobs data: ', req.body.id)
-    let profileAnswers = {}
+    // console.log('takeJobsToFrontMatchedJobs data: ', req.body.id)
 
     ProfileJob.findById(req.body.id)
         .populate('client', ['email'])

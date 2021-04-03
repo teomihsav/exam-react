@@ -9,11 +9,12 @@
   }
 
 .control-out-border-single-client-profile {
-    max-width: 650px;
-    margin: 30px auto;
+    max-width: 1200px;
+    margin: 0px auto;
     overflow: auto;
     min-height: 30px;
     border: 1px solid rgba(163, 168, 163, 0.925);
     padding: 20px;
     border-radius: 5px;
+    font-size: 13px;
 }

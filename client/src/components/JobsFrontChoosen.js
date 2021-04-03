@@ -9,31 +9,32 @@ import ViewerJobs from './ViewerJobs'
 
 const JobsFrontChoosen = ({ arr, emailClient }) => {
 
-    console.log('Data from Jobs Front:', arr)
 
     const renderLoader = () => <p>Loading...</p>
 
     return (
+        <div>
+            <div className="row">
 
-        <div className="row">
-            {
-                // (Object.keys(arr).length > 0)
-                // &&
-                arr.map(el =>
-                    <Suspense fallback={renderLoader()}>
-                        <ViewerJobs
-                            key={el._id}
-                            username={el.username}
-                            jobOne={el.one}
-                            jobTwo={el.two}
-                            jobThree={el.three}
-                            image={el.image}
-                            emailJob={el.client.email}
-                            emailClient={emailClient}
-                        />
-                    </Suspense>
-                )
-            }
+                {
+                    // (Object.keys(arr).length > 0)
+                    // &&
+                    arr.map(el =>
+                        <Suspense fallback={renderLoader()}>
+                            <ViewerJobs
+                                key={el._id}
+                                username={el.username}
+                                jobOne={el.one}
+                                jobTwo={el.two}
+                                jobThree={el.three}
+                                image={el.image}
+                                emailJob={el.client.email}
+                                emailClient={emailClient}
+                            />
+                        </Suspense>
+                    )
+                }
+            </div>
         </div>
     )
 }

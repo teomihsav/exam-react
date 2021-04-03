@@ -6,33 +6,31 @@ import Portal from "./popUpCard/Portal";
 import "./popUpCard/index.css";
 import Email from './popUpCard/Email'
 
-const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, emailClient }) => {
+const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, emailClient, location }) => {
 
     const [visible, setVisible] = useState(false)
     const [isOn, setOn] = useState(false); // toggles dropdown visibility
-    const [coords, setCoords] = useState({}); // takes current button coordinates
+    const [coordsLocal, setCoordsLocal] = useState({}); // takes current button coordinates
     const [email, setEmail] = useState(); // takes current button coordinates
     const btnRef = React.createRef();
 
     let emailsJob = []
     emailsJob.push(emailJob)
+
     const updateTooltipCoords = (button) => {
         if (button) {
             const rect = button.getBoundingClientRect();
-            setCoords({
+            setCoordsLocal({
                 left: rect.x + rect.width / 0.85, // add half the width of the button for centering
                 top: rect.y + window.scrollY // add scrollY offset, as soon as getBountingClientRect takes on screen coords
             });
         }
-    };
+    }
+
     useEffect(() => {
         setEmail(emailJob)
-        // setdataJobsChoosen(dataJobsChoosen => [...dataJobsChoosen, res.data])
-        
     }, [])
 
-    console.log(email)
-    
     return (
         <div className="column">
             <div className='control-out-border-front'>
@@ -58,7 +56,7 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, email
                     {isOn && (
                         <Portal>
                             <TooltipPopover
-                                coords={coords}
+                                coordsLocal={coordsLocal}
                                 updateTooltipCoords={() =>
                                     updateTooltipCoords(btnRef.current.buttonNode)
                                 }

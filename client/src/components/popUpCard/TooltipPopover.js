@@ -4,7 +4,7 @@
 import React, { useEffect } from "react";
 import debounce from "lodash/debounce";
 
-const TooltipPopover = ({ children, coords, updateTooltipCoords }) => {
+const TooltipPopover = ({ children, coordsLocal, updateTooltipCoords }) => {
   const updateCoords = debounce(updateTooltipCoords, 100);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const TooltipPopover = ({ children, coords, updateTooltipCoords }) => {
 
   return (
     <div
-      style={{ ...styles.popover, ...coords }}
+      style={{ ...styles.popover, ...coordsLocal }}
     >
         <div  >
           <div>

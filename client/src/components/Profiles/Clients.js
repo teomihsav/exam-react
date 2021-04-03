@@ -7,10 +7,9 @@ import '../CSS/ClientProfile.css'
 import { takeJobsToFront, takeJobsToFrontMatchedJobs } from '../../actions/jobAction'
 import { useState, useEffect } from 'react'
 import JobsFrontChoosen from '../JobsFrontChoosen'
+import MapContainerFromDBCoords from '../../components/GoogleMap/MapContainerFromDBCoords'
 
 const Clients = ({ data }) => {
-
-        let arrChoosenJobs = []
 
         const calc = (data) => {
                 let one = 0; let two = 0; let three = 0
@@ -27,7 +26,6 @@ const Clients = ({ data }) => {
                 data.three === '30 to 60 minutes' && (three = 2)
                 data.three === '1 hour and more' && (three = 3)
 
-                // console.log(dataJob[0].one, dataJob[0].two, dataJob[0].three)
                 return { one, two, three }
         }
 
@@ -47,9 +45,6 @@ const Clients = ({ data }) => {
                         el.three === 'Certificates' && (threeJ = 2)
                         el.three === 'Magister or Bacalar' && (threeJ = 3)
 
-                        //console.log('Data from client at Client:', one, two, three)
-                        console.log('Data from Jobs at Client:', oneJ, twoJ, threeJ)
-
                         let clientRes = res.one + res.two + res.three
                         let jobsRes = oneJ + twoJ + threeJ
 
@@ -57,8 +52,7 @@ const Clients = ({ data }) => {
                                 let id = el._id
                                 takeJobsToFrontMatchedJobs({ id })
                                         .then(res => {
-                                                // arrChoosenJobs.push(res.data)
-                                                 console.log('Match Jobs Array', res.data)
+                                                console.log('Match Jobs Array', res.data)
                                                 setdataJobsChoosen(dataJobsChoosen => [...dataJobsChoosen, res.data])
                                         })
                                         .catch(err => {
@@ -74,10 +68,8 @@ const Clients = ({ data }) => {
                 resolve(calc(data))
         })
 
-
         const [dataJob, setData] = useState({})
         const [dataJobsChoosen, setdataJobsChoosen] = useState([])
-
 
         useEffect(() => {
                 takeJobsToFront()
@@ -99,30 +91,42 @@ const Clients = ({ data }) => {
                         promiseA.then((res) => {
                                 console.log('Promise A: ', res)
 
-                                const promiseB = new Promise((resolve, reject) => { 
+                                const promiseB = new Promise((resolve, reject) => {
                                         resolve(calcForEach(res))
                                 })
                         })
-
                 }
         }, [dataJob])
 
         console.log('Test: ', dataJobsChoosen)
+
+        let coordsData = []
+
+        dataJobsChoosen.map(el => {
+                if (el.lat != undefined && el.lng != undefined) {
+                        console.log(el.lat)
+                        console.log(el.lng)
+                        coordsData = [
+                                {
+                                        name: el.username,
+                                        location: {
+                                                lat: Number(el.lat),
+                                                lng: Number(el.lng)
+                                        }
+                                }
+                        ]
+                }
+        })
         const renderLoader = () => <p>Loading...</p>;
-        // console.log('takeClientAnswersToProfile: ', data)
 
         return (
                 <div>
                         <div className='control-out-border-single-client-profile'>
-
                                 <div>
-                                        Dear {data.username}, your answers are:
-                                        <hr></hr>
-                                        <p></p>
+                                        <h2 style={{ borderBottom: '3px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Dear {data.username}, your answers are:</h2>
                                         <br />
-                                        Walk during the day:
-                                        <hr></hr>
-                                        <p></p>
+
+                                        <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Walk during the day:</h4>
                                         <li> {data.one} </li>
                                         <br />
                                         Streaching during the day:
@@ -148,10 +152,27 @@ const Clients = ({ data }) => {
                                                         title: 'Editing this answers will change chosen instructors for you'
                                                 }
                                         }} ><button className='btn-home-client-edit' > Edit Profile </button></Link>
+                                <div>
+
+
+                                </div>
                         </div>
+                        <br />
+
+                        <div>
+                                <h4 style={{ borderBottom: '1px solid #ffae00', display: 'inline-block', marginBottom: '5px' }} >
+                                        Here on map you can see instructors location match by your daily habits
+                                </h4>
+                                <div className='control-out-border-client-map'>
+
+                                        <MapContainerFromDBCoords coordsData={coordsData} />
+
+                                </div>
+                        </div>
+                        <br />
 
                         <Suspense fallback={renderLoader()}>
-                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} emailClient={data.client.email}/>
+                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} emailClient={data.client.email} />
                         </Suspense>
                 </div>
         )

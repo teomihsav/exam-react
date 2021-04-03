@@ -4,59 +4,33 @@
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useState } from 'react'
 
-export const MapContainer = () => {
+export const MapContainerFromDBCoords = ({ coordsData }) => {
 
     const [selected, setSelected] = useState({});
+
+console.log('Coords from MapDB: ', coordsData)
 
     const onSelect = item => {
         setSelected(item);
     }
 
-    const locations = [
-        {
-            name: "Location 1",
-            location: {
-                lat: 41.3954,
-                lng: 2.162
-            },
-        },
-        {
-            name: "Location 2",
-            location: {
-                lat: 41.3917,
-                lng: 2.1649
-            },
-        },
-        {
-            name: "Location 3",
-            location: {
-                lat: 41.3773,
-                lng: 2.1585
-            },
-        },
-        {
-            name: "Location 4",
-            location: {
-                lat: 41.3797,
-                lng: 2.1682
-            },
-        },
-        {
-            name: "Location 5",
-            location: {
-                lat: 41.4055,
-                lng: 2.1915
-            },
-        }
-    ]
+    // [
+    //     {
+    //         name: "Location 1",
+    //         location: {
+    //             lat: 41.3954,
+    //             lng: 2.162
+    //         },
+    //     }
+    // ]
 
     const mapStyles = {
-        height: "40vh",
+        height: "15vh",
         width: "100%"
     }
 
     const defaultCenter = {
-        lat: 41.3851, lng: 2.1734
+        lat: 42.6977, lng: 23.3219
     }
 
     return (
@@ -68,7 +42,7 @@ export const MapContainer = () => {
                 center={defaultCenter}>
 
                 {
-                    locations.map(item => {
+                    coordsData.map(item => {
                         return (
                             <Marker key={item.name} position={item.location} />
                         )
@@ -76,7 +50,7 @@ export const MapContainer = () => {
                 }
 
                 {
-                    locations.map(item => {
+                    coordsData.map(item => {
                         return (
                             <Marker key={item.name}
                                 position={item.location}
@@ -106,4 +80,4 @@ export const MapContainer = () => {
     )
 }
 
-export default MapContainer
+export default MapContainerFromDBCoords

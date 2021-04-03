@@ -1,72 +1,80 @@
 * {
-    box-sizing: border-box;
-    
-  }
-  
-  /* body {
+  box-sizing: border-box;
+}
+
+/* body {
     font-family: Arial, Helvetica, sans-serif;
   } */
-  
-  
-  .column {
-    float: left;
-    display: flex;
-    margin-left: 10px;
-    width: 25%;
-    padding: 20 10px;
-    justify-content: space-evenly;
-  }
-  .column-profile {
-    float: left;
-    display: flex;
-    margin-left: 10px;
-    width: 100%;
-    padding: 20 10px;
-  }
-  /* Remove extra left and right margins, due to padding */
 
-  
-  /* Clear floats after the columns */
-  .row {
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-  
-  .row-profiles {
-    display: flex;
-    flex-direction: row;
-    
-  }
-  
-  /* Style the counter cards */
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 0px;
-    text-align: center;
-    background-color: #ffffff;
-  }
+.column {
+  float: left;
+  display: flex;
+  margin-left: 10px;
+  width: 25%;
+  padding: 20 10px;
+  justify-content: space-evenly;
+}
+
+.column-profile {
+  float: left;
+  display: flex;
+  margin-left: 10px;
+  width: 100%;
+  padding: 20 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+
+/* Clear floats after the columns */
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.row-profiles {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Style the counter cards */
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  text-align: center;
+  background-color: #ffffff;
+}
 
 .control-out-border-front {
-    max-width: 350px;
-    margin: 0px auto;
-    overflow: auto;
-    min-height: 30px;
-    border: 1px solid rgba(163, 168, 163, 0.925);
-    padding: 20px;
-    border-radius: 5px;
-
+  max-width: 350px;
+  margin: 0px auto;
+  overflow: auto;
+  min-height: 30px;
+  border: 1px solid rgba(163, 168, 163, 0.925);
+  padding: 20px;
+  border-radius: 5px;
 }
 
 .control-out-border-in {
-    max-width: 450px;
-    margin: 0px auto;
-    overflow: auto;
-    min-height: 30px;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    font-family: Arial;
-    font-size: 14px;
+  max-width: 450px;
+  margin: 0px auto;
+  overflow: auto;
+  min-height: 30px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Arial;
+  font-size: 14px;
+}
+
+.control-out-border-client-map {
+  max-width: 1200px;
+  margin: 0px auto;
+  overflow: auto;
+  min-height: 30px;
+  border: 1px solid rgba(163, 168, 163, 0.925);
+  padding: 20px;
+  border-radius: 5px;
 }
