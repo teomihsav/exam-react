@@ -43,10 +43,10 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, email
                     {username}:
                     <hr />
 
-                    Specializing at: {' '}<br /><br />
-                    {jobOne}<br />
-                    {jobTwo}<br />
-                    {jobThree}<br />
+                    Specialized at: {' '}<br /><br />
+                    <li>{jobOne}</li>
+                    <li>{jobTwo}</li>
+                    <li>{jobThree}</li>
                     <br />
 
 

@@ -48,7 +48,7 @@
 }
 
 .control-out-border-front {
-  max-width: 350px;
+  max-width: 300px;
   margin: 0px auto;
   overflow: auto;
   min-height: 30px;
@@ -58,15 +58,14 @@
 }
 
 .control-out-border-in {
-  max-width: 450px;
+  max-width: 350px;
   margin: 0px auto;
   overflow: auto;
   min-height: 30px;
   padding: 10px;
   border-radius: 5px;
-  text-align: center;
-  font-family: Arial;
-  font-size: 14px;
+  text-align: left;
+  font-size: 13px;
 }
 
 .control-out-border-client-map {

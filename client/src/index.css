@@ -107,27 +107,6 @@ body {
 .btn-close:active {
   transform: scale(0.88);
 }
-.btn-client {
-  display: inline-block;
-  background: rgba(255, 181, 43, 0.925);
-  /* rgb(113, 110, 255); */
-  color: rgb(0, 0, 0);
-  border: none;
-  outline: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: inherit;
-}
-.btn-client:focus {
-  outline: none;
-}
-.btn-client:hover {
-  background-color: rgba(255, 166, 0, 0.925);
-}
 
 .btn:focus {
   outline: none;
@@ -140,27 +119,6 @@ body {
 .btn-block {
   display: block;
   width: 100%;
-}
-
-
-
-.btn-home-client-edit {
-  width: 100%;
-  height: 40px;
-  margin: 20px auto;
-  background-color: rgba(255, 181, 43, 0.925);
-  border: none;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-  color: #000000;
-  font-size: 22px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.btn-home-client-edit:hover {
-  background-color: rgba(255, 166, 0, 0.925);
 }
 
 .btn-home-jobs-edit {
@@ -179,23 +137,6 @@ body {
 
 .btn-home-jobs-edit:hover {
   background-color: rgba(56, 151, 1, 0.925);
-}
-
-.btn-jobs-connect {
-  background-color: rgba(56, 151, 1, 0.925);
-  border: none;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-  color: #000000;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 10px 10px;
-  text-decoration: none;
-}
-
-.btn-jobs-connect:hover {
-  background-color: #3f831f;
 }
 
 .add-form {
@@ -437,6 +378,93 @@ body {
   outline: none;
 }
 .btn-job-login:active {
+  transform: scale(0.98);
+}
+/* --- */
+.btn-jobs-connect {
+  background-color: rgba(56, 151, 1, 0.925);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  padding: 9px
+}
+.btn-jobs-connect:hover {
+  background-color: rgba(56, 151, 1, 0.925);
+}
+.btn-jobs-connect:active {
+  position: relative;
+  top: 1px;
+}
+.btn-jobs-connect:focus {
+  outline: none;
+}
+.btn-jobs-connect:active {
+  transform: scale(0.98);
+}
+/* --- */
+.btn-home-client-edit {
+  background-color: rgba(255, 166, 0, 0.925);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  padding: 9px
+}
+.btn-home-client-edit:hover {
+  background-color: rgba(255, 166, 0, 0.925);
+}
+.btn-home-client-edit:active {
+  position: relative;
+  top: 1px;
+}
+.btn-home-client-edit:focus {
+  outline: none;
+}
+.btn-home-client-edit:active {
+  transform: scale(0.98);
+}
+/* --- */
+.btn-client {
+  background-color: rgba(255, 166, 0, 0.925);
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #000000;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  padding: 9px
+}
+.btn-client:hover {
+  background-color: rgba(255, 166, 0, 0.925);
+}
+.btn-client:active {
+  position: relative;
+  top: 1px;
+}
+.btn-client:focus {
+  outline: none;
+}
+.btn-client:active {
   transform: scale(0.98);
 }
 .about {

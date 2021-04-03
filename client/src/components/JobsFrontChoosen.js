@@ -2,8 +2,6 @@
 
 
 import React, { lazy, Suspense } from 'react';
-import { takeJobsToFront } from '../actions/jobAction'
-import { useState, useEffect } from 'react'
 import './CSS/JobDisplayOnFront.css'
 import ViewerJobs from './ViewerJobs'
 

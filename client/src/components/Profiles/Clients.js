@@ -123,24 +123,14 @@ const Clients = ({ data }) => {
                                 <div>
                                         <h2 style={{ borderBottom: '3px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Dear {data.username}, your answers are:</h2>
                                         <br />
-
                                         <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Walk during the day:</h4>
                                         <li> {data.one} </li>
                                         <br />
-                                        Streaching during the day:
-                                        <hr></hr>
-
+                                        <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Streaching during the day:</h4>
                                         <li> {data.two} </li>
                                         <br />
-
-                                         Active sports like cicling, hicking, body bulid etc:
-                                        <hr></hr>
-
+                                        <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Active sports like cicling, hicking, body bulid etc:</h4>
                                         <li> {data.three} </li>
-                                        <br />
-                                        <li> {data.client.email} </li>
-
-                                         We recommend you from your instructors:
 
                                 </div>
                                 <Link className='text-logo-link'
@@ -151,19 +141,19 @@ const Clients = ({ data }) => {
                                                 }
                                         }} ><button className='btn-home-client-edit' > Edit Profile </button></Link>
                                 <div>
-
-
                                 </div>
                         </div>
                         <br />
 
                         <div>
-                                <h4 style={{ borderBottom: '1px solid #ffae00', display: 'inline-block', marginBottom: '5px' }} >
-                                        Here on map you can see instructors location match by your daily habits
+                                <h4 style={{ borderBottom: '3px solid #ffae00', display: 'inline-block', marginBottom: '5px', marginLeft: '70px' }} >
+                                        On map you can see your mached instructors location
                                 </h4>
                                 <div className='control-out-border-client-map'>
-
-                                        <MapContainerFromDBCoords coordsData={coordsData} />
+                                
+                                        <Suspense fallback={renderLoader()}>
+                                                <MapContainerFromDBCoords coordsData={coordsData} />
+                                        </Suspense>
 
                                 </div>
                         </div>
