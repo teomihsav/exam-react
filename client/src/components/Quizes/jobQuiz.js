@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import { saveJobsAswers, takeJobsAnswersToEdit } from '../../actions/jobAction'
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
-import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom"
+import MapContainerChooseJobCoord from '../GoogleMap/MapContainer'
 
 const Media = ({ onChange, values, errors }) => {
     return (
@@ -24,18 +25,22 @@ const Media = ({ onChange, values, errors }) => {
 const JobQuiz = ({ user }) => {
 
     let dataRadioForm = {}
+    let coordsFromForm = {}
 
     let history = useHistory()
 
     if (history.location.state !== undefined) {
         dataRadioForm = history.location.state.data[0]
+        coordsFromForm = history.location.state.coords
         if (dataRadioForm) {
             console.log('Data from History: ', dataRadioForm)
+            console.log('Coords: ', history.location.state.coords)
         }
     }
 
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
+    const [coords, setCoords] = useState({ ...coordsFromForm })
 
     let typeUser = 'jobs'
 
@@ -47,21 +52,15 @@ const JobQuiz = ({ user }) => {
         }
     }, [])
 
-    useEffect(() => {
-        console.log('State :', values)
-        radioChoices.push(values)
-        console.log('Array: ', radioChoices)
+    useEffect(() => { // console.log('State :', values)
+        radioChoices.push(values) // console.log('Array: ', radioChoices)
     }, [values])
 
     useEffect(() => {
-        // (Object.keys(errors).length < 0) && history.push("/profile")
-        console.log('UseEffect Error check', Object.keys(errors).length)
-        console.log(errors)
         errors === 200 && history.push("/profile")
     }, [errors])
 
     const onValueChange = (e) => {
-
         setValues(values => ({ ...values, [e.target.name]: e.target.value })) // console.log('After value set: ', values)
     }
 
@@ -71,18 +70,18 @@ const JobQuiz = ({ user }) => {
         isRadioFormEmpty(values, errors)
 
         setErrors({ ...errors })
-        console.log(errors)
 
         if (!isEmpty(errors).includes(true)) {
             if (user) {
-                saveJobsAswers({ values, setErrors })
+                saveJobsAswers({ values, coords, setErrors })
                 console.log('From ...', errors)
             } else {
                 history.push({
                     pathname: "/register",
                     state: {
                         typeUser: typeUser,
-                        data: radioChoices
+                        data: radioChoices,
+                        coords: coords
                     }
                 })
             }
@@ -214,7 +213,11 @@ const JobQuiz = ({ user }) => {
                     </div>
                 </div>
                 <br />
-                < Media onChange={onValueChange} values={values} errors={errors}/>
+
+                <MapContainerChooseJobCoord onChange={onValueChange} setCoords={setCoords}/>
+
+                <Media onChange={onValueChange} values={values} errors={errors}/>
+
                 <button className="btn btn-block" type="submit">
                     Submit
                     </button>

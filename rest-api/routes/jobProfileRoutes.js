@@ -29,6 +29,10 @@ router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }),
         profileJobAnswers.two = req.body.two
         profileJobAnswers.three = req.body.three
         profileJobAnswers.image = req.body.image
+
+        profileJobAnswers.lat = req.body.lat
+        profileJobAnswers.lng = req.body.lng
+
         profileJobAnswers.description = req.body.description
 
         ProfileJob.findOne({ client: req.user.id })
@@ -39,9 +43,6 @@ router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }),
                         { $set: profileJobAnswers },
                         { new: true }
                     ).then(profile => res.json(profile))
-                    //console.log(profile)
-                    //errors.profileAlreadyDone = 'You already did answer this question'
-                    // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
                 } else {
                     new ProfileJob(profileJobAnswers)
                         .save()

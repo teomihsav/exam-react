@@ -14,9 +14,12 @@ const Register = ({ isLogged, state }) => {
     let history = useHistory();
     let typeUser = history.location.state.typeUser
     let dataRadioForm = history.location.state.data
+    let coords = history.location.state.coords
 
     console.log('Type User from History: ', history.location.state.typeUser)
     console.log('Data from History: ', history.location.state.data)
+    console.log('Data from History Coords: ', history.location.state.coords)
+
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
@@ -39,7 +42,8 @@ const Register = ({ isLogged, state }) => {
             state && history.push({
                 pathname: "/startjobs",
                 state: {
-                    data: dataRadioForm
+                    data: dataRadioForm,
+                    coords: coords
                 },
                 myProps: {
                     title: "Last look at your answers and submit"

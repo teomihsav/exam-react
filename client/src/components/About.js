@@ -8,8 +8,10 @@ const About = () => {
     window.scrollTo(0, 0)
 });
     return (
-        <div className='about'>
-            <h1> Matching data - Version 1.0</h1>
+        <div >
+            <h1 style={{ borderBottom: '3px solid #cbf8c0', display: 'inline-block' }} > Here you can see instructors match by your daily habits </h1>
+            <br/>
+            <br/>
             <MapContainer/>
         </div>
     )

@@ -21,8 +21,8 @@ const isExpired = () => {
     }
 }
 
-const saveJobsAswers = ({ values, setErrors, setRegistered }) => {
-    axios.post('http://localhost:5000/jobProfile/saveJobsAswers', { ...values })
+const saveJobsAswers = ({ values, coords, setErrors }) => {
+    axios.post('http://localhost:5000/jobProfile/saveJobsAswers', { ...values, ...coords })
         .then(res => {
             console.log('Response Status Answers: ', res.status)
             if (res.status === 200) {

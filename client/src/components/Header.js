@@ -50,9 +50,8 @@ const Header = ({ user, setLogged, state }) => {
     return (
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
-                <h1 className="navbar-logo">
+                <h1 className='navbar-logo'>
                    { state ? <Link className='text-logo'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
-                    <i className="fab fa-react"> </i>
                 </h1>
                 <div className="menu-icon" >
                 </div>

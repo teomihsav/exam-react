@@ -50,7 +50,11 @@ const JobsFront = ({ arr }) => {
 
     return (
         <div>
-            <div className='control-out-border-in'><h2>Here you can see our great instructors</h2>  </div>
+            <div className='control-out-border-in'>
+                <h2 style={{ borderBottom: '3px solid #cbf8c0', display: 'inline-block' }}>
+                    Here you can see our great instructors
+                    </h2>
+            </div>
             <div className="row">
 
                 {
