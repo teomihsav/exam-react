@@ -38,7 +38,7 @@ console.log('Coords from MapDB: ', coordsData)
             googleMapsApiKey='AIzaSyCSoeiJCNbjWSEZtv6rezr3Jh7HjVgMzho'>
             <GoogleMap
                 mapContainerStyle={mapStyles}
-                zoom={13}
+                zoom={10}
                 center={defaultCenter}>
 
                 {

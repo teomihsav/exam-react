@@ -106,15 +106,13 @@ const Clients = ({ data }) => {
                 if (el.lat != undefined && el.lng != undefined) {
                         console.log(el.lat)
                         console.log(el.lng)
-                        coordsData = [
-                                {
-                                        name: el.username,
-                                        location: {
-                                                lat: Number(el.lat),
-                                                lng: Number(el.lng)
-                                        }
+                        coordsData.push({
+                                name: el.username,
+                                location: {
+                                        lat: Number(el.lat),
+                                        lng: Number(el.lng)
                                 }
-                        ]
+                        })
                 }
         })
         const renderLoader = () => <p>Loading...</p>;
