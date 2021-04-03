@@ -1,17 +1,15 @@
 
+
+
+
 const express = require('express')
 const router = express.Router();
 const passport = require('passport')
-const bcrypt = require('bcrypt')
 const ProfileJob = require('../models/ProfileJob')
-const Client = require('../models/Client')
-const apiValidateRegistration = require('../validationApi/apiValidateRegister')
-const apiValidateLogin = require('../validationApi/apiValidateLogin')
 const apiValidateJobsArticle = require('../validationApi/apiValidateJobsArticle')
-const mx = require('./mx')
+const apiValidateEmailContactJob = require('../validationApi/apiValidateEmailContactJob')
 
 const nodemailer = require('nodemailer');
-// const key = require('../../config/mxKey');
 
 router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }), (req, res) => {
 
@@ -125,7 +123,6 @@ const transporter = nodemailer.createTransport({
 })
 
 router.post('/sendEmail', (req, res) => {
-    // console.log('Data from Front at beckend: ', req.body)
 
     let mailOptions = {
         from: req.body.emailClient,
@@ -133,6 +130,12 @@ router.post('/sendEmail', (req, res) => {
         subject: req.body.values.subject,
         text: req.body.values.message,
         html: req.body.values.message
+    }
+
+    const { errors } = apiValidateEmailContactJob(req.body)
+
+    if (Object.keys(errors).length > 0) {                          
+        return res.status(400).json(errors);
     }
 
     transporter.sendMail(mailOptions, function (errors, info) {
@@ -170,11 +173,6 @@ router.get('/takeAllArticles', (req, res) => {
 
 router.post('/takeJobsUserArticles', (req, res) => {
 
-    console.log('takeJobsUserArticles data: ', req.body.id)
-    // console.log('Logged user ID data: ', req.user.id)
-
-    let profileAnswers = {}
-
     ProfileJob.find({ client: req.body.id })
         .then(profile => {
             console.log('Api takeJobsUserArticles:', profile)
@@ -189,10 +187,10 @@ router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (r
 
     let articleID = req.body.values._id
 
-    const { errors, isValid } = apiValidateJobsArticle(req.body)
-console.log(errors.title)
+    const { errors } = apiValidateJobsArticle(req.body)
+
     if (Object.keys(errors).length > 0) {
-        return res.status(400).json(errors);
+        return res.status(400).json(errors)
     }
 
     let articles = {

@@ -2,7 +2,7 @@
 
 import { sendEmail } from '../../actions/jobAction'
 import { useState, useEffect } from 'react'
-import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationEmailContactJob'
+import { isEmpty, isBodyFieldEmpty } from '../../validation/validationCommon'
 import './index.css'
 
 const styles = {
@@ -14,6 +14,7 @@ const Email = ({ setOn, isOn, emailJob, emailClient }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
+    const [status, setStatus] = useState({})
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -31,8 +32,8 @@ const Email = ({ setOn, isOn, emailJob, emailClient }) => {
         if (!values.message) {
             !errors && (errors.message = '')
         } else {
-            if (values.message.length < 5 || values.message.length > 80) {
-                errors.message = 'Message must be more than 5 and less than 80 charecters';
+            if (values.message.length < 5 || values.message.length > 1000) {
+                errors.message = 'Message must be more than 5 and less than 1000 charecters';
             } else {
                 errors.message = '';
             }
@@ -58,23 +59,22 @@ const Email = ({ setOn, isOn, emailJob, emailClient }) => {
             sendEmail({ values, emailJob, emailClient })
                 .then(res => {
                     console.log('Email sent From SendEmail: ', res.data)
-                    let status = { errMailConnect: 'E-mail is sent' }
-                    setErrors(status)
+                    setStatus({ info: 'E-mail is sent' })
                     setLoading(false)
                 })
                 .catch(errors => {
                     if (errors.response) {
                         console.log('Email error: ', errors.response)
-                        errors = { errMailConnect: <h4 style={{ color: "red" }}>E-mail is not sent</h4> }
-                        setErrors(errors)
+                        setStatus({ errMailConnect: <h4 style={{ color: "red" }}>E-mail is not sent</h4> })
+                        setErrors(errors.response.data)
                         setLoading(false)
                     }
                 })
         }
     }
     const dots = <div class="col-sm-2"><div id="dots2"><span></span><span></span><span></span><span></span></div></div>
-    const text = <div className='info'>{loading ? dots : errors.errMailConnect}</div>
-
+    const text = <div className='info'>{loading ? dots : status.info}</div>
+console.log('Errors', errors)
     return (
         <div className='card'>
             <form className='add-form' onSubmit={onSubmit} >
