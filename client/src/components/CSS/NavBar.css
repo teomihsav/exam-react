@@ -44,6 +44,8 @@
     color: inherit;
     text-decoration: inherit;
     font-family: cursive;
+    border-bottom: 3px solid #ffae00;
+    display: 'inline-block';
 }
 .fa-react {
     margin-left: 0.5rem;
@@ -67,12 +69,13 @@
 }
 
 .nav-links-selected {
-    color: white;
-    background-color: rgb(34, 119, 0);
+    color: rgb(0, 0, 0);
+    background-color: #e0c215;;
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.2s ease-out;
     padding: 0.5rem 1rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav-links:hover {

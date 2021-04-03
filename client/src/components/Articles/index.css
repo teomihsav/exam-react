@@ -7,10 +7,7 @@
 }
 
 /* Clear floats after the columns */
-.text-logo-link {
-  color: inherit;
-  text-decoration: inherit;
-}
+
 .row-articles {
   display: flex;
   flex-direction: row;

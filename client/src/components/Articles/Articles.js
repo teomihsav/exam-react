@@ -88,7 +88,8 @@ const Articles = () => {
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,
-                                                article: el.article
+                                                article: el.article,
+                                                goBack: 'articles'
                                             }
                                         }} >
 
@@ -111,7 +112,8 @@ const Articles = () => {
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,
-                                                article: el.article
+                                                article: el.article,
+                                                goBack: 'articles'
                                             }
                                         }} >
 

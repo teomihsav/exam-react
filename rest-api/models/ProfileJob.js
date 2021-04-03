@@ -39,6 +39,17 @@ const ProfileJobSchema = new Schema({
             },
         }
     ],
+    location: {
+        id: {
+            type: Schema.Types.ObjectId
+        },
+        lat: {
+            type: String
+        },
+        lng: {
+            type: String
+        }
+    },
     description: {
         type: String
     },

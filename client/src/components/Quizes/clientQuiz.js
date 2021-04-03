@@ -26,7 +26,7 @@ const ClientQuiz = ({ user }) => {
     let radioChoices = []
 
     useEffect(() => {
-        if (history.location.myProps.title === 'Edit Profile') {
+        if (history.location.myProps.title === 'Editing this answers will change chosen instructors for you') {
             takeClientsAnswersToEdit({ setValues })
         }
     }, [])

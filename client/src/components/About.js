@@ -1,6 +1,6 @@
 
 import { useLayoutEffect } from 'react'
-
+import MapContainer from './GoogleMap/MapContainer'
 
 const About = () => {
     
@@ -10,6 +10,7 @@ const About = () => {
     return (
         <div className='about'>
             <h1> Matching data - Version 1.0</h1>
+            <MapContainer/>
         </div>
     )
 }

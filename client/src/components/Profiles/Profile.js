@@ -29,13 +29,9 @@ const Profile = ({ id, typeUser }) => {
             {
                 (Object.keys(data).length > 0)
                 &&
-                (typeUser === 'clients')
-                &&
-                <Clients data={data}/>
+                (typeUser === 'clients') && <Clients data={data}/>
                 ||
-                (typeUser === 'jobs')
-                &&
-                <Jobs id={id} data={data}/>
+                (typeUser === 'jobs') && <Jobs id={id} data={data}/>
             }
         </div>
     )

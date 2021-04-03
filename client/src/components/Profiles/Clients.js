@@ -145,7 +145,7 @@ const Clients = ({ data }) => {
                                         to={{
                                                 pathname: "/start",
                                                 myProps: {
-                                                        title: 'Edit Profile'
+                                                        title: 'Editing this answers will change chosen instructors for you'
                                                 }
                                         }} ><button className='btn-home-client-edit' > Edit Profile </button></Link>
                         </div>

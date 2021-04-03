@@ -1,17 +1,13 @@
 
 
 import { Link } from 'react-router-dom'
-
 import '../CSS/JobsProfile.css'
 import { useState, useEffect } from 'react'
 import MyArticles from '../Articles/MyArticles'
 import SubmitArticle from '../Articles/SubmitArticle'
-import { useHistory } from "react-router-dom";
 
 
 const Jobs = ({ id, data }) => {
-
-        let history = useHistory()
 
         const [reload, setReload] = useState({})
 
@@ -19,7 +15,7 @@ const Jobs = ({ id, data }) => {
                 <div className='row-single-job-profile'>
                         <div className='column-jobs-article'>
 
-                                <SubmitArticle setReload={setReload} reload={reload}/>
+                                <SubmitArticle setReload={setReload} reload={reload} />
 
                                 <div className='column-jobs-article'>
                                         <MyArticles id={id} reload={reload} />
@@ -27,9 +23,8 @@ const Jobs = ({ id, data }) => {
                         </div>
 
                         <div className='control-out-border-single-job-profile'>
-
                                 <div className="card-single-job-profile">
-                                        <img src={data.image} alt={data.username} width="100%" height="100%" />
+                                        <img src={data.image} alt={data.username} width="50%" height="50%" />
                                 </div>
                                 <div>
                                         Dear {data.username}, your answers are:
@@ -60,9 +55,9 @@ const Jobs = ({ id, data }) => {
                                         to={{
                                                 pathname: "/startjobs",
                                                 myProps: {
-                                                        title: 'Edit Profile'
+                                                        title: 'Editing this answers will change chosen clients for you'
                                                 }
-                                        }} > <button className='btn-home-jobs-edit ' > Edit Profile </button>
+                                        }} > <button className='btn-home-jobs-edit' > Edit Profile </button>
                                 </Link>
                         </div>
                 </div>

@@ -20,7 +20,7 @@ const MyArticles = ({ id, reload }) => {
     });
 
     const delArticle = (id) => {
-        if (window.confirm('sure?')) { // ? someHandler(e) : e.preventDefault()
+        if (window.confirm('Are you sure you want to delete the article?')) { // ? someHandler(e) : e.preventDefault()
             delArticleAction(id)
                 .then(res => {
                     setArticleDeleted(id)

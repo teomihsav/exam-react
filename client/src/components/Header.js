@@ -12,7 +12,7 @@ const Header = ({ user, setLogged, state }) => {
     const handleScroll = () => {
         const offset = window.scrollY;
 
-        if (offset > 100) {
+        if (offset > 20) {
             setScrolled(true);
         }
         else {
