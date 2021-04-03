@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { saveClientAnswers, takeClientsAnswersToEdit } from '../../actions/clientAction'
 import { useHistory } from "react-router-dom"
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
-import RadioClient from './RadioClient'
 
 const ClientQuiz = ({ user }) => {
 

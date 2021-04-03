@@ -8,47 +8,48 @@ const passport = require('passport')
 const ProfileJob = require('../models/ProfileJob')
 const apiValidateJobsArticle = require('../validationApi/apiValidateJobsArticle')
 const apiValidateEmailContactJob = require('../validationApi/apiValidateEmailContactJob')
+const apiValidateJobAnswers = require('../validationApi/apiValidateJobAnswers')
 
 const nodemailer = require('nodemailer');
 
 router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-    // const { errors } = apiValidateRegistration(req.body)
+    const { errors } = apiValidateJobAnswers(req.body)
 
-    // if (Object.keys(errors).length > 0) {
-    //     return res.status(400).json(errors);
-    // } else {
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json(errors);
+    } else {
 
-    console.log('Response: ', req.body)
+        console.log('Response: ', req.body)
 
-    let profileJobAnswers = {}
-    profileJobAnswers.client = req.user.id
-    profileJobAnswers.username = req.user.username
-    profileJobAnswers.one = req.body.one
-    profileJobAnswers.two = req.body.two
-    profileJobAnswers.three = req.body.three
-    profileJobAnswers.image = req.body.image
-    profileJobAnswers.description = req.body.description
+        let profileJobAnswers = {}
+        profileJobAnswers.client = req.user.id
+        profileJobAnswers.username = req.user.username
+        profileJobAnswers.one = req.body.one
+        profileJobAnswers.two = req.body.two
+        profileJobAnswers.three = req.body.three
+        profileJobAnswers.image = req.body.image
+        profileJobAnswers.description = req.body.description
 
-    ProfileJob.findOne({ client: req.user.id })
-        .then(profile => {
-            if (profile) {
-                ProfileJob.findOneAndUpdate(
-                    { client: req.user.id },
-                    { $set: profileJobAnswers },
-                    { new: true }
-                ).then(profile => res.json(profile))
-                //console.log(profile)
-                //errors.profileAlreadyDone = 'You already did answer this question'
-                // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
-            } else {
-                new ProfileJob(profileJobAnswers)
-                    .save()
-                    .then(profile => res.json(profile));
-                console.log('After user auth: ', profile)
-            }
-        })
-    // }
+        ProfileJob.findOne({ client: req.user.id })
+            .then(profile => {
+                if (profile) {
+                    ProfileJob.findOneAndUpdate(
+                        { client: req.user.id },
+                        { $set: profileJobAnswers },
+                        { new: true }
+                    ).then(profile => res.json(profile))
+                    //console.log(profile)
+                    //errors.profileAlreadyDone = 'You already did answer this question'
+                    // return res.status(404).json(errors); // On found "answers" at DB returns errors and display it at page form
+                } else {
+                    new ProfileJob(profileJobAnswers)
+                        .save()
+                        .then(profile => res.json(profile));
+                    console.log('After user auth: ', profile)
+                }
+            })
+    }
 })
 
 router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -134,7 +135,7 @@ router.post('/sendEmail', (req, res) => {
 
     const { errors } = apiValidateEmailContactJob(req.body)
 
-    if (Object.keys(errors).length > 0) {                          
+    if (Object.keys(errors).length > 0) {
         return res.status(400).json(errors);
     }
 

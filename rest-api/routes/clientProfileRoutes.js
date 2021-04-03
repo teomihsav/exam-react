@@ -5,48 +5,45 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const ProfileClient = require('../models/ProfileClient')
 const Client = require('../models/Client')
-const apiValidateRegistration = require('../validationApi/apiValidateRegister')
-const apiValidateLogin = require('../validationApi/apiValidateLogin')
-
+const apiValidateClientAnswers = require('../validationApi/apiValidateClientAnswers')
 
 const errors = {}
 
 router.post('/answers', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-    // const { errors } = apiValidateRegistration(req.body)
+    const { errors } = apiValidateClientAnswers(req.body)
 
-    // if (Object.keys(errors).length > 0) {
-    //     return res.status(400).json(errors);
-    // } else {
+    if (Object.keys(errors).length > 0) {
+        return res.status(400).json(errors);
+    } else {
 
-    console.log('Response: ', req.user.id)
+        console.log('Response: ', req.user.id)
 
-    let profileAnswers = {}
-    profileAnswers.client = req.user.id
-    profileAnswers.username = req.user.username
-    profileAnswers.one = req.body.one
-    profileAnswers.two = req.body.two
-    profileAnswers.three = req.body.three
+        let profileAnswers = {}
+        profileAnswers.client = req.user.id
+        profileAnswers.username = req.user.username
+        profileAnswers.one = req.body.one
+        profileAnswers.two = req.body.two
+        profileAnswers.three = req.body.three
 
-    ProfileClient.findOne({ client: req.user.id })
-        .then(profile => {
-            if (profile) {
-                ProfileClient.findOneAndUpdate(
-                    { client: req.user.id },
-                    { $set: profileAnswers },
-                    { new: true }
-                ).then(profile => res.json(profile))
-                // console.log(profile)
-                // errors.profileAlreadyDone = 'You already did answer this question'
-                // return res.status(404).json(errors) // On found "answers" at DB returns errors and display it at page form
-            } else {
-                new ProfileClient(profileAnswers)
-                    .save()
-                    .then(profile => res.json(profile));
-                console.log('After user auth: ', profile)
-            }
-        })
-    // }
+        ProfileClient.findOne({ client: req.user.id })
+            .then(profile => {
+                if (profile) {
+                    ProfileClient.findOneAndUpdate(
+                        { client: req.user.id },
+                        { $set: profileAnswers },
+                        { new: true }
+                    ).then(profile =>
+                        res.json(profile)
+                    )
+                } else {
+                    new ProfileClient(profileAnswers)
+                        .save()
+                        .then(profile => res.json(profile));
+                    console.log('After user auth: ', profile)
+                }
+            })
+    }
 })
 
 router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (req, res) => {
