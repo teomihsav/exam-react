@@ -10,9 +10,9 @@ const ClientHome = ({ user }) => {
 
     return (
         <div className='form-control-out-border-home'>
-            <h1 style={{ borderBottom: '3px solid rgba(255, 199, 95, 0.925)', display: 'inline-block' }}>
-                We will keep it simple,
-            </h1> <br />
+            <div style={{ borderBottom: '3px solid rgba(255, 199, 95, 0.925)', display: 'inline-block', fontSize: '38px', fontWeight: 'bold'}}>
+            Let's get start your sports life,
+            </div> <br />
             <h2 style={{ borderBottom: '3px solid rgba(255, 199, 95, 0.925)', display: 'inline-block' }}>
                 Just answer a few questions and we will help you to start your Sporty live...
             </h2>

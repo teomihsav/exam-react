@@ -10,9 +10,9 @@ const JobHome = ({ user }) => {
 
     return (
         <div className='form-control-out-border-home'>
-            <h1 style={{ borderBottom: '3px solid rgba(107, 185, 62, 0.925)', display: 'inline-block' }}>
-                We will keep it simple,
-            </h1> <br />
+            <div style={{ borderBottom: '3px solid rgba(107, 185, 62, 0.925)', display: 'inline-block', fontSize: '38px', fontWeight: 'bold' }}>
+                Start helping people,
+            </div> <br />
             <h2 style={{ borderBottom: '3px solid rgba(107, 185, 62, 0.925)', display: 'inline-block' }}>
                 Just answer a few questions to describe your sport field of work, education level and certificates you have.
             </h2>

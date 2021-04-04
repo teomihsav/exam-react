@@ -20,7 +20,7 @@ const About = ({ user }) => {
             anytime, anywhere.
             </p>
             <div style={{margin: '50px'}}>
-                {!user && <JobsFront />}
+                {<JobsFront />}
             </div>
         </div>
     )
