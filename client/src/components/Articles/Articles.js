@@ -46,7 +46,7 @@ const Articles = () => {
 
     return (
         <div>
-            <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Last articles here </h2>
+            <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Last articles </h2>
             <div className='row-articles'>
                 <div className='about-articles'>
                     <div className="card-articles card-header card-footer">
