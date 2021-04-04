@@ -4,7 +4,7 @@ import './index.css'
 import { takeJobsUserArticles, delArticleAction } from '../../actions/jobAction'
 import { Link } from 'react-router-dom'
 import SingleArticle from './SingleArticle'
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 const MyArticles = ({ id, reload }) => {
 
@@ -47,7 +47,7 @@ const MyArticles = ({ id, reload }) => {
 
     return (
         <div>
-            <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> My articles </h2>
+            <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block', marginTop: '20px', marginLeft: '20px' }}> My articles </h2>
             <div className='row-articles'>
                 <div className='about-articles'>
                     <div className="card-my-articles card-header card-footer">

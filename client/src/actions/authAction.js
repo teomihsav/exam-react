@@ -3,6 +3,7 @@
 import axios from 'axios'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken'
+import { TEST_DISPATCH } from './types'
 
 const registerUser = ({ values, setErrors, setRegistered, typeUser }) => { // console.log('TEST: ', values)
     axios.post('http://localhost:5000/auth/register', { ...values, typeUser })
@@ -34,8 +35,8 @@ const loginUser = ({ values, setErrors, isLogged }) => { // console.log('TEST: '
                 // Set token to Auth header
                 setAuthToken(token);
                 // Decode token to get user data
-                 const decoded = jwt_decode(token);
-                 isLogged(decoded.name)
+                const decoded = jwt_decode(token);
+                isLogged(decoded.name)
             }
         })
         .catch(err => {
@@ -46,14 +47,14 @@ const loginUser = ({ values, setErrors, isLogged }) => { // console.log('TEST: '
         })
 }
 
-const logoutUser = ({isLogged}) => {
+const logoutUser = ({ isLogged }) => {
     // Remove token from localStorage
     localStorage.removeItem('jwtToken')
     isLogged(false)
     // Remove auth header for future requests
     setAuthToken(false)
 
-    
+
 }
 
 export { registerUser, loginUser, logoutUser }

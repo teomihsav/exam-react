@@ -4,8 +4,9 @@ import { registerUser, loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegister'
 import { useHistory } from "react-router-dom";
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
+import { connect } from 'react-redux'
 
-const Register = ({ isLogged, state }) => {
+const Register = ({ props, isLogged, state }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
@@ -140,4 +141,8 @@ const Register = ({ isLogged, state }) => {
     )
 }
 
-export default Register
+const matStateToProps = (state) => ({
+    auth: state.auth
+})
+
+export default connect(matStateToProps, { registerUser })(Register)

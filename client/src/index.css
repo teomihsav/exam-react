@@ -40,10 +40,10 @@ body {
   min-height: 0px;
 }
 
-.backgroung-image {
+/* .backgroung-image {
   background: url(./photo-1536514498073-50e69d39c6cf.jpg);
   background-size: cover;
-}
+} */
 
 .background-color {
   background-color: rgb(255, 255, 255);
@@ -196,23 +196,23 @@ body {
 
 .form-control-out-border-quiz-jobs {
   width: 100%;
-  margin: 20px auto;
+  margin: 10px auto;
   overflow: auto;
   border: 1px solid rgba(56, 151, 1, 0.925);
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
   font-size: 14px;
 }
 
 .form-control-out-border-quiz {
-  max-width: 500px;
+  max-width: 460px;
   margin: 10px auto;
   overflow: auto;
   min-height: 0px;
   border: 1px solid rgba(255, 181, 43, 0.925);
-  padding: 15px;
+  padding: 10px;
   border-radius: 5px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .form-control-out-border-home {
@@ -303,7 +303,7 @@ body {
   padding: 20px
 }
 .btn-home-login:hover {
-  background-color: rgba(255, 166, 0, 0.925);
+  background-color: rgba(187, 141, 57, 0.925);
 }
 .btn-home-login:active {
   position: relative;
@@ -332,7 +332,7 @@ body {
   padding: 20px
 }
 .btn-home:hover {
-  background-color: rgba(255, 166, 0, 0.925);
+  background-color: rgba(187, 141, 57, 0.925);
 }
 .btn-home:active {
   position: relative;
@@ -361,7 +361,7 @@ body {
   padding: 20px
 }
 .btn-job:hover {
-  background-color: rgba(56, 151, 1, 0.925);
+  background-color: rgba(39, 102, 2, 0.925);
 }
 .btn-job:focus {
   outline: none;
@@ -387,7 +387,7 @@ body {
   padding: 20px
 }
 .btn-job-login:hover {
-  background-color: rgba(56, 151, 1, 0.925);
+  background-color: rgba(39, 102, 2, 0.925);
 }
 .btn-job-login:active {
   position: relative;

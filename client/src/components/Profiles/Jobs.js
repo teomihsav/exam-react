@@ -13,7 +13,7 @@ const Jobs = ({ id, data }) => {
 
         return (
                 <div className='row-single-job-profile'>
-                        <div className='column-jobs-article'>
+                        <div className=''>
 
                                 <SubmitArticle setReload={setReload} reload={reload} />
 
@@ -26,28 +26,25 @@ const Jobs = ({ id, data }) => {
                                 <div className="card-single-job-profile">
                                         <img src={data.image} alt={data.username} width="50%" height="50%" />
                                 </div>
-                                <div>
-                                        Dear {data.username}, your answers are:
                                 <br />
-                                        <br />
-
-                                 Your field at sport:
-                                <hr></hr>
-                                        <p></p>
-                                        {data.one}
+                                <br />
+                                
+                                <div>
+                                        <h4 style={{ borderBottom: '2px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >Dear {data.username}, your answers are:</h4>
                                         <br />
                                         <br />
 
-                                Are you traning with pro atlets:
-                                <hr></hr>
-
-                                        {data.two}
-                                        <br />
+                                        <h4 style={{ borderBottom: '1px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >Your field at sport:</h4>
+                                        <li>{data.one}</li>
                                         <br />
 
-                                What sport education/certificates do you have:
-                                <hr></hr>
-                                        {data.three}
+                                        <h4 style={{ borderBottom: '1px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} > Are you traning with pro atlets:</h4>
+                                        <li>{data.two}</li>
+                                        <br />
+
+                                        <h4 style={{ borderBottom: '1px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >What sport education/certificates do you have:</h4>
+                                        <li>{data.three}</li>
+                                        <br />
                                         <br />
 
                                 </div>

@@ -3,8 +3,10 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import jwt_decode from 'jwt-decode';
-
 import setAuthToken from './utils/setAuthToken';
+import { Provider } from 'react-redux'
+import store from './store'
+
 import Header from './components/Header'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
@@ -19,7 +21,7 @@ import Footer from './components/StaticPages/Footer'
 import ClientHome from './components/StaticPages/ClientHome'
 import JobHome from './components/StaticPages/JobHome'
 
-function App() {
+const App = () => {
 
   const [logged, setLogged] = useState(false)
   const [typeUser, setTypeUser] = useState()
@@ -45,71 +47,73 @@ function App() {
   }, [logged])
 
   return (
-    <Router>
-      <div className='main-container background-color'>
+    <Provider store={store}>
+      <Router>
+        <div className='main-container background-color'>
 
-        <Header user={logged} setLogged={setLogged} state={logged} />
+          <Header user={logged} setLogged={setLogged} state={logged} />
 
-        <div className="container">
+          <div className="container">
 
-          <Route
-            path='/' exact
-            component={() => <ClientHome user={logged} />}
-          />
-          <Route
-            path='/jobs' exact
-            component={() => <JobHome user={logged} />}
-          />
-          <Route
-            path='/start' exact
-            component={() => <ClientQuiz user={logged} />}
-          />
-          <Route
-            path='/startjobs' exact
-            component={() => <JobQuiz user={logged} />}
-          />
-          <Route
-            path='/profile' exact
-            component={() => <Profile id={id} typeUser={typeUser} />}
-          />
-          <Route
-            path='/register' exact
-            component={() => <Register isLogged={setLogged} state={logged} />}
-          />
+            <Route
+              path='/' exact
+              component={() => <ClientHome user={logged} />}
+            />
+            <Route
+              path='/jobs' exact
+              component={() => <JobHome user={logged} />}
+            />
+            <Route
+              path='/start' exact
+              component={() => <ClientQuiz user={logged} />}
+            />
+            <Route
+              path='/startjobs' exact
+              component={() => <JobQuiz user={logged} />}
+            />
+            <Route
+              path='/profile' exact
+              component={() => <Profile id={id} typeUser={typeUser} />}
+            />
+            <Route
+              path='/register' exact
+              component={() => <Register isLogged={setLogged} state={logged} />}
+            />
 
-          <Route
-            path='/login' exact
-            component={() => <Login isLogged={setLogged} state={logged} />}
-          />
+            <Route
+              path='/login' exact
+              component={() => <Login isLogged={setLogged} state={logged} />}
+            />
 
-          <Route
-            path='/logout' exact
-            component={() => <Logout isLogged={setLogged} state={logged} />}
-          />
-          <Route
-            path='/singlearticle' exact
-            component={() => <SingleArticle user={logged} />}
-          />
-          <Route exact
-            path='/articles'
-            component={Articles}
-          />
+            <Route
+              path='/logout' exact
+              component={() => <Logout isLogged={setLogged} state={logged} />}
+            />
+            <Route
+              path='/singlearticle' exact
+              component={() => <SingleArticle user={logged} />}
+            />
+            <Route exact
+              path='/articles'
+              component={Articles}
+            />
 
-          <Route
-            path='/about' exact
-            component={() => <About user={logged} />}
-          />
+            <Route
+              path='/about' exact
+              component={() => <About user={logged} />}
+            />
+
+          </div>
+
+          <div className="footer">
+            <Footer data={'Всички права запазени'} />
+          </div>
 
         </div>
 
-        <div className="footer">
-          <Footer data={'Всички права запазени'} />
-        </div>
-
-      </div>
-
-    </Router>
-  );
+      </Router>
+    </Provider>
+  )
 }
 
-export default App;
+export default App

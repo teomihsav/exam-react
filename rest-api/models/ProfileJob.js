@@ -40,10 +40,10 @@ const ProfileJobSchema = new Schema({
         }
     ],
         lat: {
-            type: String
+            type: Number
         },
         lng: {
-            type: String
+            type: Number
     },
     description: {
         type: String

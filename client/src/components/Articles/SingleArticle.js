@@ -4,13 +4,13 @@ import './index.css'
 import { Link } from 'react-router-dom'
 import { useHistory } from "react-router-dom"
 
-const SingleArticle = ({ data }) => {
+const SingleArticle = ({  }) => {
 
     let history = useHistory()
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
-    });
+    })
     
     console.log(history.location.myProps)
 

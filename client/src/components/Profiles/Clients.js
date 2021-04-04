@@ -146,7 +146,7 @@ const Clients = ({ data }) => {
                         <div>
 
                                 <Suspense fallback={renderLoader()}>
-                                        <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} emailClient={data.client.email} />
+                                        <JobsFrontChoosen key={data._id} arr={dataJobsChoosen} emailClient={data.client.email} />
                                 </Suspense>
 
                                 <h4 style={{ borderBottom: '3px solid #ffae00', display: 'inline-block', marginBottom: '5px', marginLeft: '70px', marginTop: '10px' }} >

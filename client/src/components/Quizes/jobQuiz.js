@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { saveJobsAswers, takeJobsAnswersToEdit } from '../../actions/jobAction'
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 import { useHistory } from "react-router-dom"
-import MapContainerChooseJobCoord from '../GoogleMap/MapContainer'
+import MapContainer from '../GoogleMap/MapContainer'
 
 const Media = ({ onChange, values, errors }) => {
     return (
@@ -37,7 +37,7 @@ const JobQuiz = ({ user }) => {
             console.log('Coords: ', history.location.state.coords)
         }
     }
-
+console.log( coordsFromForm)
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
     const [coords, setCoords] = useState({ ...coordsFromForm })
@@ -214,9 +214,13 @@ const JobQuiz = ({ user }) => {
                 </div>
                 <br />
 
-                <MapContainerChooseJobCoord onChange={onValueChange} setCoords={setCoords}/>
+                <h4 style={{ borderBottom: '2px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >
+                    If marked location is not accurate drag the marker to your location
+                </h4>
 
-                <Media onChange={onValueChange} values={values} errors={errors}/>
+                <MapContainer onChange={onValueChange} setCoords={setCoords} />
+
+                <Media onChange={onValueChange} values={values} errors={errors} />
 
                 <button className="btn btn-block" type="submit">
                     Submit
