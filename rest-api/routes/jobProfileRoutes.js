@@ -118,8 +118,8 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: 'ben@ben.bg',
-        pass: 'po282rigorexh'
+        user: 'softuni@ben.bg',
+        pass: '~1~h711ubVtg'
     }
 })
 

@@ -105,7 +105,7 @@ const JobQuiz = ({ user }) => {
                                     value='Nature hickung or cicling'
                                     onChange={onValueChange}
                                 />
-                                <label> Nature hickung or cicling</label>
+                                <label> Nature hicking or cicling</label>
                             </div>
 
                             <div className='form-control-out-border-quiz-jobs'>

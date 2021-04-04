@@ -17,6 +17,22 @@
     -moz-appearance: none;
     appearance: none;
     background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
+  .select-jobs-select-error {
+    outline: none;
+    margin: 10px;
+    width: 390px;
+    height: 35px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid rgb(255, 0, 0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
     /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
   }
   .select-jobs-input {
@@ -31,6 +47,7 @@
     -moz-appearance: none;
     appearance: none;
     background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
     /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
   }
   
@@ -46,11 +63,73 @@
     -moz-appearance: none;
     appearance: none;
     background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
     /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
   }
-  /* CAUTION: Internet Explorer hackery ahead */
+
   
+  .select-jobs-select-email {
+    outline: none;
+    margin: 10px;
+    width: 330px;
+    height: 35px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
+  .select-jobs-select-email-error {
+    outline: none;
+    margin: 10px;
+    width: 330px;
+    height: 35px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid rgb(255, 0, 0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
+
+  .select-jobs-text-area-email {
+    outline: none;
+    margin: 10px;
+    width: 330px;
+    height: 100px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #CCC;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
   
+  .select-jobs-text-area-email-error {
+    outline: none;
+    margin: 10px;
+    width: 330px;
+    height: 100px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid rgb(255, 0, 0);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background:  96% / 15% no-repeat #EEE;
+    border-radius: 5px;
+    /* background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE; */
+  }
   .select-jobs::-ms-expand {
       display: none; /* Remove default arrow in Internet Explorer 10 and 11 */
   }

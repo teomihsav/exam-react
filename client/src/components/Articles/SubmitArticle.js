@@ -69,14 +69,14 @@ const SubmitArticle = ({ setReload }) => {
 
     return (
         <div>
-            <form className='add-form' onSubmit={onSubmit} >
+            <form className='add-form-mail' onSubmit={onSubmit} >
                 <div className='form-control-out-border-jobs'>
                     <div className='form-control-jobs'>
 
                         {loading ? dots : text}
                         <br />
                         <label htmlFor='Choose Category'>Choose Categoty</label>
-                        <select className='select-jobs-select '
+                        <select className='select-jobs-select'
                             name='category'
                             id='category'
                             value={values.category || ''}

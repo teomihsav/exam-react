@@ -11,14 +11,16 @@ const Register = ({ isLogged, state }) => {
     const [errors, setErrors] = useState({})
     const [registered, setRegistered] = useState(false)
 
-    let history = useHistory();
-    let typeUser = history.location.state.typeUser
-    let dataRadioForm = history.location.state.data
-    let coords = history.location.state.coords
+    let typeUser = ''; let dataRadioForm = ''; let coords = Number
 
-    console.log('Type User from History: ', history.location.state.typeUser)
-    console.log('Data from History: ', history.location.state.data)
-    console.log('Data from History Coords: ', history.location.state.coords)
+    let history = useHistory();
+    history.location.state && (typeUser = history.location.state.typeUser)
+    history.location.state && (dataRadioForm = history.location.state.data)
+    history.location.state && (coords = history.location.state.coords)
+
+    // console.log('Type User from History: ', history.location.state.typeUser)
+    // console.log('Data from History: ', history.location.state.data)
+    // console.log('Data from History Coords: ', history.location.state.coords)
 
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 

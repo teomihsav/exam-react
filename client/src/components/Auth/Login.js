@@ -43,7 +43,7 @@ const Login = ({ isLogged, state }) => {
     });
 
     return (
-        <>
+        <div style={{margin: '50px'}}>
             <form className='add-form' onSubmit={onSubmit} >
                 <div className='form-control-out-border'>
                     <div className='form-control'>
@@ -77,7 +77,7 @@ const Login = ({ isLogged, state }) => {
 
                 <input type='submit' value='Login' className='btn btn-block' />
             </form>
-        </>
+        </div>
     )
 }
 

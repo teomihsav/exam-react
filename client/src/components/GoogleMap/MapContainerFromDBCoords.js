@@ -14,16 +14,6 @@ console.log('Coords from MapDB: ', coordsData)
         setSelected(item);
     }
 
-    // [
-    //     {
-    //         name: "Location 1",
-    //         location: {
-    //             lat: 41.3954,
-    //             lng: 2.162
-    //         },
-    //     }
-    // ]
-
     const mapStyles = {
         height: "15vh",
         width: "100%"

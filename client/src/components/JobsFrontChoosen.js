@@ -7,7 +7,6 @@ import ViewerJobs from './ViewerJobs'
 
 const JobsFrontChoosen = ({ arr, emailClient }) => {
 
-
     const renderLoader = () => <p>Loading...</p>
 
     return (
@@ -15,8 +14,6 @@ const JobsFrontChoosen = ({ arr, emailClient }) => {
             <div className="row">
 
                 {
-                    // (Object.keys(arr).length > 0)
-                    // &&
                     arr.map(el =>
                         <Suspense fallback={renderLoader()}>
                             <ViewerJobs

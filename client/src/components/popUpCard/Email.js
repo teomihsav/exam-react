@@ -65,7 +65,7 @@ const Email = ({ setOn, isOn, emailJob, emailClient }) => {
                 .catch(errors => {
                     if (errors.response) {
                         console.log('Email error: ', errors.response)
-                        setStatus({ errMailConnect: <h4 style={{ color: "red" }}>E-mail is not sent</h4> })
+                        setStatus({ info: <h4 style={{ color: "red" }}>E-mail is not sent</h4> })
                         setErrors(errors.response.data)
                         setLoading(false)
                     }
@@ -74,18 +74,18 @@ const Email = ({ setOn, isOn, emailJob, emailClient }) => {
     }
     const dots = <div class="col-sm-2"><div id="dots2"><span></span><span></span><span></span><span></span></div></div>
     const text = <div className='info'>{loading ? dots : status.info}</div>
-console.log('Errors', errors)
+
     return (
-        <div className='card'>
-            <form className='add-form' onSubmit={onSubmit} >
-                <div className='form-control-out-border'>
-                    <div className='form-control'>
-                        
-                        {loading ? dots : text}
+        <div className=''>
+            <form className='add-form-email' onSubmit={onSubmit} >
+                <div className='form-control-out-border-email'>
 
                         <button type="button" className="btn-close" onClick={e => { setOn(!isOn) }} ><span aria-hidden="true" >&times;</span></button>
+
+                        {loading ? dots : text} <br/>
+
                         <label>Subject</label>
-                        <input className={errors.subject ? 'form-control-border-error' : 'form-control-border'}
+                        <input className={errors.subject ? 'select-jobs-select-email-error' : 'select-jobs-select-email'}
                             type='text'
                             name='subject'
                             value={values.subject || ''}
@@ -93,14 +93,12 @@ console.log('Errors', errors)
                         >
                         </input>
                         <span className='error'>{errors.subject}</span>
-                    </div>
                 </div>
 
-                <div className='form-control-out-border'>
-                    <div className='form-control'>
-                        <label>Message to:</label>
+                <div className='form-control-out-border-email'>
+                        <label>Message to:</label><br/>
                         <span style={{ fontSize: '12px' }}>{emailJob}</span>
-                        <textarea className={errors.message ? 'form-control-border-error' : 'form-control-border'}
+                        <textarea className={errors.message ? 'select-jobs-text-area-email-error' : 'select-jobs-text-area-email'}
                             rows='5'
                             cols='45'
                             name='message'
@@ -110,7 +108,6 @@ console.log('Errors', errors)
                         </textarea>
                         <span className='error'>{errors.message}</span>
                     </div>
-                </div>
 
                 <input type='submit' value='Send E-mail' className='btn btn-block' />
             </form>

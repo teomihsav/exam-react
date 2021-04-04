@@ -51,7 +51,7 @@ body {
 
 .container {
   max-width: 1400px;
-  margin: 30px auto;
+  margin: 5px auto;
   overflow: auto;
   min-height: 50px;
   border: 0px solid rgba(56, 151, 1, 0.925);
@@ -84,8 +84,8 @@ body {
 
 .btn-close {
   width: 40px;
-  margin-top: -20px;
-  margin-left: 320px;
+  margin-top: -10px;
+  margin-left: 328px;
   padding: 5px;
   background-color: rgba(32, 32, 32, 0.521);
   border: none;
@@ -102,7 +102,7 @@ body {
   outline: none;
 }
 .btn-close:hover {
-  background-color: rgba(255, 94, 0, 0.925);
+  background-color: rgb(238, 31, 31);
 }
 .btn-close:active {
   transform: scale(0.88);
@@ -141,6 +141,11 @@ body {
 
 .add-form {
   margin-bottom: 5.3%;
+  margin: 50px;
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
+  padding: 10px;
+  text-align: center;
+  background-color: #ffffff;
 }
 
 .form-control {
@@ -148,11 +153,6 @@ body {
   border-color: rgba(56, 151, 1, 0.925)
 }
 
-.form-control-email {
-  margin: 10px 0;
-  border-color: rgba(56, 151, 1, 0.925);
-  padding: 20px;
-}
 
 .form-control-out-border {
   max-width: 450px;
@@ -160,6 +160,25 @@ body {
   overflow: auto;
   min-height: 30px;
   border: 1px solid rgba(56, 151, 1, 0.925);
+  padding: 20px;
+  border-radius: 5px;
+  
+}
+.add-form-email {
+  box-shadow: 0 2px 8px 0 rgb(0 0 0 / 10%);
+  text-align: center;
+  background-color: #ffffff;
+}
+.form-control-email {
+  margin: 10px 0;
+  border-color: rgba(56, 151, 1, 0.925);
+  padding: 20px;
+}
+.form-control-out-border-email {
+  max-width: 450px;
+  margin-bottom: 10px ;
+  overflow: auto;
+  border: 1px solid rgba(114, 116, 113, 0.925);
   padding: 20px;
   border-radius: 5px;
 }
@@ -198,7 +217,7 @@ body {
 
 .form-control-out-border-home {
   max-width: 100%;
-  margin: 100px auto;
+  margin: 80px auto;
   overflow: auto;
   min-height: 0px;
   padding: 10px;
@@ -209,6 +228,11 @@ body {
   border: 1px solid rgba(56, 151, 1, 0.925);
   border-Radius: 5px;
   outline-Color: rgba(56, 151, 1, 0.925);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background:  96% / 15% no-repeat #EEE;
+  border-radius: 5px;
 }
 
 .form-control-border-error {
@@ -314,11 +338,9 @@ body {
   position: relative;
   top: 1px;
 }
-
 .btn-home:focus {
   outline: none;
 }
-
 .btn-home:active {
   transform: scale(0.98);
 }
@@ -341,13 +363,10 @@ body {
 .btn-job:hover {
   background-color: rgba(56, 151, 1, 0.925);
 }
-.btn-job {
-  position: relative;
-  top: 1px;
-}
 .btn-job:focus {
   outline: none;
-}.btn-job:active {
+}
+.btn-job:active {
   transform: scale(0.98);
 }
 /* ---- */

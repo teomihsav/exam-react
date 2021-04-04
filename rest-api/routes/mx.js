@@ -9,8 +9,8 @@ const mx = (data) => {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'ben@ben.bg', // generated ethereal user
-            pass: 'po282rigorexh' // generated ethereal password
+            user: 'softuni@ben.bg', // generated ethereal user
+            pass: '~1~h711ubVtg' // generated ethereal password
         }
     })
     console.log('Data from Front at beckend: ', data)

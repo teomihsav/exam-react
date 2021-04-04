@@ -1,23 +1,23 @@
 
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import jwt_decode from 'jwt-decode';
+
+import setAuthToken from './utils/setAuthToken';
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
 import Logout from './components/Auth/Logout'
-import About from './components/About'
 import Articles from './components/Articles/Articles'
-import ClientHome from './components/ClientHome'
-import JobHome from './components/JobHome'
 import Profile from './components/Profiles/Profile'
 import JobQuiz from './components/Quizes/JobQuiz'
-import JobsFront from './components/JobsFront'
 import ClientQuiz from './components/Quizes/ClientQuiz'
 import SingleArticle from './components/Articles/SingleArticle'
-import TestSlide from './components/Quizes/TestSlide'
-import { useState, useEffect } from 'react'
-import jwt_decode from 'jwt-decode';
+import About from './components/StaticPages/About'
+import Footer from './components/StaticPages/Footer'
+import ClientHome from './components/StaticPages/ClientHome'
+import JobHome from './components/StaticPages/JobHome'
 
 function App() {
 
@@ -30,6 +30,7 @@ function App() {
 
     if (localStorage.getItem('jwtToken')) {
       const token = localStorage.getItem('jwtToken')
+      setAuthToken(token);
       const decoded = jwt_decode(token)
       console.log('Decoded user: ', decoded.name)
       setLogged(decoded.name)
@@ -53,15 +54,15 @@ function App() {
 
           <Route
             path='/' exact
-            component={() => < ClientHome />}
-          />
-          <Route
-            path='/start' exact
-            component={() => <ClientQuiz user={logged} />}
+            component={() => <ClientHome user={logged} />}
           />
           <Route
             path='/jobs' exact
             component={() => <JobHome user={logged} />}
+          />
+          <Route
+            path='/start' exact
+            component={() => <ClientQuiz user={logged} />}
           />
           <Route
             path='/startjobs' exact
@@ -94,20 +95,15 @@ function App() {
             component={Articles}
           />
 
-          <Route exact
-            path='/about'
-            component={About}
+          <Route
+            path='/about' exact
+            component={() => <About user={logged} />}
           />
 
         </div>
 
-        <div>
-          {!logged && <JobsFront />}
-        </div>
-
         <div className="footer">
           <Footer data={'Всички права запазени'} />
-
         </div>
 
       </div>

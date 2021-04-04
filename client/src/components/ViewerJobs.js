@@ -40,10 +40,12 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, email
                 </div>
 
                 <div className='control-out-border-in'>
-                    {username}:
-                    <hr />
+                    
+                    <h4 style={{ borderBottom: '2px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >{username}</h4>
+                    <br />
 
-                    Specialized at: {' '}<br /><br />
+                    <h4 style={{ borderBottom: '1px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >Specialized at:</h4>
+                    <br />
                     <li>{jobOne}</li>
                     <li>{jobTwo}</li>
                     <li>{jobThree}</li>

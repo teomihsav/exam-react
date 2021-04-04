@@ -125,10 +125,8 @@ const Clients = ({ data }) => {
                                         <br />
                                         <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Walk during the day:</h4>
                                         <li> {data.one} </li>
-                                        <br />
                                         <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Streaching during the day:</h4>
                                         <li> {data.two} </li>
-                                        <br />
                                         <h4 style={{ borderBottom: '2px solid #ffae00', display: 'inline-block', marginBottom: '10px' }} >Active sports like cicling, hicking, body bulid etc:</h4>
                                         <li> {data.three} </li>
 
@@ -146,11 +144,16 @@ const Clients = ({ data }) => {
                         <br />
 
                         <div>
-                                <h4 style={{ borderBottom: '3px solid #ffae00', display: 'inline-block', marginBottom: '5px', marginLeft: '70px' }} >
+
+                                <Suspense fallback={renderLoader()}>
+                                        <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} emailClient={data.client.email} />
+                                </Suspense>
+
+                                <h4 style={{ borderBottom: '3px solid #ffae00', display: 'inline-block', marginBottom: '5px', marginLeft: '70px', marginTop: '10px' }} >
                                         On map you can see your mached instructors location
                                 </h4>
+
                                 <div className='control-out-border-client-map'>
-                                
                                         <Suspense fallback={renderLoader()}>
                                                 <MapContainerFromDBCoords coordsData={coordsData} />
                                         </Suspense>
@@ -159,9 +162,7 @@ const Clients = ({ data }) => {
                         </div>
                         <br />
 
-                        <Suspense fallback={renderLoader()}>
-                                <JobsFrontChoosen key={data.username} arr={dataJobsChoosen} emailClient={data.client.email} />
-                        </Suspense>
+
                 </div>
         )
 }
