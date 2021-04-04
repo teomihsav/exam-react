@@ -2,4 +2,8 @@
 
 App description:
 
-The app purpose is to give customers ability to choose an instructor who can help then to star their sporty life.
+The app purpose is to give customers ability to choose an instructor who can help them to start their sport life by given answers from them.
+
+
+
+
