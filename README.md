@@ -11,7 +11,7 @@ App description:
     
     Navigation from menu:
     
-        If you enter from "Home" page you will register as client, if you enter from "Jobs" you will register as instructor with type of user saved in the "client" collection 
+        If you enter from "Home" page you will register as client, if you enter from "Jobs" you will register as instructor with type of user saved in the "clients" collection 
 
         After answering the questions you will be redirected to "Register" page (in both types client or instructor). 
 
