@@ -64,7 +64,7 @@ const SubmitArticle = ({ setReload }) => {
                 }
             })
     }
-    const dots = <div class="col-sm-2"><div id="dots2"><span></span><span></span><span></span><span></span></div></div>
+    const dots = <div className="col-sm-2"><div id="dots2"><span></span><span></span><span></span><span></span></div></div>
     const text = <div className='center-text-jobs'>{loading ? dots : status.info}</div>
 
     return (
