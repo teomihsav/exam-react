@@ -1,7 +1,7 @@
 
 
 import { useState, useEffect } from 'react'
-import { saveJobsAswers, takeJobsAnswersToEdit } from '../../actions/jobAction'
+import { saveJobsAswers, takeJobsAnswersToEdit, takeCoordsIfDbHas } from '../../actions/jobAction'
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 import { useHistory } from "react-router-dom"
 import MapContainer from '../GoogleMap/MapContainer'
@@ -37,7 +37,7 @@ const JobQuiz = ({ user }) => {
             console.log('Coords: ', history.location.state.coords)
         }
     }
-console.log( coordsFromForm)
+    console.log(coordsFromForm)
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
     const [coords, setCoords] = useState({ ...coordsFromForm })
@@ -63,6 +63,11 @@ console.log( coordsFromForm)
     const onValueChange = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value })) // console.log('After value set: ', values)
     }
+
+    // takeCoordsIfDbHas()
+    //     .then(coords => {
+    //         console.log(coords)
+    //     }).catch(err => console.log(err))
 
     const formSubmit = (e) => {
         e.preventDefault()
@@ -224,7 +229,7 @@ console.log( coordsFromForm)
 
                 <button className="btn btn-block" type="submit">
                     Submit
-                    </button>
+                </button>
             </form>
 
         </div>

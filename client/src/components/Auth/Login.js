@@ -5,8 +5,12 @@ import { loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationLogin'
 import { useHistory } from "react-router-dom"
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import store from '../../store'
 
-const Login = ({ isLogged, state }) => {
+const Login = ({ auth, isLogged, stat }) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
@@ -14,14 +18,14 @@ const Login = ({ isLogged, state }) => {
 
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
-    // On "logged" state changed to token id --> redirect  
+    // On "logged" stat changed to token id --> redirect  
     useEffect(() => {
-        state && history.push("/profile")
-    }, [state])
+        stat && history.push("/profile")
+    }, [stat])
 
 
     const validForm = (e) => {
-        setValues(values => ({ ...values, [e.target.name]: e.target.value }));
+        setValues(values => ({ ...values, [e.target.name]: e.target.value }))
     }
     // SUBMIT FORM <---
     const onSubmit = (e) => {
@@ -34,16 +38,16 @@ const Login = ({ isLogged, state }) => {
         if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
 
             loginUser({ values, setErrors, isLogged })
-            console.log('State in Login : ', state)
+            // console.log('State in Login : ', state)
         }
     }
 
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     });
-
+    // let state = store.getState()
     return (
-        <div style={{margin: '50px'}}>
+        <div style={{ margin: '50px' }}>
             <form className='add-form' onSubmit={onSubmit} >
                 <div className='form-control-out-border'>
                     <div className='form-control'>
@@ -74,12 +78,25 @@ const Login = ({ isLogged, state }) => {
                         <span className='error'>{errors.password}</span>
                     </div>
                 </div>
-
+                {
+                    auth.user
+                }
                 <input type='submit' value='Login' className='btn btn-block' />
             </form>
         </div>
     )
 }
 
-export default Login
+Login.propType = {
+    loginUser: PropTypes.func.isRequired,
+    clearErrorsState: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(Login)
 

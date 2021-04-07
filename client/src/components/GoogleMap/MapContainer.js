@@ -14,7 +14,7 @@ export const MapContainer = ({ setCoords }) => {
             lng: Number(position.coords.longitude)
         }
         setCurrentPosition(currentPosition);
-    };
+    }
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(success);

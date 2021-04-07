@@ -20,6 +20,8 @@ import About from './components/StaticPages/About'
 import Footer from './components/StaticPages/Footer'
 import ClientHome from './components/StaticPages/ClientHome'
 import JobHome from './components/StaticPages/JobHome'
+import { test } from './actions/authAction'
+import { TEST_DISPATCH } from './actions/types'
 
 const App = () => {
 
@@ -45,6 +47,13 @@ const App = () => {
       setLogged(false)
     }
   }, [logged])
+
+  // store.dispatch({
+  //   type: TEST_DISPATCH,
+  //   isAuthenticated: true,
+  //   payload: 'test'
+  // })
+  console.log(store.getState())
 
   return (
     <Provider store={store}>
@@ -82,7 +91,7 @@ const App = () => {
 
             <Route
               path='/login' exact
-              component={() => <Login isLogged={setLogged} state={logged} />}
+              component={() => <Login isLogged={setLogged} stat={logged} />}
             />
 
             <Route

@@ -154,15 +154,10 @@ const Clients = ({ data }) => {
                                 </h4>
 
                                 <div className='control-out-border-client-map'>
-                                        <Suspense fallback={renderLoader()}>
-                                                <MapContainerFromDBCoords coordsData={coordsData} />
-                                        </Suspense>
-
+                                        <MapContainerFromDBCoords coordsData={coordsData} />
                                 </div>
                         </div>
                         <br />
-
-
                 </div>
         )
 }

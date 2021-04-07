@@ -1,18 +1,19 @@
 
 
 
-import { TEST_DISPATCH} from '../actions/types'
+import { TEST_DISPATCH } from '../actions/types'
 
 const initialState = {
     isAuthenticated: false,
-    user: {}
+    user: 'TestUser'
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case TEST_DISPATCH:
             return {
-                ...state, 
+                ...state,
+                isAuthenticated: action.payAuth,
                 user: action.payload
             }
         default:

@@ -20,7 +20,7 @@ router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }),
         return res.status(400).json(errors);
     } else {
 
-        console.log('Response: ', req.body)
+        // console.log('Response: ', req.body)
 
         let profileJobAnswers = {}
         profileJobAnswers.client = req.user.id
@@ -47,7 +47,7 @@ router.post('/saveJobsAswers', passport.authenticate('jwt', { session: false }),
                     new ProfileJob(profileJobAnswers)
                         .save()
                         .then(profile => res.json(profile));
-                    console.log('After user auth: ', profile)
+                    // console.log('After user auth: ', profile)
                 }
             })
     }
@@ -61,7 +61,7 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
     //     return res.status(400).json(errors);
     // } else {
 
-    console.log('Response takeAnswers', req.user.id)
+    // console.log('Response takeAnswers', req.user.id)
 
     let profileAnswers = {}
 
@@ -82,7 +82,7 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
 
 router.get('/takeJobsToFront', (req, res) => {
 
-    console.log('Response takeJobsToFront')
+    // console.log('Response takeJobsToFront')
 
     ProfileJob.find()
         .then(profile => {
@@ -176,7 +176,7 @@ router.post('/takeJobsUserArticles', (req, res) => {
 
     ProfileJob.find({ client: req.body.id })
         .then(profile => {
-            console.log('Api takeJobsUserArticles:', profile)
+            // console.log('Api takeJobsUserArticles:', profile)
             return res.status(200).json(profile)
         })
         .catch(err => {
@@ -203,7 +203,7 @@ router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (r
     ProfileJob.findOne({ 'client': req.user.id, 'articles._id': articleID })
         .then(profile => {
             // res.json(profile)
-            console.log('Articles after having a profile: ', profile)
+            // console.log('Articles after having a profile: ', profile)
             if (profile) {
                 ProfileJob.updateOne(
                     { client: req.user.id, 'articles._id': articleID },
@@ -218,7 +218,7 @@ router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (r
                     })
             }
             else {
-                console.log('Articles before save: ', articles)
+                // console.log('Articles before save: ', articles)
                 ProfileJob.findOne({ client: req.user.id })
                     .then(profile => {
                         if (profile)
@@ -231,12 +231,12 @@ router.post('/saveArticle', passport.authenticate('jwt', { session: false }), (r
 
 router.post('/loadArticleForEdit', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-    console.log('loadArticleForEdit data: ', req.body.id)
-    console.log('Logged user ID data: ', req.user.id)
+    // console.log('loadArticleForEdit data: ', req.body.id)
+    // console.log('Logged user ID data: ', req.user.id)
 
     ProfileJob.find({ client: req.user.id }, { articles: { $elemMatch: { _id: req.body.id } } })
         .then(profile => {
-            console.log('Api loadArticleForEdit:', profile)
+            // console.log('Api loadArticleForEdit:', profile)
             return res.status(200).json(profile)
         })
         .catch(err => {
@@ -255,6 +255,16 @@ router.delete('/delArticleAction/:id', passport.authenticate('jwt', { session: f
         profile.save().then(profile => res.json(profile));
     })
         .catch(err => res.status(404).json(err));
-});
+})
+
+router.get('/takeCoordsIfDbHas/', passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    console.log('User data: ', req.user._id)
+    ProfileJob.findOne({ client: req.user.id})
+        .then(profile => {
+            console.log(profile.lat)
+        })
+        .catch(err => res.status(404).json(err));
+})
 
 module.exports = router

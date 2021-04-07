@@ -3,6 +3,7 @@
 
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
+import { TEST_DISPATCH } from './types'
 
 const isExpired = () => {
 
@@ -46,6 +47,10 @@ const takeJobsAnswersToProfile = ({ setData }) => {
             // console.log('Response Status Profile Answers: ', res.data)
             if (res.status === 200) {
                 setData(res.data)
+                // dispatch({
+                //     user: TEST_DISPATCH,
+                //     payload: res.data
+                // })
             }
         })
         .catch(err => {
@@ -94,6 +99,10 @@ const takeJobsUserArticles = (id) => {
 const delArticleAction = (id) => {
     return axios.delete(`http://localhost:5000/jobProfile/delArticleAction/${id}`)
 }
+const takeCoordsIfDbHas = () => {
+    return axios.get(`http://localhost:5000/jobProfile/takeCoordsIfDbHas/`)
+}
+
 export {
     saveJobsAswers,
     takeJobsAnswersToProfile,
@@ -106,5 +115,6 @@ export {
     loadArticleForEdit,
     takeJobsUserArticles,
     delArticleAction,
+    takeCoordsIfDbHas,
     isExpired
 }

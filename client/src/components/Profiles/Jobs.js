@@ -28,7 +28,6 @@ const Jobs = ({ id, data }) => {
                                 </div>
                                 <br />
                                 <br />
-                                
                                 <div>
                                         <h4 style={{ borderBottom: '2px solid rgba(56, 151, 1, 0.925)', display: 'inline-block', marginBottom: '10px' }} >Dear {data.username}, your answers are:</h4>
                                         <br />
@@ -46,7 +45,6 @@ const Jobs = ({ id, data }) => {
                                         <li>{data.three}</li>
                                         <br />
                                         <br />
-
                                 </div>
                                 <Link className='text-logo-link'
                                         to={{
