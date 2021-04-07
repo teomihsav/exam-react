@@ -10,6 +10,8 @@ import SubmitArticle from '../Articles/SubmitArticle'
 const Jobs = ({ id, data }) => {
 
         const [reload, setReload] = useState({})
+        
+        let key = Math.floor(Math.random() * 5000)
 
         return (
                 <div className='row-single-job-profile'>
@@ -18,7 +20,7 @@ const Jobs = ({ id, data }) => {
                                 <SubmitArticle setReload={setReload} reload={reload} />
 
                                 <div className='column-jobs-article'>
-                                        <MyArticles id={id} reload={reload} />
+                                        <MyArticles key={key} id={id} reload={reload} />
                                 </div>
                         </div>
 

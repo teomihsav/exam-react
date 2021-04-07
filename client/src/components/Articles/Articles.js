@@ -52,10 +52,11 @@ const Articles = () => {
                     <div className="card-articles card-header card-footer">
                         {(Object.keys(data).length > 0)
                             &&
-                            data.map(el =>
+                            data.map((el, index) =>
                                 <div className="card-mid">
                                     <Link className='text-logo-link'
                                         to={{
+                                            key: index,
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,
@@ -81,10 +82,11 @@ const Articles = () => {
                         <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Eating the right piece of the world  </h2>
                         {(Object.keys(catHealthy).length > 0)
                             &&
-                            catHealthy.map(el =>
+                            catHealthy.map((el, index) =>
                                 <div className="card-mid-left">
                                     <Link className='text-logo-link'
                                         to={{
+                                            key: index,
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,

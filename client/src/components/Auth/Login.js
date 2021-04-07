@@ -5,10 +5,8 @@ import { loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationLogin'
 import { useHistory } from "react-router-dom"
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import store from '../../store'
 
 const Login = ({ auth, isLogged, stat }) => {
 
@@ -79,7 +77,7 @@ const Login = ({ auth, isLogged, stat }) => {
                     </div>
                 </div>
                 {
-                    auth.user
+                    // auth.user
                 }
                 <input type='submit' value='Login' className='btn btn-block' />
             </form>

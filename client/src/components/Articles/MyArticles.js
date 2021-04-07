@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import SingleArticle from './SingleArticle'
 import { useHistory } from 'react-router-dom';
 
-const MyArticles = ({ id, reload }) => {
+const MyArticles = ({ key, id, reload }) => {
 
     let history = useHistory()
 
@@ -53,12 +53,13 @@ const MyArticles = ({ id, reload }) => {
                     <div className="card-my-articles card-header card-footer">
                         {(Object.keys(data).length > 0)
                             &&
-                            data.map(el =>
+                            data.map((el, index) =>
                                 <div className="card-mid-my-article">
                                     <div className='row-my-articles'>
                                         <div className='column-button-my-article'>
                                             <Link className='text-logo-link'
                                                 to={{
+                                                    key: index,
                                                     pathname: "/singlearticle",
                                                     myProps: {
                                                         title: el.title,

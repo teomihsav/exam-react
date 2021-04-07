@@ -20,8 +20,6 @@ import About from './components/StaticPages/About'
 import Footer from './components/StaticPages/Footer'
 import ClientHome from './components/StaticPages/ClientHome'
 import JobHome from './components/StaticPages/JobHome'
-import { test } from './actions/authAction'
-import { TEST_DISPATCH } from './actions/types'
 
 const App = () => {
 
