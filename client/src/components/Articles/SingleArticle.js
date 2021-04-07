@@ -12,7 +12,7 @@ const SingleArticle = ({  }) => {
         window.scrollTo(0, 0)
     })
     
-    console.log(history.location.myProps)
+    console.log(history)
 
     return (
         <div className='about-articles'>
@@ -25,7 +25,7 @@ const SingleArticle = ({  }) => {
             </div>
             <br />
 
-            { history.location.myProps.goBack === 'articles' ? <Link to='/articles'>Back</Link> : <Link to='/profile'>Back</Link>}
+            { history.location.myProps && history.location.myProps.goBack === 'articles' ? <Link to='/articles'>Back</Link> : <Link to='/profile'>Back</Link>}
         </div >
     )
 }

@@ -2,7 +2,7 @@
 
 import { Link } from 'react-router-dom'
 import '../CSS/JobsProfile.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import MyArticles from '../Articles/MyArticles'
 import SubmitArticle from '../Articles/SubmitArticle'
 
