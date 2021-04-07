@@ -3,10 +3,9 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 import './index.css'
 import { takeJobsUserArticles, delArticleAction } from '../../actions/jobAction'
 import { Link } from 'react-router-dom'
-import SingleArticle from './SingleArticle'
 import { useHistory } from 'react-router-dom';
 
-const MyArticles = ({ key, id, reload }) => {
+const MyArticles = ({ id, reload }) => {
 
     let history = useHistory()
 
@@ -54,12 +53,11 @@ const MyArticles = ({ key, id, reload }) => {
                         {(Object.keys(data).length > 0)
                             &&
                             data.map((el, index) =>
-                                <div className="card-mid-my-article">
+                                <div  key={ Math.random().toString(36).substr(2, 9) } className="card-mid-my-article">
                                     <div className='row-my-articles'>
                                         <div className='column-button-my-article'>
                                             <Link className='text-logo-link'
                                                 to={{
-                                                    key: index,
                                                     pathname: "/singlearticle",
                                                     myProps: {
                                                         title: el.title,

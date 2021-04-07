@@ -47,16 +47,15 @@ const Articles = () => {
     return (
         <div>
             <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Last articles </h2>
-            <div className='row-articles'>
+            <div  className='row-articles'>
                 <div className='about-articles'>
                     <div className="card-articles card-header card-footer">
                         {(Object.keys(data).length > 0)
                             &&
-                            data.map((el, index) =>
-                                <div className="card-mid">
+                            data.map(el =>
+                                <div key={ Math.random().toString(36).substr(2, 9) }  className="card-mid">
                                     <Link className='text-logo-link'
                                         to={{
-                                            key: index,
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,
@@ -82,11 +81,10 @@ const Articles = () => {
                         <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block' }}> Eating the right piece of the world  </h2>
                         {(Object.keys(catHealthy).length > 0)
                             &&
-                            catHealthy.map((el, index) =>
-                                <div className="card-mid-left">
+                            catHealthy.map(el =>
+                                <div key={ Math.random().toString(36).substr(2, 9) }  className="card-mid-left">
                                     <Link className='text-logo-link'
                                         to={{
-                                            key: index,
                                             pathname: "/singlearticle",
                                             myProps: {
                                                 title: el.title,
@@ -108,7 +106,7 @@ const Articles = () => {
                         {(Object.keys(catExerc).length > 0)
                             &&
                             catExerc.map(el =>
-                                <div className="card-mid-right">
+                                <div key={ Math.random().toString(36).substr(2, 9) }  className="card-mid-right">
                                     <Link className='text-logo-link'
                                         to={{
                                             pathname: "/singlearticle",

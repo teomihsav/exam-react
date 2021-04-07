@@ -51,7 +51,7 @@ const Header = ({ user, setLogged, state }) => {
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className='navbar-logo'>
-                   { state ? <Link className='text-logo'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
+                   { state ? <Link className='text-logo' to='null'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
                 </h1>
                 <div className="menu-icon" >
                 </div>
