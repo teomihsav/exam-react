@@ -32,7 +32,7 @@ const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, email
     }, [])
 
     return (
-        <div className="column">
+        <div  className="column">
             <div className='control-out-border-front'>
 
                 <div className="card">
