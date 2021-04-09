@@ -3,7 +3,6 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 import './index.css'
 import { takeAllArticles } from '../../actions/jobAction'
 import { Link } from 'react-router-dom'
-import SingleArticle from './SingleArticle'
 
 const Articles = () => {
 

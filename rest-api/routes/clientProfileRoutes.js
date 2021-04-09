@@ -2,9 +2,7 @@
 const express = require('express')
 const router = express.Router();
 const passport = require('passport')
-const bcrypt = require('bcrypt')
 const ProfileClient = require('../models/ProfileClient')
-const Client = require('../models/Client')
 const apiValidateClientAnswers = require('../validationApi/apiValidateClientAnswers')
 
 const errors = {}
@@ -14,7 +12,7 @@ router.post('/answers', passport.authenticate('jwt', { session: false }), (req, 
     const { errors } = apiValidateClientAnswers(req.body)
 
     if (Object.keys(errors).length > 0) {
-        return res.status(400).json(errors);
+        return res.status(400).json(errors)
     } else {
 
         console.log('Response: ', req.user.id)

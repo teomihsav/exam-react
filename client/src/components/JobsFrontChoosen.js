@@ -1,7 +1,7 @@
 
 
 
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import './CSS/JobDisplayOnFront.css'
 import ViewerJobs from './ViewerJobs'
 

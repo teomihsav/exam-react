@@ -17,12 +17,13 @@ const SubmitArticle = ({ setReload }) => {
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     });
-
- history.location.myProps && console.log(history.location.myProps)
+    let articleId
+    history.location.myProps && console.log(history.location.myProps)
+    history.location.myProps && (articleId = history.location.myProps)
 
     useEffect(() => {
-        if (history.location.myProps) {
-            loadArticleForEdit(history.location.myProps && history.location.myProps) // Takes id: 'some id' from history, sent by MyArticle comp. with Link
+        if (articleId) {
+            loadArticleForEdit(articleId) // Takes id: 'id of edited article' from history, sent by MyArticle comp. with Link through history.location.myProps
                 .then(profile => {
                     setValues(profile.data[0].articles[0]) // Data from choosen array/articel // console.log('loadArticleForEdit from Jobs ', profile.data[0].articles[0])
                 })
@@ -33,7 +34,7 @@ const SubmitArticle = ({ setReload }) => {
                     }
                 })
         }
-    }, [history.location.myProps])
+    }, [articleId])
 
     const validForm = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value }))

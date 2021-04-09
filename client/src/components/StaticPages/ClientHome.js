@@ -6,8 +6,6 @@ import { connect } from 'react-redux'
 
 const ClientHome = (props) => {
 
-    const errors = {}
-
     console.log('Client Home: ', props.auth)
 
     return (
@@ -37,7 +35,7 @@ const ClientHome = (props) => {
             </div>
 
             <div style={{ margin: '30px' }}>
-                {!props.auth.user && <JobsFront />}
+                {!props.auth.isAuthenticated && <JobsFront />}
             </div>
         </div>
     )

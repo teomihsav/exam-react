@@ -40,7 +40,7 @@ const Email = ({ setOn, isOn, emailJob, emailClient }) => {
         }
         setErrors({ ...errors })
 
-    }, [values.subject, values.message])
+    }, [values.subject, values.message, errors])
 
     const validForm = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value }));

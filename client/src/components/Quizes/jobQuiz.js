@@ -8,7 +8,7 @@ import MapContainer from '../GoogleMap/MapContainer'
 
 import { connect } from 'react-redux'
 
-const Media = ({ onChange, values, errors }) => {
+const Media = ({ onChange, values }) => {
     return (
         <div className='form-control'>
             <label >Image of you</label>
@@ -79,7 +79,7 @@ const JobQuiz = (props) => {
         setErrors({ ...errors })
 
         if (!isEmpty(errors).includes(true)) {
-            if (props.auth.user) {
+            if (props.auth.isAuthenticated) {
                 saveJobsAswers({ values, coords, setErrors })
                 console.log('From ...', errors)
             } else {

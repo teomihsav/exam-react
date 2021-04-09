@@ -1,14 +1,17 @@
 
 
-import { React } from 'react'
 import { takeClientAnswersToProfile } from '../../actions/clientAction'
 import { takeJobsAnswersToProfile } from '../../actions/jobAction'
 import { useState, useEffect } from 'react'
 import Clients from './Clients'
 import Jobs from './Jobs'
+import { connect } from 'react-redux'
 
-const Profile = ({ id, typeUser }) => {
-
+const Profile = (props) => {
+    console.log('Props: ', props)
+    const typeUser = props.auth.typeUser
+    const id = props.auth.id
+    
     const [data, setData] = useState({})
 
     useEffect(() => {
@@ -28,12 +31,15 @@ const Profile = ({ id, typeUser }) => {
             {
                 (Object.keys(data).length > 0)
                 &&
-                (typeUser === 'clients') && <Clients data={data}/>
+                (typeUser === 'clients') && <Clients data={data} />
                 ||
-                (typeUser === 'jobs') && <Jobs id={id} data={data}/>
+                (typeUser === 'jobs') && <Jobs id={id} data={data} />
             }
         </div>
     )
 }
-
-export default Profile
+const setMapToProps = (state) => ({
+    auth: state.auth
+})
+export default connect(setMapToProps)(Profile)
+// export default Profile

@@ -7,8 +7,6 @@ import {connect} from 'react-redux'
 
 const JobHome = (props) => {
 
-    const errors = {}
-
     return (
         <div className='form-control-out-border-home'>
             <div style={{ borderBottom: '3px solid rgba(107, 185, 62, 0.925)', display: 'inline-block', fontSize: '38px', fontWeight: 'bold' }}>
@@ -36,7 +34,7 @@ const JobHome = (props) => {
             </div>
 
             <div style={{ margin: '30px' }}>
-                {!props.auth.user && <JobsFront />}
+                {!props.auth.isAuthenticated && <JobsFront />}
             </div>
         </div>
     )

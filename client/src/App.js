@@ -1,12 +1,11 @@
 
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { useEffect } from 'react'
+
 import { Provider } from 'react-redux'
 import store from './store'
-import { TEST_DISPATCH } from './actions/types'
+import { refresh } from './utils/refresh'
 
 import Header from './components/Header'
 import Register from './components/Auth/Register'
@@ -21,37 +20,12 @@ import About from './components/StaticPages/About'
 import Footer from './components/StaticPages/Footer'
 import ClientHome from './components/StaticPages/ClientHome'
 import JobHome from './components/StaticPages/JobHome'
+import NoPage from './components/StaticPages/NoPage'
 
-const App = (props) => {
+const App = () => {
 
-  const [logged, setLogged] = useState(false)
-  const [typeUser, setTypeUser] = useState()
-  const [id, setId] = useState()
-
-  // After refresh -> F5 check for token and overright the state setLogged
   useEffect(() => {
-
-    if (localStorage.getItem('jwtToken')) {
-      const token = localStorage.getItem('jwtToken')
-      setAuthToken(token);
-      const decoded = jwt_decode(token)
-      console.log('Decoded user: ', decoded.name)
-      store.dispatch({
-        type: TEST_DISPATCH,
-        payAuth: true,
-        payUser: decoded.name,
-        payId: decoded.id,
-        payType: decoded.typeUser
-      })
-
-      // setLogged(decoded.name)
-      setTypeUser(decoded.typeUser)
-      setId(decoded.id)
-
-    } else {
-      localStorage.removeItem('jwtToken')
-      // setLogged(false)
-    }
+    refresh()
   }, [])
 
   return (
@@ -63,62 +37,30 @@ const App = (props) => {
 
           <div className="container">
 
-            <Route
-              path='/' exact
-              component={() => <ClientHome />}
-            />
-            <Route
-              path='/jobs' exact
-              component={() => <JobHome />}
-            />
-            <Route
-              path='/start' exact
-              component={() => <ClientQuiz />}
-            />
-            <Route
-              path='/startjobs' exact
-              component={() => <JobQuiz />}
-            />
-            <Route
-              path='/profile' exact
-              component={() => <Profile id={id} typeUser={typeUser}/>}
-            />
-            <Route
-              path='/register' exact
-              component={() => <Register />}
-            />
+            <Switch>
 
-            <Route
-              path='/login' exact
-              component={() => <Login />}
-            />
+              <Route path='/' exact component={ClientHome} />
+              <Route path='/jobs' exact component={JobHome} />
+              <Route path='/start' exact component={ClientQuiz} />
+              <Route path='/startjobs' exact component={JobQuiz} />
+              <Route path='/profile' exact component={Profile} />
+              <Route path='/register' exact component={Register} />
+              <Route path='/login' exact component={Login} />
+              <Route path='/logout' exact component={Logout} />
+              <Route path='/singlearticle' exact component={SingleArticle} />
+              <Route path='/articles' exact component={Articles} />
+              <Route path='/about' exact component={About} />
+              <Route exact component={NoPage} />
 
-            <Route
-              path='/logout' exact
-              component={() => <Logout />}
-            />
-            <Route
-              path='/singlearticle' exact
-              component={() => <SingleArticle user={logged} />}
-            />
-            <Route exact
-              path='/articles'
-              component={Articles}
-            />
+            </Switch>
 
-            <Route
-              path='/about' exact
-              component={() => <About user={logged} />}
-            />
+            <div className="footer">
+              <Footer data={'Всички права запазени'} />
+            </div>
 
-          </div>
-
-          <div className="footer">
-            <Footer data={'Всички права запазени'} />
           </div>
 
         </div>
-
       </Router>
     </Provider>
   )

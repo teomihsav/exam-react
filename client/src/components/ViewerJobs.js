@@ -8,7 +8,6 @@ import Email from './popUpCard/Email'
 
 const ViewerJobs = ({ username, jobOne, jobTwo, jobThree, image, emailJob, emailClient, location }) => {
 
-    const [visible, setVisible] = useState(false)
     const [isOn, setOn] = useState(false); // toggles dropdown visibility
     const [coordsLocal, setCoordsLocal] = useState({}); // takes current button coordinates
     const [email, setEmail] = useState(); // takes current button coordinates

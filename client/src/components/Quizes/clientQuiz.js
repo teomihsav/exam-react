@@ -5,7 +5,7 @@ import { saveClientAnswers, takeClientsAnswersToEdit } from '../../actions/clien
 import { useHistory } from "react-router-dom"
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 const ClientQuiz = (props) => {
 
@@ -22,13 +22,17 @@ const ClientQuiz = (props) => {
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
 
+    console.log('From ClientQuiz: ', values)
+
     let typeUser = 'clients'
 
     let radioChoices = []
 
     useEffect(() => {
-        if (history.location.myProps.title === 'Editing this answers will change chosen instructors for you') {
-            takeClientsAnswersToEdit({ setValues })
+        if (history.location.myProps) {
+            if (history.location.myProps.title === 'Editing this answers will change chosen instructors for you') {
+                takeClientsAnswersToEdit({ setValues })
+            }
         }
     }, [])
 
@@ -56,7 +60,7 @@ const ClientQuiz = (props) => {
         console.log(errors)
 
         if (!isEmpty(errors).includes(true)) {
-            if (props.auth.user) {
+            if (props.auth.isAuthenticated) {
                 saveClientAnswers({ values, setErrors })
                 console.log('From ...', errors)
             } else {
@@ -73,7 +77,7 @@ const ClientQuiz = (props) => {
 
     return (
         <div>
-            <h1>{history.location.myProps.title}</h1>
+            <h1>{history.location.myProps && history.location.myProps.title}</h1>
             <form className='add-form' onSubmit={formSubmit}>
                 <div className='row-profiles'>
                     <div className="column-profile">

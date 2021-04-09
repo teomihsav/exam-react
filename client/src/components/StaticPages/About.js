@@ -4,8 +4,8 @@ import JobsFront from '../JobsFront'
 
 import './About.css'
 
-const About = ({ user }) => {
-
+const About = (props) => {
+console.log(props)
     useLayoutEffect(() => {
         window.scrollTo(0, 0)
     });

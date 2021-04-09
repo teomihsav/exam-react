@@ -8,7 +8,6 @@ import { connect } from 'react-redux'
 const Header = (props) => {
 
     const user = props.auth.user
-    const logged = props.auth.isAuthenticated
 
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState()
@@ -43,12 +42,9 @@ const Header = (props) => {
 
     // isExpired() && setLogged(false) // console.log(clicked)
 
-    let link
-
-    if (logged) {
+    if (props.auth.isAuthenticated) {
         menu.splice(0, 3, { id: 3, text: 'Logout', user, path: 'logout' }, { id: 4, text: 'Profile', path: 'profile' })
-        link = ''
-    } else { }
+    }
 
     return (
         <div>

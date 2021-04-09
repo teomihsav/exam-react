@@ -3,11 +3,8 @@ import { useState, useEffect, useLayoutEffect } from 'react'
 import './index.css'
 import { takeJobsUserArticles, delArticleAction } from '../../actions/jobAction'
 import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
 
 const MyArticles = ({ id, reload }) => {
-
-    let history = useHistory()
 
     const [data, setData] = useState({})
     const [articleDeleted, setArticleDeleted] = useState({})

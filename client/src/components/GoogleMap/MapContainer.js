@@ -1,7 +1,7 @@
 
 
 
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useState, useEffect } from 'react'
 
 export const MapContainer = ({ setCoords }) => {
@@ -25,9 +25,6 @@ export const MapContainer = ({ setCoords }) => {
         width: "100%"
     }
 
-    const defaultCenter = {
-        lat: 41.3851, lng: 2.1734
-    }
     const onMarkerDragEnd = (e) => {
         const lat = e.latLng.lat();
         const lng = e.latLng.lng();

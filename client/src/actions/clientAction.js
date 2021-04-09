@@ -16,7 +16,7 @@ const isExpired = () => {
         if (decoded.exp < Math.round(dateNow.getTime() / 1000)) {
             console.log('From Header -> Session expired!')
             localStorage.removeItem('jwtToken')
-            return isExpired = true
+            isExpired = true
         }
     }
 }

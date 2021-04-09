@@ -51,5 +51,5 @@ export const useEffectValidationOnEvent = ({ ...values }, setErrors) => {
 
         setErrors(errors) // Setting object with errors to state errors 
 
-    }, [values.username, values.email, values.password, values.passwordSecond])
+    }, [values.username, values.email, values.password, values.passwordSecond, setErrors])
 }

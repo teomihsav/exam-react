@@ -25,16 +25,15 @@ const loginUser = ({ values, setErrors }) => dispatch => {
     axios.post('http://localhost:5000/auth/login', values)
         .then(res => {
             console.log(values)
-            console.log('Dispatch: ', dispatch)
             // Save to LocalStorage
             const { token } = res.data;
             if (token !== 'undefined') {
                 // Set token to LocalStorage
-                localStorage.setItem('jwtToken', token);
+                localStorage.setItem('jwtToken', token)
                 // Set token to Auth header
-                setAuthToken(token);
+                setAuthToken(token)
                 // Decode token to get user data
-                const decoded = jwt_decode(token);
+                const decoded = jwt_decode(token)
                 // isLogged(decoded.name)
 
                 dispatch({
@@ -43,6 +42,7 @@ const loginUser = ({ values, setErrors }) => dispatch => {
                     payUser: decoded.name,
                     payId: decoded.id,
                     payType: decoded.typeUser
+
                 })
             }
         })
@@ -53,7 +53,6 @@ const loginUser = ({ values, setErrors }) => dispatch => {
             }
         })
 }
-
 
 const logoutUser = ({ isLogged }) => {
     // Remove token from localStorage
