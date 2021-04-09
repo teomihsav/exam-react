@@ -52,6 +52,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 
+    console.log(req.body)
     const { errors } = apiValidateLogin(req.body);   
 
     if (Object.keys(errors).length > 0) {                          

@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/validationCommon'
 import './index.css'
 
-const styles = {
-    card: { padding: 50, maxWidth: 800, margin: "0 auto 300px" },
-    button: { display: "flex", marginLeft: "auto" }
-};
+// const styles = {
+//     card: { padding: 50, maxWidth: 800, margin: "0 auto 300px" },
+//     button: { display: "flex", marginLeft: "auto" }
+// };
 
 const Email = ({ setOn, isOn, emailJob, emailClient }) => {
 

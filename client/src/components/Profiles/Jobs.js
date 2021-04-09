@@ -10,7 +10,7 @@ import SubmitArticle from '../Articles/SubmitArticle'
 const Jobs = ({ id, data }) => {
 
         const [reload, setReload] = useState({})
-
+console.log('ID from Jobs: ', id)
         return (
                 <div className='row-single-job-profile'>
                         <div className=''>

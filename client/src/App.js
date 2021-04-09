@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { Provider } from 'react-redux'
 import store from './store'
+import { TEST_DISPATCH } from './actions/types'
 
 import Header from './components/Header'
 import Register from './components/Auth/Register'
@@ -21,7 +22,7 @@ import Footer from './components/StaticPages/Footer'
 import ClientHome from './components/StaticPages/ClientHome'
 import JobHome from './components/StaticPages/JobHome'
 
-const App = () => {
+const App = (props) => {
 
   const [logged, setLogged] = useState(false)
   const [typeUser, setTypeUser] = useState()
@@ -35,66 +36,66 @@ const App = () => {
       setAuthToken(token);
       const decoded = jwt_decode(token)
       console.log('Decoded user: ', decoded.name)
-      setLogged(decoded.name)
+      store.dispatch({
+        type: TEST_DISPATCH,
+        payAuth: true,
+        payUser: decoded.name,
+        payId: decoded.id,
+        payType: decoded.typeUser
+      })
+
+      // setLogged(decoded.name)
       setTypeUser(decoded.typeUser)
       setId(decoded.id)
-      console.log('TypeUser App: ', typeUser)
-      console.log('State after login: ', decoded)
+
     } else {
       localStorage.removeItem('jwtToken')
-      setLogged(false)
+      // setLogged(false)
     }
-  }, [logged])
-
-  // store.dispatch({
-  //   type: TEST_DISPATCH,
-  //   isAuthenticated: true,
-  //   payload: 'test'
-  // })
-  console.log(store.getState())
+  }, [])
 
   return (
     <Provider store={store}>
       <Router>
         <div className='main-container background-color'>
 
-          <Header user={logged} setLogged={setLogged} state={logged} />
+          <Header />
 
           <div className="container">
 
             <Route
               path='/' exact
-              component={() => <ClientHome user={logged} />}
+              component={() => <ClientHome />}
             />
             <Route
               path='/jobs' exact
-              component={() => <JobHome user={logged} />}
+              component={() => <JobHome />}
             />
             <Route
               path='/start' exact
-              component={() => <ClientQuiz user={logged} />}
+              component={() => <ClientQuiz />}
             />
             <Route
               path='/startjobs' exact
-              component={() => <JobQuiz user={logged} />}
+              component={() => <JobQuiz />}
             />
             <Route
               path='/profile' exact
-              component={() => <Profile id={id} typeUser={typeUser} />}
+              component={() => <Profile id={id} typeUser={typeUser}/>}
             />
             <Route
               path='/register' exact
-              component={() => <Register isLogged={setLogged} state={logged} />}
+              component={() => <Register />}
             />
 
             <Route
               path='/login' exact
-              component={() => <Login isLogged={setLogged} stat={logged} />}
+              component={() => <Login />}
             />
 
             <Route
               path='/logout' exact
-              component={() => <Logout isLogged={setLogged} state={logged} />}
+              component={() => <Logout />}
             />
             <Route
               path='/singlearticle' exact

@@ -4,9 +4,10 @@ import { registerUser, loginUser } from '../../actions/authAction'
 import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationRegister'
 import { useHistory } from "react-router-dom";
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
+
 import { connect } from 'react-redux'
 
-const Register = ({ props, isLogged, state }) => {
+const Register = (props) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
@@ -19,20 +20,21 @@ const Register = ({ props, isLogged, state }) => {
     history.location.state && (dataRadioForm = history.location.state.data)
     history.location.state && (coords = history.location.state.coords)
 
-    // console.log('Type User from History: ', history.location.state.typeUser)
-    // console.log('Data from History: ', history.location.state.data)
-    // console.log('Data from History Coords: ', history.location.state.coords)
+    console.log('Type User from History: ', history.location.state.typeUser)
+    console.log('Data from History: ', history.location.state.data)
+    console.log('Data from History Coords: ', history.location.state.coords)
 
     useEffectValidationOnEvent(values, setErrors) // Vallidation on Front on every type event -> useEffect
 
     useEffect(() => {
-        registered && loginUser({ values, setErrors, isLogged })
+        registered && props.loginUser({ values, setErrors })
+        // registered && loginUser({ values, setErrors, isLogged })
 
         console.log('Type User from History - 02: ', typeUser)
-        console.log('Logged: ', state)
+        console.log('Logged: ', props.auth.isAuthenticated)
 
         if (typeUser === 'clients') {
-            state && history.push({
+            props.auth.isAuthenticated && history.push({
                 pathname: "/start",
                 state: {
                     data: dataRadioForm
@@ -42,7 +44,7 @@ const Register = ({ props, isLogged, state }) => {
                 }
             })
         } else if (typeUser === 'jobs') {
-            state && history.push({
+            registered && history.push({
                 pathname: "/startjobs",
                 state: {
                     data: dataRadioForm,
@@ -54,12 +56,12 @@ const Register = ({ props, isLogged, state }) => {
             })
         }
 
-    }, [registered])
+    }, [registered, props.auth.isAuthenticated])
 
     const spreadFormData = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value })); // form entries to state
     }
-    // SUBMIT FORM <--- 
+    // SUBMIT FORM <---
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -141,8 +143,8 @@ const Register = ({ props, isLogged, state }) => {
     )
 }
 
-const matStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     auth: state.auth
 })
 
-export default connect(matStateToProps, { registerUser })(Register)
+export default connect(mapStateToProps, { registerUser, loginUser })(Register)

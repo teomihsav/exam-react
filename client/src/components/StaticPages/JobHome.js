@@ -3,8 +3,9 @@
 import { Link } from 'react-router-dom'
 import JobsFront from '../JobsFront'
 
+import {connect} from 'react-redux'
 
-const JobHome = ({ user }) => {
+const JobHome = (props) => {
 
     const errors = {}
 
@@ -35,10 +36,13 @@ const JobHome = ({ user }) => {
             </div>
 
             <div style={{ margin: '30px' }}>
-                {!user && <JobsFront />}
+                {!props.auth.user && <JobsFront />}
             </div>
         </div>
     )
 }
 
-export default JobHome
+const matStateToProps = (state) => ({
+    auth: state.auth
+})
+export default connect(matStateToProps)(JobHome)

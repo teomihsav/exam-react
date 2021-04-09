@@ -8,8 +8,6 @@ const initialState = {}
 
 const middleware = [thunk]
 
-console.log('THUNK: ', middleware)
-
 const store = createStore(
     rootReducer,
     initialState,

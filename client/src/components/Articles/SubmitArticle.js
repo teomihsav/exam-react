@@ -18,7 +18,7 @@ const SubmitArticle = ({ setReload }) => {
         window.scrollTo(0, 0)
     });
 
-    // history.location.myProps && console.log(history.location.myProps)
+ history.location.myProps && console.log(history.location.myProps)
 
     useEffect(() => {
         if (history.location.myProps) {

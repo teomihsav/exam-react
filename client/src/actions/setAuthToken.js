@@ -16,7 +16,7 @@ const setAuthToken = token => {
         store.dispatch({
             type: TEST_DISPATCH,
             payAuth: false,
-            payload: {}
+            payUser: {}
         })
         console.log('Logout 02 : ')
         delete axios.defaults.headers.common['Authorization'];

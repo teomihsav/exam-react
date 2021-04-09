@@ -6,20 +6,20 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from 'react'
 import setAuthToken from '../../actions/setAuthToken'
 
+import { connect } from 'react-redux'
 
-const Logout = ({ isLogged, state }) => {
+const Logout = (props) => {
 
     let history = useHistory();
     useEffect(() => {
 
         localStorage.removeItem('jwtToken')
-        isLogged(false)
-        console.log('Logout state: ', state)
+        console.log('Logout state: ', props.auth.isAuthenticated)
         setAuthToken(false)
 
-        if (!state) { history.push('/') } // Redirect based on state -> true on registered user
+        if (!props.auth.isAuthenticated) { history.push('/') } // Redirect based on state -> true on registered user
 
-    }, [state])
+    }, [props.auth.isAuthenticated])
 
     return (
         <div>
@@ -27,5 +27,7 @@ const Logout = ({ isLogged, state }) => {
         </div>
     )
 }
-
-export default Logout
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps, {})(Logout)

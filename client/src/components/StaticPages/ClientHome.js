@@ -2,16 +2,18 @@
 
 import { Link } from 'react-router-dom'
 import JobsFront from '../JobsFront'
+import { connect } from 'react-redux'
 
-
-const ClientHome = ({ user }) => {
+const ClientHome = (props) => {
 
     const errors = {}
 
+    console.log('Client Home: ', props.auth)
+
     return (
         <div className='form-control-out-border-home'>
-            <div style={{ borderBottom: '3px solid rgba(255, 199, 95, 0.925)', display: 'inline-block', fontSize: '38px', fontWeight: 'bold'}}>
-            Let's get start your sports life,
+            <div style={{ borderBottom: '3px solid rgba(255, 199, 95, 0.925)', display: 'inline-block', fontSize: '38px', fontWeight: 'bold' }}>
+                Let's get start your sports life,
             </div> <br />
             <h2 style={{ borderBottom: '3px solid rgba(255, 199, 95, 0.925)', display: 'inline-block' }}>
                 Just answer a few questions and we will help you to start your Sporty live...
@@ -35,10 +37,13 @@ const ClientHome = ({ user }) => {
             </div>
 
             <div style={{ margin: '30px' }}>
-                {!user && <JobsFront />}
+                {!props.auth.user && <JobsFront />}
             </div>
         </div>
     )
 }
 
-export default ClientHome
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps)(ClientHome)

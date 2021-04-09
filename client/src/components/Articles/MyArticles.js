@@ -29,7 +29,7 @@ const MyArticles = ({ id, reload }) => {
     }
 
     useEffect(() => {
-        takeJobsUserArticles({ id })
+        takeJobsUserArticles({ id }) // Takes all user/jobs articles by id 
             .then(res => {
                 //console.log('Response Status Jobs User Articles: ', res.data[0].articles)
                 res.data[0].articles.forEach(el => {
@@ -43,7 +43,7 @@ const MyArticles = ({ id, reload }) => {
                 }
             })
     }, [reload, articleDeleted])
-
+console.log(data)
     return (
         <div>
             <h2 style={{ borderBottom: '1px solid #cbf8c0', display: 'inline-block', marginTop: '20px', marginLeft: '20px' }}> My articles </h2>
@@ -52,7 +52,7 @@ const MyArticles = ({ id, reload }) => {
                     <div className="card-my-articles card-header card-footer">
                         {(Object.keys(data).length > 0)
                             &&
-                            data.map((el, index) =>
+                            data.map((el) =>
                                 <div  key={ Math.random().toString(36).substr(2, 9) } className="card-mid-my-article">
                                     <div className='row-my-articles'>
                                         <div className='column-button-my-article'>

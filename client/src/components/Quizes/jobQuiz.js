@@ -6,6 +6,8 @@ import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 import { useHistory } from "react-router-dom"
 import MapContainer from '../GoogleMap/MapContainer'
 
+import { connect } from 'react-redux'
+
 const Media = ({ onChange, values, errors }) => {
     return (
         <div className='form-control'>
@@ -22,7 +24,7 @@ const Media = ({ onChange, values, errors }) => {
     )
 }
 
-const JobQuiz = ({ user }) => {
+const JobQuiz = (props) => {
 
     let dataRadioForm = {}
     let coordsFromForm = {}
@@ -77,7 +79,7 @@ const JobQuiz = ({ user }) => {
         setErrors({ ...errors })
 
         if (!isEmpty(errors).includes(true)) {
-            if (user) {
+            if (props.auth.user) {
                 saveJobsAswers({ values, coords, setErrors })
                 console.log('From ...', errors)
             } else {
@@ -236,5 +238,8 @@ const JobQuiz = ({ user }) => {
     )
 }
 
-export default JobQuiz
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps)(JobQuiz)
 

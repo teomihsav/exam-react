@@ -5,7 +5,9 @@ import { saveClientAnswers, takeClientsAnswersToEdit } from '../../actions/clien
 import { useHistory } from "react-router-dom"
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 
-const ClientQuiz = ({ user }) => {
+import {connect} from 'react-redux'
+
+const ClientQuiz = (props) => {
 
     let dataRadioForm = {}
 
@@ -54,7 +56,7 @@ const ClientQuiz = ({ user }) => {
         console.log(errors)
 
         if (!isEmpty(errors).includes(true)) {
-            if (user) {
+            if (props.auth.user) {
                 saveClientAnswers({ values, setErrors })
                 console.log('From ...', errors)
             } else {
@@ -198,4 +200,7 @@ const ClientQuiz = ({ user }) => {
     )
 }
 
-export default ClientQuiz
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps)(ClientQuiz)

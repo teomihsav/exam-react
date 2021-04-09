@@ -4,7 +4,6 @@ import axios from 'axios'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './setAuthToken'
 import { TEST_DISPATCH } from './types'
-import store from '../store'
 
 const registerUser = ({ values, setErrors, setRegistered, typeUser }) => { // console.log('TEST: ', values)
     axios.post('http://localhost:5000/auth/register', { ...values, typeUser })
@@ -22,10 +21,11 @@ const registerUser = ({ values, setErrors, setRegistered, typeUser }) => { // co
         })
 }
 
-const loginUser = ({ values, setErrors, isLogged }) => { // console.log('TEST: ', values)
-    axios.post('http://localhost:5000/auth/login', { ...values })
+const loginUser = ({ values, setErrors }) => dispatch => {
+    axios.post('http://localhost:5000/auth/login', values)
         .then(res => {
-
+            console.log(values)
+            console.log('Dispatch: ', dispatch)
             // Save to LocalStorage
             const { token } = res.data;
             if (token !== 'undefined') {
@@ -35,19 +35,21 @@ const loginUser = ({ values, setErrors, isLogged }) => { // console.log('TEST: '
                 setAuthToken(token);
                 // Decode token to get user data
                 const decoded = jwt_decode(token);
-                isLogged(decoded.name)
+                // isLogged(decoded.name)
 
-                store.dispatch({
+                dispatch({
                     type: TEST_DISPATCH,
                     payAuth: true,
-                    payload: decoded.name
+                    payUser: decoded.name,
+                    payId: decoded.id,
+                    payType: decoded.typeUser
                 })
             }
         })
         .catch(err => {
             if (err.response) {
                 setErrors(err.response.data)
-                isLogged(false)
+                // isLogged(false)
             }
         })
 }

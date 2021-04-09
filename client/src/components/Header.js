@@ -3,8 +3,12 @@ import { useState, useEffect } from 'react'
 import Menulinks from './MenuLinks'
 import { Link } from 'react-router-dom'
 import { isExpired } from '../actions/clientAction'
+import { connect } from 'react-redux'
 
-const Header = ({ user, setLogged, state }) => {
+const Header = (props) => {
+
+    const user = props.auth.user
+    const logged = props.auth.isAuthenticated
 
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState()
@@ -36,13 +40,12 @@ const Header = ({ user, setLogged, state }) => {
         { id: 5, text: 'Articles', path: 'articles' },
         { id: 6, text: 'About', path: 'about' },
     ]
-    console.log('Header loggin state: ', state)
 
-    isExpired() && setLogged(false) // console.log(clicked)
+    // isExpired() && setLogged(false) // console.log(clicked)
 
-    let link 
-    
-    if (state) {
+    let link
+
+    if (logged) {
         menu.splice(0, 3, { id: 3, text: 'Logout', user, path: 'logout' }, { id: 4, text: 'Profile', path: 'profile' })
         link = ''
     } else { }
@@ -51,7 +54,7 @@ const Header = ({ user, setLogged, state }) => {
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className='navbar-logo'>
-                   { state ? <Link className='text-logo' to='null'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
+                    {props.auth.isAuthenticated ? <Link className='text-logo' to='null'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
                 </h1>
                 <div className="menu-icon" >
                 </div>
@@ -73,4 +76,8 @@ const Header = ({ user, setLogged, state }) => {
     )
 }
 
-export default Header
+const mapStateToProps = (state) => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(Header)

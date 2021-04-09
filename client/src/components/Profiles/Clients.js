@@ -1,6 +1,6 @@
 
 
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom'
 
 import '../CSS/ClientProfile.css'
@@ -103,7 +103,7 @@ const Clients = ({ data }) => {
         let coordsData = []
 
         dataJobsChoosen.map(el => {
-                if (el.lat != undefined && el.lng != undefined) {
+                if (el.lat !== undefined && el.lng !== undefined) {
                         console.log(el.lat)
                         console.log(el.lng)
                         coordsData.push({

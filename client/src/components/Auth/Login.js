@@ -6,9 +6,8 @@ import { isEmpty, isBodyFieldEmpty } from '../../validation/authValidationLogin'
 import { useHistory } from "react-router-dom"
 import { useEffectValidationOnEvent } from '../../validation/authValidationRegisterOnEvent'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 
-const Login = ({ auth, isLogged, stat }) => {
+const Login = (props) => {
 
     const [values, setValues] = useState({})
     const [errors, setErrors] = useState({})
@@ -18,8 +17,8 @@ const Login = ({ auth, isLogged, stat }) => {
 
     // On "logged" stat changed to token id --> redirect  
     useEffect(() => {
-        stat && history.push("/profile")
-    }, [stat])
+        props.auth.isAuthenticated && history.push("/profile")
+    }, [props.auth.isAuthenticated])
 
 
     const validForm = (e) => {
@@ -31,11 +30,11 @@ const Login = ({ auth, isLogged, stat }) => {
 
         isBodyFieldEmpty(values, errors)
 
-        setErrors({ ...errors });
+        setErrors({ ...errors })
 
         if (!isEmpty(errors, values).includes(true)) { // return array with true on element with error from the object errors/state
 
-            loginUser({ values, setErrors, isLogged })
+            props.loginUser({ values, setErrors })
             // console.log('State in Login : ', state)
         }
     }
@@ -85,16 +84,9 @@ const Login = ({ auth, isLogged, stat }) => {
     )
 }
 
-Login.propType = {
-    loginUser: PropTypes.func.isRequired,
-    clearErrorsState: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
-}
-
 const mapStateToProps = (state) => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, { loginUser })(Login)
 
