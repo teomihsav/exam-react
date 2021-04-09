@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom"
 import MapContainer from '../GoogleMap/MapContainer'
 
 import { connect } from 'react-redux'
+import { CLICKED_DISPATCH } from '../../actions/types'
 
 const Media = ({ onChange, values }) => {
     return (
@@ -60,16 +61,15 @@ const JobQuiz = (props) => {
 
     useEffect(() => {
         errors === 200 && history.push("/profile")
+        props.dispatch({
+            type: CLICKED_DISPATCH,
+            payLoad: Number(4)
+        })
     }, [errors])
 
     const onValueChange = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value })) // console.log('After value set: ', values)
     }
-
-    // takeCoordsIfDbHas()
-    //     .then(coords => {
-    //         console.log(coords)
-    //     }).catch(err => console.log(err))
 
     const formSubmit = (e) => {
         e.preventDefault()
@@ -239,7 +239,8 @@ const JobQuiz = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.auth,
+    menu: state.menu
 })
 export default connect(mapStateToProps)(JobQuiz)
 

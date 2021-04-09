@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom"
 import { isEmpty, isRadioFormEmpty } from '../../validation/RadioFormValidation'
 
 import { connect } from 'react-redux'
+import { CLICKED_DISPATCH } from '../../actions/types'
 
 const ClientQuiz = (props) => {
 
@@ -44,6 +45,10 @@ const ClientQuiz = (props) => {
 
     useEffect(() => {
         errors === 200 && history.push("/profile")
+        props.dispatch({
+            type: CLICKED_DISPATCH,
+            payLoad: Number(4)
+        })
     }, [errors])
 
     const onValueChange = (e) => {
@@ -205,6 +210,7 @@ const ClientQuiz = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.auth,
+    menu: state.menu
 })
 export default connect(mapStateToProps)(ClientQuiz)

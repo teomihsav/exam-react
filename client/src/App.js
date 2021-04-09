@@ -33,7 +33,7 @@ const App = () => {
       <Router>
         <div className='main-container background-color'>
 
-          <Header />
+          <Route exact component={Header} />
 
           <div className="container">
 

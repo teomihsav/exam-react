@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Clients from './Clients'
 import Jobs from './Jobs'
 import { connect } from 'react-redux'
+import { CLICKED_DISPATCH } from '../../actions/types'
 
 const Profile = (props) => {
     console.log('Props: ', props)
@@ -22,6 +23,10 @@ const Profile = (props) => {
         if (typeUser === 'jobs') {
             takeJobsAnswersToProfile({ setData })
         }
+        props.dispatch({
+            type: CLICKED_DISPATCH,
+            payLoad: Number(4)      // Sets in menuReducer 4. In Header UseEffect watch for change if is set setClicked to 4 to display Profile clicked 
+        })
     }, [])
 
     console.log('TypeUser Profile: ', typeUser)

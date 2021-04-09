@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import Menulinks from './MenuLinks'
 import { Link } from 'react-router-dom'
-import { isExpired } from '../actions/clientAction'
 import { connect } from 'react-redux'
 
 const Header = (props) => {
@@ -11,6 +10,12 @@ const Header = (props) => {
 
     const [scrolled, setScrolled] = useState(false);
     const [clicked, setClicked] = useState()
+
+    useEffect(() => {
+
+        setClicked(props.menu.clicked)
+
+    }, [props.menu.clicked])
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -73,7 +78,8 @@ const Header = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.auth,
+    menu: state.menu
 })
 
 export default connect(mapStateToProps)(Header)
