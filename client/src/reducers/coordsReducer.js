@@ -1,24 +1,20 @@
 
 
 
-
-
-
-import { CLICKED_DISPATCH } from '../actions/types'
+import { COORDS_DISPATCH } from '../actions/types'
 
 const initialState = {
-    clicked: Number(0)
+    coords: {}
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case CLICKED_DISPATCH:
+        case COORDS_DISPATCH:
             return {
                 ...state,
-                clicked: action.payLoad
+                coords: action.payCoords
             }
         default:
             return state
     }
 }
-

@@ -3,9 +3,11 @@
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useState, useEffect } from 'react'
+import store  from '../../store'
 
-export const MapContainer = ({ setCoords, coordsFromDB }) => {
+export const MapContainer = ({ setCoords }) => {
 
+    let coordsFromDB = store.getState().coordinats.coords
     console.log('MapContainer received coords: ', coordsFromDB)
 
     const [currentPosition, setCurrentPosition] = useState({});
@@ -19,17 +21,8 @@ export const MapContainer = ({ setCoords, coordsFromDB }) => {
     }
 
     useEffect(() => {
-        console.log(coordsFromDB.lat)
-        if (coordsFromDB.hasOwnProperty('lat') && coordsFromDB.lat) {
-            console.log('Coords from DB will be set: ', coordsFromDB)
-            const currentPosition = {
-                lat: Number(coordsFromDB.lat),
-                lng: Number(coordsFromDB.lng)
-            }
-            setCurrentPosition(currentPosition)
-        } else {
-            navigator.geolocation.getCurrentPosition(success)
-        }
+        coordsFromDB ? setCurrentPosition(coordsFromDB) :
+        navigator.geolocation.getCurrentPosition(success)
     }, [coordsFromDB.lat])
 
     const mapStyles = {

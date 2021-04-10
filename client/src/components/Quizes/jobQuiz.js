@@ -8,6 +8,7 @@ import MapContainer from '../GoogleMap/MapContainer'
 
 import { connect } from 'react-redux'
 import { CLICKED_DISPATCH } from '../../actions/types'
+import { COORDS_DISPATCH } from '../../actions/types'
 
 const Media = ({ onChange, values }) => {
     return (
@@ -68,6 +69,17 @@ const JobQuiz = (props) => {
         })
     }, [errors])
 
+    useEffect(() => {
+        props.dispatch({
+            type: COORDS_DISPATCH,
+            payCoords: {
+                lat: values.lat,
+                lng: values.lng
+            }
+        })
+
+    }, [values.lat])
+    
     const onValueChange = (e) => {
         setValues(values => ({ ...values, [e.target.name]: e.target.value })) // console.log('After value set: ', values)
     }
@@ -95,10 +107,7 @@ const JobQuiz = (props) => {
             }
         }
     }
-    coordsFromDB = {
-        lat: values.lat,
-        lng: values.lng
-    }
+
     return (
         <div>
             <h1>{history.location.myProps && history.location.myProps.title}</h1> <br />
@@ -247,7 +256,7 @@ const JobQuiz = (props) => {
                     If marked location is not accurate drag the marker to your location
                 </h4>
 
-                <MapContainer setCoords={setCoords} coordsFromDB={coordsFromDB} />
+                <MapContainer setCoords={setCoords} />
 
                 <Media onChange={onValueChange} values={values} errors={errors} />
 
@@ -262,7 +271,8 @@ const JobQuiz = (props) => {
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
-    menu: state.menu
+    menu: state.menu,
+    coordinats: state.coordinats
 })
 export default connect(mapStateToProps)(JobQuiz)
 
