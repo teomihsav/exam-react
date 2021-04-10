@@ -55,7 +55,7 @@ const Header = (props) => {
         <div>
             <nav className={scrolled ? "NavbarItems scrolled" : "NavbarItems"} >
                 <h1 className='navbar-logo'>
-                    {props.auth.isAuthenticated ? <Link className='text-logo' to='null'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
+                    {props.auth.isAuthenticated ? <Link className='text-logo' to='/profile'> beSporty </Link> : <Link className='text-logo' to='/'> beSporty </Link>}
                 </h1>
                 <div className="menu-icon" >
                 </div>

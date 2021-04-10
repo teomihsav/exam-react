@@ -7,6 +7,9 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { refresh } from './utils/refresh'
 
+import PrivateRoute from './components/PrivateRoute'
+import NoPrivateRoute from './components/NoPrivateRoute'
+
 import Header from './components/Header'
 import Register from './components/Auth/Register'
 import Login from './components/Auth/Login'
@@ -39,11 +42,11 @@ const App = () => {
 
             <Switch>
 
-              <Route path='/' exact component={ClientHome} />
-              <Route path='/jobs' exact component={JobHome} />
-              <Route path='/start' exact component={ClientQuiz} />
-              <Route path='/startjobs' exact component={JobQuiz} />
-              <Route path='/profile' exact component={Profile} />
+              <NoPrivateRoute path='/' exact component={ClientHome} />
+              <NoPrivateRoute path='/jobs' exact component={JobHome} />
+              <NoPrivateRoute path='/start' exact component={ClientQuiz} />
+              <NoPrivateRoute path='/startjobs' exact component={JobQuiz} />
+              <PrivateRoute path='/profile' exact component={Profile} />
               <Route path='/register' exact component={Register} />
               <Route path='/login' exact component={Login} />
               <Route path='/logout' exact component={Logout} />
@@ -65,5 +68,6 @@ const App = () => {
     </Provider>
   )
 }
+
 
 export default App
