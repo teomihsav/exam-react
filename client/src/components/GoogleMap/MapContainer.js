@@ -4,7 +4,9 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useState, useEffect } from 'react'
 
-export const MapContainer = ({ setCoords }) => {
+export const MapContainer = ({ setCoords, coordsFromDB }) => {
+
+    console.log('MapContainer received coords: ', coordsFromDB)
 
     const [currentPosition, setCurrentPosition] = useState({});
 
@@ -13,12 +15,22 @@ export const MapContainer = ({ setCoords }) => {
             lat: Number(position.coords.latitude),
             lng: Number(position.coords.longitude)
         }
-        setCurrentPosition(currentPosition);
+        setCurrentPosition(currentPosition)
     }
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(success);
-    }, [])
+        console.log(coordsFromDB.lat)
+        if (coordsFromDB.hasOwnProperty('lat') && coordsFromDB.lat) {
+            console.log('Coords from DB will be set: ', coordsFromDB)
+            const currentPosition = {
+                lat: Number(coordsFromDB.lat),
+                lng: Number(coordsFromDB.lng)
+            }
+            setCurrentPosition(currentPosition)
+        } else {
+            navigator.geolocation.getCurrentPosition(success)
+        }
+    }, [coordsFromDB.lat])
 
     const mapStyles = {
         height: "20vh",
@@ -26,15 +38,15 @@ export const MapContainer = ({ setCoords }) => {
     }
 
     const onMarkerDragEnd = (e) => {
-        const lat = e.latLng.lat();
-        const lng = e.latLng.lng();
+        const lat = e.latLng.lat()
+        const lng = e.latLng.lng()
         setCurrentPosition({ lat, lng })
     }
 
-    console.log('Coord: ', currentPosition)
-    
-    setCoords(values => ( {...values}, currentPosition ))
-    // setValues(values => ({ ...values, [e.target.name]: e.target.value }))
+    console.log('Choosen coords: ', currentPosition)
+
+    setCoords(values => ({ ...values }, currentPosition))
+
     return (
         <LoadScript
             googleMapsApiKey='AIzaSyCSoeiJCNbjWSEZtv6rezr3Jh7HjVgMzho'>

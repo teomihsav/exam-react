@@ -68,7 +68,7 @@ router.get('/takeAnswers', passport.authenticate('jwt', { session: false }), (re
     ProfileJob.findOne({ client: req.user.id })
         .then(profile => {
             if (profile) {
-                // console.log('Api:', profile)
+                console.log('Api:', profile)
                 return res.status(200).json(profile)
             } else {
                 console.log('Error, no data:')

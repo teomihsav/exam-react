@@ -40,21 +40,22 @@ const JobQuiz = (props) => {
             console.log('Coords: ', history.location.state.coords)
         }
     }
-    console.log(coordsFromForm)
+    console.log('Coords from Form:', coordsFromForm)
     const [values, setValues] = useState({ ...dataRadioForm })
     const [errors, setErrors] = useState({})
     const [coords, setCoords] = useState({ ...coordsFromForm })
 
     let typeUser = 'jobs'
-
+    let coordsFromDB = {}
     let radioChoices = []
 
     useEffect(() => {
         if (history.location.myProps && history.location.myProps.title === 'Editing this answers will change chosen clients for you') {
             takeJobsAnswersToEdit({ setValues })
+
         }
     }, [])
-
+    console.log('Values from JobQuiz:', values)
     useEffect(() => { // console.log('State :', values)
         radioChoices.push(values) // console.log('Array: ', radioChoices)
     }, [values])
@@ -94,7 +95,10 @@ const JobQuiz = (props) => {
             }
         }
     }
-
+    coordsFromDB = {
+        lat: values.lat,
+        lng: values.lng
+    }
     return (
         <div>
             <h1>{history.location.myProps && history.location.myProps.title}</h1> <br />
@@ -243,7 +247,7 @@ const JobQuiz = (props) => {
                     If marked location is not accurate drag the marker to your location
                 </h4>
 
-                <MapContainer onChange={onValueChange} setCoords={setCoords} />
+                <MapContainer setCoords={setCoords} coordsFromDB={coordsFromDB} />
 
                 <Media onChange={onValueChange} values={values} errors={errors} />
 
