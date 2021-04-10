@@ -89,35 +89,42 @@ const ClientQuiz = (props) => {
                         <div className='form-control-out-border-quiz' id="one">
                             <label><h2>  Walk during the day</h2></label>
                             <div className='form-control-out-border-quiz' >
-                                <input
-                                    type="radio"
-                                    checked={values.one === '15 to 30 minutes'}
-                                    name="one"
-                                    value='15 to 30 minutes'
-                                    onChange={onValueChange}
-                                />
-                                <label>  Do you walk 15 to 30 minutes during the day?</label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.one === '15 to 30 minutes'}
+                                        name="one"
+                                        value='15 to 30 minutes'
+                                        onChange={onValueChange}
+                                    />
+                                        Do you walk 15 to 30 minutes during the day?
+                                </label>
                             </div>
 
                             <div className='form-control-out-border-quiz'>
-                                <input type='radio'
-                                    checked={values.one === '30 to 60 minutes'}
-                                    name="one"
-                                    value='30 to 60 minutes'
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you walk 30 to 60 minutes during the day?</label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type='radio'
+                                        checked={values.one === '30 to 60 minutes'}
+                                        name="one"
+                                        value='30 to 60 minutes'
+                                        onChange={onValueChange}
+                                    />
+                                Do you walk 30 to 60 minutes during the day?
+                                </label>
                             </div>
 
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.one === '1 hour and more'}
-                                    name="one"
-                                    value='1 hour and more'
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you walk 1 hour and more during the day?</label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.one === '1 hour and more'}
+                                        name="one"
+                                        value='1 hour and more'
+                                        onChange={onValueChange}
+                                    />
+                                Do you walk 1 hour and more during the day?
+                                </label>
                             </div>
 
                             <span className='error'>{errors.profileAlreadyDone}</span>
@@ -127,36 +134,42 @@ const ClientQuiz = (props) => {
                             <label><h2>Streaching during the day</h2></label>
 
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.two === '15 to 30 minutes'}
-                                    name="two"
-                                    value={'15 to 30 minutes'}
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you strech 15 to 30 minutes during the day? </label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.two === '15 to 30 minutes'}
+                                        name="two"
+                                        value={'15 to 30 minutes'}
+                                        onChange={onValueChange}
+                                    />
+                                 Do you strech 15 to 30 minutes during the day?
+                                 </label>
                             </div>
 
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.two === '30 to 60 minutes'}
-                                    name="two"
-                                    value={'30 to 60 minutes'}
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you strech 30 to 60 minutes during the day? </label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.two === '30 to 60 minutes'}
+                                        name="two"
+                                        value={'30 to 60 minutes'}
+                                        onChange={onValueChange}
+                                    />
+                                 Do you strech 30 to 60 minutes during the day?
+                                  </label>
                             </div>
 
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.two === '1 hour and more'}
-                                    name="two"
-                                    value={'1 hour and more'}
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you strech 1 hour and more during the day? </label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.two === '1 hour and more'}
+                                        name="two"
+                                        value={'1 hour and more'}
+                                        onChange={onValueChange}
+                                    />
+                                 Do you strech 1 hour and more during the day?
+                                 </label>
                             </div>
 
                             <span className='error'>{errors.profileAlreadyDone}</span>
@@ -165,36 +178,42 @@ const ClientQuiz = (props) => {
                         <div className='form-control-out-border-quiz' id="three">
                             <label><h2>Active sports like cicling, hicking, body bulid etc.</h2> </label>
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.three === '15 to 30 minutes'}
-                                    name="three"
-                                    value={'15 to 30 minutes'}
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you have active sports 15 to 30 minutes during the day? </label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.three === '15 to 30 minutes'}
+                                        name="three"
+                                        value={'15 to 30 minutes'}
+                                        onChange={onValueChange}
+                                    />
+                                 Do you have active sports 15 to 30 minutes during the day?
+                                 </label>
                             </div>
 
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.three === '30 to 60 minutes'}
-                                    name="three"
-                                    value={'30 to 60 minutes'}
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you have active sports 30 to 60 minutes during the day? </label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.three === '30 to 60 minutes'}
+                                        name="three"
+                                        value={'30 to 60 minutes'}
+                                        onChange={onValueChange}
+                                    />
+                                Do you have active sports 30 to 60 minutes during the day?
+                                </label>
                             </div>
 
                             <div className='form-control-out-border-quiz'>
-                                <input
-                                    type="radio"
-                                    checked={values.three === '1 hour and more'}
-                                    name="three"
-                                    value={'1 hour and more'}
-                                    onChange={onValueChange}
-                                />
-                                <label> Do you have active sports 1 hour and more during the day? </label>
+                                <label className='label-radio'>
+                                    <input className='input-radio'
+                                        type="radio"
+                                        checked={values.three === '1 hour and more'}
+                                        name="three"
+                                        value={'1 hour and more'}
+                                        onChange={onValueChange}
+                                    />
+                                Do you have active sports 1 hour and more during the day?
+                                </label>
                             </div>
                             <span className='error'>{errors.profileAlreadyDone}</span>
                         </div>

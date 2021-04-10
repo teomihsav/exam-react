@@ -486,5 +486,32 @@ body {
 .btn-client:active {
   transform: scale(0.98);
 }
-.about {
+.label-radio {
+  background:rgba(255, 244, 224, 0.925);
+  color:#000;
+  border-radius:5px;   
+  padding: 4px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+.label-radio:hover {
+  background:rgba(255, 166, 0, 0.925);   
+}
+.input-radio {
+  margin-right:1em;   
+}
+
+.label-radio-job {
+  background:rgba(235, 255, 224, 0.925);
+  color:#000;
+  border-radius:5px;   
+  padding: 6px;
+  margin: 10px auto;
+  cursor: pointer;
+}
+.label-radio-job:hover {
+  background:rgba(163, 224, 128, 0.925);   
+}
+.input-radio-job {
+  margin-right:1em;   
 }
