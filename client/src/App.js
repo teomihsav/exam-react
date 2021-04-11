@@ -42,10 +42,10 @@ const App = () => {
 
             <Switch>
 
-              <NoPrivateRoute path='/' exact component={ClientHome} />
-              <NoPrivateRoute path='/jobs' exact component={JobHome} />
-              <NoPrivateRoute path='/start' exact component={ClientQuiz} />
-              <NoPrivateRoute path='/startjobs' exact component={JobQuiz} />
+              <Route path='/' exact component={ClientHome} />
+              <Route path='/jobs' exact component={JobHome} />
+              <Route path='/start' exact component={ClientQuiz} />
+              <Route path='/startjobs' exact component={JobQuiz} />
               <PrivateRoute path='/profile' exact component={Profile} />
               <Route path='/register' exact component={Register} />
               <Route path='/login' exact component={Login} />
