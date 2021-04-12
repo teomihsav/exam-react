@@ -3,7 +3,7 @@
 
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useState, useEffect } from 'react'
-import store  from '../../store'
+import store from '../../store'
 
 export const MapContainer = ({ setCoords }) => {
 
@@ -19,10 +19,10 @@ export const MapContainer = ({ setCoords }) => {
         }
         setCurrentPosition(currentPosition)
     }
-
+    console.log(coordsFromDB.lat)
     useEffect(() => {
-        coordsFromDB ? setCurrentPosition(coordsFromDB) :
-        navigator.geolocation.getCurrentPosition(success)
+        !coordsFromDB.lat ? navigator.geolocation.getCurrentPosition(success) :
+            setCurrentPosition(coordsFromDB)
     }, [coordsFromDB.lat])
 
     const mapStyles = {
