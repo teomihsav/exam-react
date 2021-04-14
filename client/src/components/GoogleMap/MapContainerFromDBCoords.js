@@ -25,7 +25,7 @@ console.log('Coords from MapDB: ', coordsData)
 
     return (
         <LoadScript
-            googleMapsApiKey='AIzaSyCSoeiJCNbjWSEZtv6rezr3Jh7HjVgMzho'>
+            googleMapsApiKey='...'>
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={10}
