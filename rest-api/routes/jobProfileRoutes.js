@@ -119,7 +119,7 @@ const transporter = nodemailer.createTransport({
     secure: true,
     auth: {
         user: 'softuni@ben.bg',
-        pass: '~1~h711ubVtg'
+        pass: '...'
     }
 })
 
