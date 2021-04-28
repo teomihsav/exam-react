@@ -10,7 +10,7 @@ const mx = (data) => {
         secure: true, // true for 465, false for other ports
         auth: {
             user: 'softuni@ben.bg', // generated ethereal user
-            pass: '...' // generated ethereal password
+            pass: '~1~h711ubVtg' // generated ethereal password
         }
     })
     console.log('Data from Front at beckend: ', data)
